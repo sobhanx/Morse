@@ -2,6 +2,7 @@ import secrets
 import uuid
 
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 from websites.tenant import TenantModel
 
@@ -48,7 +49,7 @@ class Contact(TenantModel):
             return self.name
         if self.email:
             return self.email
-        return f"Visitor {self.visitor_id}"
+        return _("Visitor %(visitor_id)s") % {"visitor_id": self.visitor_id}
 
     @property
     def initials(self):

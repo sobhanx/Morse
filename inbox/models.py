@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 from contacts.models import Contact
 from websites.tenant import TenantModel
@@ -7,9 +8,9 @@ from websites.tenant import TenantModel
 
 class Conversation(TenantModel):
     class Status(models.TextChoices):
-        OPEN = "open", "Open"
-        PENDING = "pending", "Pending"
-        RESOLVED = "resolved", "Resolved"
+        OPEN = "open", _("Open")
+        PENDING = "pending", _("Pending")
+        RESOLVED = "resolved", _("Resolved")
 
     contact = models.ForeignKey(
         Contact, on_delete=models.CASCADE, related_name="conversations"
@@ -49,14 +50,14 @@ class Conversation(TenantModel):
         msg = self.last_message
         if msg:
             return msg.content[:80]
-        return "No messages yet"
+        return _("No messages yet")
 
 
 class Message(TenantModel):
     class SenderType(models.TextChoices):
-        VISITOR = "visitor", "Visitor"
-        AGENT = "agent", "Agent"
-        SYSTEM = "system", "System"
+        VISITOR = "visitor", _("Visitor")
+        AGENT = "agent", _("Agent")
+        SYSTEM = "system", _("System")
 
     conversation = models.ForeignKey(
         Conversation, on_delete=models.CASCADE, related_name="messages"
@@ -89,4 +90,4 @@ class Message(TenantModel):
             return self.agent.get_full_name() or self.agent.username
         if self.sender_type == Message.SenderType.VISITOR:
             return self.conversation.contact.display_name
-        return "System"
+        return _("System")

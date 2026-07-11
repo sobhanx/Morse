@@ -1,6 +1,7 @@
 {% extends "base.html" %}
+{% load i18n %}
 
-{% block title %}تایید کد — {{ product_name }}{% endblock %}
+{% block title %}{% trans "Verify code" %} — {{ product_name }}{% endblock %}
 {% block body_class %}auth-page{% endblock %}
 
 {% block body %}
@@ -8,14 +9,14 @@
     <div class="auth-card">
         <div class="auth-logo">
             <span class="logo-icon">💬</span>
-            <h1>تایید شماره موبایل</h1>
-            <p>کد تایید ارسال شده به شماره موبایل خود را وارد کنید</p>
+            <h1>{% trans "Verify mobile number" %}</h1>
+            <p>{% trans "Enter the verification code sent to your mobile number" %}</p>
         </div>
 
         <form id="otp-form" method="post" class="auth-form" dir="ltr">
             {% csrf_token %}
             <div class="form-group">
-                <label for="verify_code">کد تایید</label>
+                <label for="verify_code">{% trans "Verification code" %}</label>
                 <input
                     type="text"
                     id="verify_code"
@@ -37,7 +38,7 @@
 
         <div class="otp-resend">
             <div id="countdownSection">
-                <p class="auth-hint">زمان باقی‌مانده تا ارسال مجدد</p>
+                <p class="auth-hint">{% trans "Time remaining until resend" %}</p>
                 <span id="countdown" class="otp-countdown">02:00</span>
             </div>
             <button
@@ -47,7 +48,7 @@
                 class="btn btn-secondary btn-block hidden"
                 disabled
             >
-                ارسال مجدد
+                {% trans "Resend" %}
             </button>
         </div>
     </div>
@@ -104,7 +105,7 @@
     form.addEventListener('submit', (e) => {
       if (otpInput && otpInput.value.length !== 5) {
         e.preventDefault();
-        alert('لطفاً کد تایید 5 رقمی را وارد کنید');
+        alert('{% trans "Please enter the 5-digit verification code" %}');
       }
     });
   }
@@ -158,15 +159,15 @@
       const data = await response.json();
       if (data.success) {
         startTimer();
-        alert('کد تایید مجدداً ارسال شد.');
+        alert('{% trans "Verification code has been resent." %}');
       } else {
         resendButton.disabled = false;
-        alert(data.error || 'خطا در ارسال مجدد کد');
+        alert(data.error || '{% trans "Error resending verification code" %}');
       }
     } catch (error) {
       console.error('Error:', error);
       resendButton.disabled = false;
-      alert('خطا در ارسال مجدد کد');
+      alert('{% trans "Error resending verification code" %}');
     }
   }
 </script>

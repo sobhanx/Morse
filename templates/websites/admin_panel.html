@@ -1,79 +1,80 @@
 {% extends "dashboard/base_dashboard.html" %}
+{% load i18n %}
 
-{% block page_title %}Platform Monitor{% endblock %}
+{% block page_title %}{% trans "Platform Monitor" %}{% endblock %}
 
 {% block dashboard_content %}
 <div class="page-toolbar">
-    <h2>Platform monitor</h2>
-    <p class="text-muted">Observe all customers, websites, and visitor questions across {{ product_name }}.</p>
+    <h2>{% trans "Platform monitor" %}</h2>
+    <p class="text-muted">{% blocktrans with product=product_name %}Observe all customers, websites, and visitor questions across {{ product }}.{% endblocktrans %}</p>
 </div>
 
 <div class="platform-stats">
     <div class="stat-card">
         <div class="stat-value">{{ totals.customers }}</div>
-        <div class="stat-label">Customers (owners)</div>
+        <div class="stat-label">{% trans "Customers (owners)" %}</div>
     </div>
     <div class="stat-card">
         <div class="stat-value">{{ totals.websites }}</div>
-        <div class="stat-label">Websites ({{ totals.active_websites }} active)</div>
+        <div class="stat-label">{% blocktrans with active=totals.active_websites %}Websites ({{ active }} active){% endblocktrans %}</div>
     </div>
     <div class="stat-card">
         <div class="stat-value">{{ totals.conversations }}</div>
-        <div class="stat-label">Questions ({{ totals.open_conversations }} open)</div>
+        <div class="stat-label">{% blocktrans with open=totals.open_conversations %}Questions ({{ open }} open){% endblocktrans %}</div>
     </div>
     <div class="stat-card stat-card-alert">
         <div class="stat-value">{{ totals.unread_conversations }}</div>
-        <div class="stat-label">Unread</div>
+        <div class="stat-label">{% trans "Unread" %}</div>
     </div>
     <div class="stat-card">
         <div class="stat-value">{{ totals.messages }}</div>
-        <div class="stat-label">Total messages</div>
+        <div class="stat-label">{% trans "Total messages" %}</div>
     </div>
 </div>
 
 <div class="platform-tabs">
     <a href="?tab=questions{% if search %}&q={{ search }}{% endif %}{% if status != 'all' %}&status={{ status }}{% endif %}{% if website_id %}&website={{ website_id }}{% endif %}"
-       class="platform-tab {% if tab == 'questions' %}active{% endif %}">All questions</a>
+       class="platform-tab {% if tab == 'questions' %}active{% endif %}">{% trans "All questions" %}</a>
     <a href="?tab=customers{% if search %}&q={{ search }}{% endif %}"
-       class="platform-tab {% if tab == 'customers' %}active{% endif %}">Customers</a>
+       class="platform-tab {% if tab == 'customers' %}active{% endif %}">{% trans "Customers" %}</a>
     <a href="?tab=websites{% if search %}&q={{ search }}{% endif %}"
-       class="platform-tab {% if tab == 'websites' %}active{% endif %}">Websites</a>
+       class="platform-tab {% if tab == 'websites' %}active{% endif %}">{% trans "Websites" %}</a>
 </div>
 
 <form method="get" class="platform-filters">
     <input type="hidden" name="tab" value="{{ tab }}">
-    <input type="search" name="q" placeholder="Search..." value="{{ search }}">
+    <input type="search" name="q" placeholder="{% trans 'Search...' %}" value="{{ search }}">
     {% if tab == 'questions' %}
     <select name="status">
-        <option value="all" {% if status == 'all' %}selected{% endif %}>All statuses</option>
-        <option value="open" {% if status == 'open' %}selected{% endif %}>Open</option>
-        <option value="pending" {% if status == 'pending' %}selected{% endif %}>Pending</option>
-        <option value="resolved" {% if status == 'resolved' %}selected{% endif %}>Resolved</option>
+        <option value="all" {% if status == 'all' %}selected{% endif %}>{% trans "All statuses" %}</option>
+        <option value="open" {% if status == 'open' %}selected{% endif %}>{% trans "Open" %}</option>
+        <option value="pending" {% if status == 'pending' %}selected{% endif %}>{% trans "Pending" %}</option>
+        <option value="resolved" {% if status == 'resolved' %}selected{% endif %}>{% trans "Resolved" %}</option>
     </select>
     <select name="website">
-        <option value="">All websites</option>
+        <option value="">{% trans "All websites" %}</option>
         {% for w in website_choices %}
         <option value="{{ w.id }}" {% if website_id == w.id|stringformat:"s" %}selected{% endif %}>{{ w.name }}</option>
         {% endfor %}
     </select>
     {% endif %}
-    <button type="submit" class="btn btn-primary btn-sm">Filter</button>
-    <a href="?tab={{ tab }}" class="btn btn-ghost btn-sm">Clear</a>
+    <button type="submit" class="btn btn-primary btn-sm">{% trans "Filter" %}</button>
+    <a href="?tab={{ tab }}" class="btn btn-ghost btn-sm">{% trans "Clear" %}</a>
 </form>
 
 {% if tab == 'questions' %}
 <div class="data-table-wrap">
-    <h3>All visitor questions</h3>
+    <h3>{% trans "All visitor questions" %}</h3>
     <table class="data-table">
         <thead>
             <tr>
-                <th>Visitor</th>
-                <th>Question / last message</th>
-                <th>Website</th>
-                <th>Owner</th>
-                <th>Assigned agent</th>
-                <th>Status</th>
-                <th>Updated</th>
+                <th>{% trans "Visitor" %}</th>
+                <th>{% trans "Question / last message" %}</th>
+                <th>{% trans "Website" %}</th>
+                <th>{% trans "Owner" %}</th>
+                <th>{% trans "Assigned agent" %}</th>
+                <th>{% trans "Status" %}</th>
+                <th>{% trans "Updated" %}</th>
                 <th></th>
             </tr>
         </thead>
@@ -101,17 +102,17 @@
                     {% endif %}
                 </td>
                 <td><span class="status-pill status-{{ conv.status }}">{{ conv.get_status_display }}</span></td>
-                <td>{{ conv.updated_at|timesince }} ago</td>
+                <td>{% blocktrans with time=conv.updated_at|timesince %}{{ time }} ago{% endblocktrans %}</td>
                 <td>
                     <form method="post" action="{% url 'websites:switch' conv.website.id %}" style="display:inline">
                         {% csrf_token %}
                         <input type="hidden" name="next" value="{% url 'dashboard:inbox' %}?conversation={{ conv.id }}">
-                        <button type="submit" class="btn btn-ghost btn-sm">View</button>
+                        <button type="submit" class="btn btn-ghost btn-sm">{% trans "View" %}</button>
                     </form>
                 </td>
             </tr>
             {% empty %}
-            <tr><td colspan="8" class="empty-cell">No questions found.</td></tr>
+            <tr><td colspan="8" class="empty-cell">{% trans "No questions found." %}</td></tr>
             {% endfor %}
         </tbody>
     </table>
@@ -119,19 +120,19 @@
 
 {% elif tab == 'customers' %}
 <div class="data-table-wrap">
-    <h3>Customers on {{ product_name }}</h3>
+    <h3>{% blocktrans with product=product_name %}Customers on {{ product }}{% endblocktrans %}</h3>
     <table class="data-table">
         <thead>
             <tr>
-                <th>Customer</th>
-                <th>Phone</th>
-                <th>Joined</th>
-                <th>Websites</th>
-                <th>Visitors</th>
-                <th>Questions</th>
-                <th>Unread</th>
-                <th>Agent replies</th>
-                <th>Last activity</th>
+                <th>{% trans "Customer" %}</th>
+                <th>{% trans "Phone" %}</th>
+                <th>{% trans "Joined" %}</th>
+                <th>{% trans "Websites" %}</th>
+                <th>{% trans "Visitors" %}</th>
+                <th>{% trans "Questions" %}</th>
+                <th>{% trans "Unread" %}</th>
+                <th>{% trans "Agent replies" %}</th>
+                <th>{% trans "Last activity" %}</th>
             </tr>
         </thead>
         <tbody>
@@ -140,19 +141,19 @@
                 <td><strong>{{ row.user.get_full_name|default:"—" }}</strong></td>
                 <td>{{ row.user.phone }}</td>
                 <td>{{ row.user.date_joined|date:"Y-m-d" }}</td>
-                <td>{{ row.owned_websites }} ({{ row.active_sites }} active)</td>
+                <td>{% blocktrans with owned=row.owned_websites active=row.active_sites %}{{ owned }} ({{ active }} active){% endblocktrans %}</td>
                 <td>{{ row.visitors }}</td>
                 <td>{{ row.conversations }}</td>
                 <td>{% if row.unread %}<strong class="text-danger">{{ row.unread }}</strong>{% else %}0{% endif %}</td>
                 <td>{{ row.agent_replies }}</td>
                 <td>
                     {% if row.last_activity %}
-                    {{ row.last_activity|timesince }} ago
+                    {% blocktrans with time=row.last_activity|timesince %}{{ time }} ago{% endblocktrans %}
                     {% else %}—{% endif %}
                 </td>
             </tr>
             {% empty %}
-            <tr><td colspan="9" class="empty-cell">No customers found.</td></tr>
+            <tr><td colspan="9" class="empty-cell">{% trans "No customers found." %}</td></tr>
             {% endfor %}
         </tbody>
     </table>
@@ -160,18 +161,18 @@
 
 {% else %}
 <div class="data-table-wrap">
-    <h3>All websites</h3>
+    <h3>{% trans "All websites" %}</h3>
     <table class="data-table">
         <thead>
             <tr>
-                <th>Website</th>
-                <th>Owner</th>
-                <th>Status</th>
-                <th>Visitors</th>
-                <th>Questions</th>
-                <th>Messages</th>
-                <th>Unread</th>
-                <th>Created</th>
+                <th>{% trans "Website" %}</th>
+                <th>{% trans "Owner" %}</th>
+                <th>{% trans "Status" %}</th>
+                <th>{% trans "Visitors" %}</th>
+                <th>{% trans "Questions" %}</th>
+                <th>{% trans "Messages" %}</th>
+                <th>{% trans "Unread" %}</th>
+                <th>{% trans "Created" %}</th>
                 <th></th>
             </tr>
         </thead>
@@ -185,9 +186,9 @@
                 <td>{{ row.website.owner.get_full_name|default:row.website.owner.phone }}</td>
                 <td>
                     {% if row.website.is_active %}
-                    <span class="status-pill status-resolved">Active</span>
+                    <span class="status-pill status-resolved">{% trans "Active" %}</span>
                     {% else %}
-                    <span class="status-pill status-pending">Inactive</span>
+                    <span class="status-pill status-pending">{% trans "Inactive" %}</span>
                     {% endif %}
                 </td>
                 <td>{{ row.visitors }}</td>
@@ -199,12 +200,12 @@
                     <form method="post" action="{% url 'websites:switch' row.website.id %}" style="display:inline">
                         {% csrf_token %}
                         <input type="hidden" name="next" value="{% url 'dashboard:inbox' %}">
-                        <button type="submit" class="btn btn-ghost btn-sm">Open inbox</button>
+                        <button type="submit" class="btn btn-ghost btn-sm">{% trans "Open inbox" %}</button>
                     </form>
                 </td>
             </tr>
             {% empty %}
-            <tr><td colspan="9" class="empty-cell">No websites found.</td></tr>
+            <tr><td colspan="9" class="empty-cell">{% trans "No websites found." %}</td></tr>
             {% endfor %}
         </tbody>
     </table>
@@ -212,9 +213,9 @@
 {% endif %}
 
 <p class="platform-admin-links">
-    <a href="{% url 'admin:user-usage-dashboard' %}" target="_blank">Django admin: user usage</a>
+    <a href="{% url 'admin:user-usage-dashboard' %}" target="_blank">{% trans "Django admin: user usage" %}</a>
     ·
-    <a href="{% url 'admin:website-usage-dashboard' %}" target="_blank">Django admin: website usage</a>
+    <a href="{% url 'admin:website-usage-dashboard' %}" target="_blank">{% trans "Django admin: website usage" %}</a>
 </p>
 {% endblock %}
 

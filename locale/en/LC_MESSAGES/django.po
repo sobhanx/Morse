@@ -1,0 +1,855 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-11 23:43+0330\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Phone number is required."
+msgstr ""
+
+msgid "Invalid phone number. It must start with 09 and be 11 digits."
+msgstr ""
+
+#, python-format
+msgid "Could not create account. (%(error)s)"
+msgstr ""
+
+msgid "Could not send verification code."
+msgstr ""
+
+msgid "User not found."
+msgstr ""
+
+msgid "Verification code has expired."
+msgstr ""
+
+msgid "Authentication failed."
+msgstr ""
+
+msgid "You do not have permission to access the admin panel."
+msgstr ""
+
+msgid "Signed in successfully."
+msgstr ""
+
+msgid "Invalid verification code."
+msgstr ""
+
+msgid "Morse"
+msgstr ""
+
+#, python-format
+msgid "Visitor %(visitor_id)s"
+msgstr ""
+
+msgid "Open"
+msgstr ""
+
+msgid "Pending"
+msgstr ""
+
+msgid "Resolved"
+msgstr ""
+
+msgid "No messages yet"
+msgstr ""
+
+msgid "Visitor"
+msgstr ""
+
+msgid "Agent"
+msgstr ""
+
+msgid "System"
+msgstr ""
+
+msgid "Invalid JSON"
+msgstr ""
+
+msgid "Message cannot be empty"
+msgstr ""
+
+msgid "Agent not on this website"
+msgstr ""
+
+msgid "Help center is not available yet"
+msgstr ""
+
+msgid "Verify code"
+msgstr ""
+
+msgid "Verify mobile number"
+msgstr ""
+
+msgid "Enter the verification code sent to your mobile number"
+msgstr ""
+
+msgid "Verification code"
+msgstr ""
+
+msgid "Time remaining until resend"
+msgstr ""
+
+msgid "Resend"
+msgstr ""
+
+msgid "Please enter the 5-digit verification code"
+msgstr ""
+
+msgid "Verification code has been resent."
+msgstr ""
+
+msgid "Error resending verification code"
+msgstr ""
+
+msgid "Login | Sign up"
+msgstr ""
+
+msgid "Enter your mobile number"
+msgstr ""
+
+msgid "Mobile number"
+msgstr ""
+
+msgid "Send one-time password"
+msgstr ""
+
+msgid "By signing in, you agree to the terms of service."
+msgstr ""
+
+msgid "Home"
+msgstr ""
+
+msgid "Please correct the error below."
+msgstr ""
+
+msgid "Please correct the errors below."
+msgstr ""
+
+msgid "Password:"
+msgstr ""
+
+msgid "Log in"
+msgstr ""
+
+msgid "Analytics"
+msgstr ""
+
+msgid "Total conversations"
+msgstr ""
+
+msgid "Total messages"
+msgstr ""
+
+msgid "Contacts"
+msgstr ""
+
+msgid "Resolution rate"
+msgstr ""
+
+msgid "Recent conversations"
+msgstr ""
+
+msgid "Contact"
+msgstr ""
+
+msgid "Status"
+msgstr ""
+
+msgid "Created"
+msgstr ""
+
+msgid "Dashboard"
+msgstr ""
+
+msgid "Active site"
+msgstr ""
+
+msgid "Switch"
+msgstr ""
+
+msgid "Chat Manager"
+msgstr ""
+
+msgid "CRM"
+msgstr ""
+
+msgid "Knowledge Base"
+msgstr ""
+
+msgid "Website Settings"
+msgstr ""
+
+msgid "Platform Monitor"
+msgstr ""
+
+msgid "Chat Widget"
+msgstr ""
+
+msgid "Logout"
+msgstr ""
+
+msgid "No email provided"
+msgstr ""
+
+msgid "Visitor ID:"
+msgstr ""
+
+msgid "Visitor ID"
+msgstr ""
+
+msgid "Session"
+msgstr ""
+
+msgid "Phone"
+msgstr ""
+
+msgid "Company"
+msgstr ""
+
+msgid "Location"
+msgstr ""
+
+msgid "First seen"
+msgstr ""
+
+msgid "Notes"
+msgstr ""
+
+msgid "Save notes"
+msgstr ""
+
+msgid "Conversation history"
+msgstr ""
+
+msgid "No conversations yet."
+msgstr ""
+
+msgid "CRM — Contacts"
+msgstr ""
+
+msgid "Search by name, email, or visitor ID..."
+msgstr ""
+
+msgid "Search"
+msgstr ""
+
+msgid "Email"
+msgstr ""
+
+msgid "Conversations"
+msgstr ""
+
+msgid "Last updated"
+msgstr ""
+
+#, python-format
+msgid "%(time)s ago"
+msgstr ""
+
+msgid "View"
+msgstr ""
+
+msgid "No contacts yet."
+msgstr ""
+
+#, python-format
+msgid "%(count)s unread"
+msgstr ""
+
+#, python-format
+msgid "%(count)s open"
+msgstr ""
+
+msgid "Chat is not active yet."
+msgstr ""
+
+msgid "Activate your widget"
+msgstr ""
+
+msgid "to receive visitor questions."
+msgstr ""
+
+msgid "All"
+msgstr ""
+
+msgid "ID:"
+msgstr ""
+
+msgid "No email"
+msgstr ""
+
+msgid "Unassigned"
+msgstr ""
+
+msgid "View CRM"
+msgstr ""
+
+msgid "Type your reply..."
+msgstr ""
+
+msgid "Send"
+msgstr ""
+
+msgid "Select a conversation"
+msgstr ""
+
+msgid "Choose a conversation from the sidebar to start chatting."
+msgstr ""
+
+msgid "Customer Support Platform"
+msgstr ""
+
+msgid "Help Center"
+msgstr ""
+
+msgid "Live Demo"
+msgstr ""
+
+msgid "Agent Login"
+msgstr ""
+
+msgid "Get started"
+msgstr ""
+
+msgid "Customer support platform"
+msgstr ""
+
+msgid "Augment your customer experience."
+msgstr ""
+
+msgid "Support made for your team & customers."
+msgstr ""
+
+msgid ""
+"All-in-one omnichannel inbox, live chat widget, knowledge base, and CRM — "
+"built with Django."
+msgstr ""
+
+msgid "Get started free"
+msgstr ""
+
+msgid "Open Chat Manager"
+msgstr ""
+
+#, python-format
+msgid "Everything you need in %(brand)s"
+msgstr ""
+
+msgid ""
+"Embed real-time support on any website. Visitors chat instantly with your "
+"team."
+msgstr ""
+
+msgid "Shared Inbox"
+msgstr ""
+
+msgid ""
+"Centralize all conversations. Assign, filter, and resolve from one "
+"collaborative inbox."
+msgstr ""
+
+msgid "Support CRM"
+msgstr ""
+
+msgid ""
+"Track visitor profiles, notes, and full conversation history in one place."
+msgstr ""
+
+msgid "Let customers find answers themselves with searchable help articles."
+msgstr ""
+
+msgid "Monitor conversation volume, resolution rates, and team performance."
+msgstr ""
+
+msgid "Real-time"
+msgstr ""
+
+msgid ""
+"WebSocket-powered messaging for instant agent and visitor communication."
+msgstr ""
+
+msgid "Language"
+msgstr ""
+
+msgid "Chat with us"
+msgstr ""
+
+msgid "Still need help?"
+msgstr ""
+
+msgid "Start a live chat"
+msgstr ""
+
+msgid "with our team."
+msgstr ""
+
+#, python-format
+msgid "%(name)s Help Center"
+msgstr ""
+
+msgid "How can we help you?"
+msgstr ""
+
+#, python-format
+msgid "Browse guides and answers for %(name)s, or search for a specific topic."
+msgstr ""
+
+msgid "Search articles..."
+msgstr ""
+
+#, python-format
+msgid "Search results for \"%(query)s\""
+msgstr ""
+
+msgid "No articles found."
+msgstr ""
+
+msgid "No articles yet"
+msgstr ""
+
+msgid ""
+"Help articles for this workspace will appear here once they are published."
+msgstr ""
+
+msgid "Talk to support"
+msgstr ""
+
+msgid "Activate Chat"
+msgstr ""
+
+#, python-format
+msgid "Activate %(name)s"
+msgstr ""
+
+msgid "Turn on live chat so visitors on your website can ask questions."
+msgstr ""
+
+msgid ""
+"Each visitor gets a unique ID — every message appears in your Chat Manager."
+msgstr ""
+
+msgid "Chat is active. Visitors can send messages using your widget."
+msgstr ""
+
+msgid "Copy the embed script"
+msgstr ""
+
+msgid "Add this before"
+msgstr ""
+
+msgid "on your site:"
+msgstr ""
+
+msgid "Activate chat"
+msgstr ""
+
+msgid "When you're ready to accept visitor questions, activate your website."
+msgstr ""
+
+msgid "Activate chat widget"
+msgstr ""
+
+msgid "Widget key:"
+msgstr ""
+
+msgid "Preview widget demo"
+msgstr ""
+
+msgid "Platform monitor"
+msgstr ""
+
+#, python-format
+msgid ""
+"Observe all customers, websites, and visitor questions across %(product)s."
+msgstr ""
+
+msgid "Customers (owners)"
+msgstr ""
+
+#, python-format
+msgid "Websites (%(active)s active)"
+msgstr ""
+
+#, python-format
+msgid "Questions (%(open)s open)"
+msgstr ""
+
+msgid "Unread"
+msgstr ""
+
+msgid "All questions"
+msgstr ""
+
+msgid "Customers"
+msgstr ""
+
+msgid "Websites"
+msgstr ""
+
+msgid "Search..."
+msgstr ""
+
+msgid "All statuses"
+msgstr ""
+
+msgid "All websites"
+msgstr ""
+
+msgid "Filter"
+msgstr ""
+
+msgid "Clear"
+msgstr ""
+
+msgid "All visitor questions"
+msgstr ""
+
+msgid "Question / last message"
+msgstr ""
+
+msgid "Website"
+msgstr ""
+
+msgid "Owner"
+msgstr ""
+
+msgid "Assigned agent"
+msgstr ""
+
+msgid "Updated"
+msgstr ""
+
+msgid "No questions found."
+msgstr ""
+
+#, python-format
+msgid "Customers on %(product)s"
+msgstr ""
+
+msgid "Customer"
+msgstr ""
+
+msgid "Joined"
+msgstr ""
+
+msgid "Visitors"
+msgstr ""
+
+msgid "Questions"
+msgstr ""
+
+msgid "Agent replies"
+msgstr ""
+
+msgid "Last activity"
+msgstr ""
+
+#, python-format
+msgid "%(owned)s (%(active)s active)"
+msgstr ""
+
+msgid "No customers found."
+msgstr ""
+
+msgid "Messages"
+msgstr ""
+
+msgid "Active"
+msgstr ""
+
+msgid "Inactive"
+msgstr ""
+
+msgid "Open inbox"
+msgstr ""
+
+msgid "No websites found."
+msgstr ""
+
+msgid "Django admin: user usage"
+msgstr ""
+
+msgid "Django admin: website usage"
+msgstr ""
+
+msgid "Create website"
+msgstr ""
+
+msgid "Create a website"
+msgstr ""
+
+msgid "Add a new website to manage chat support, contacts, and knowledge base."
+msgstr ""
+
+msgid "Website name"
+msgstr ""
+
+msgid "My Store"
+msgstr ""
+
+msgid "Domain (optional)"
+msgstr ""
+
+msgid "Cancel"
+msgstr ""
+
+msgid "Your websites"
+msgstr ""
+
+msgid "Select a website to manage its inbox, contacts, and knowledge base."
+msgstr ""
+
+msgid "Not activated"
+msgstr ""
+
+msgid "No websites yet. Create your first one below."
+msgstr ""
+
+msgid "New website"
+msgstr ""
+
+msgid "Status:"
+msgstr ""
+
+msgid "Deactivate chat"
+msgstr ""
+
+msgid "Embed chat widget"
+msgstr ""
+
+msgid "Add this script before"
+msgstr ""
+
+msgid "Widget demo"
+msgstr ""
+
+msgid "Open widget demo"
+msgstr ""
+
+msgid "Help center"
+msgstr ""
+
+msgid "Open help center"
+msgstr ""
+
+msgid "API keys"
+msgstr ""
+
+msgid "Public widget key"
+msgstr ""
+
+msgid "Private API key"
+msgstr ""
+
+msgid "Team agents"
+msgstr ""
+
+msgid "No agents assigned."
+msgstr ""
+
+#, python-format
+msgid "Chat — %(name)s"
+msgstr ""
+
+msgid "We typically reply in minutes"
+msgstr ""
+
+msgid "Before we start, tell us a bit about yourself:"
+msgstr ""
+
+msgid "Your name"
+msgstr ""
+
+msgid "Your email"
+msgstr ""
+
+msgid "Continue"
+msgstr ""
+
+msgid "Type a message..."
+msgstr ""
+
+msgid "Your ID:"
+msgstr ""
+
+msgid "Browse help articles"
+msgstr ""
+
+msgid "Live demo"
+msgstr ""
+
+msgid "Customer support that feels built in"
+msgstr ""
+
+#, python-format
+msgid ""
+"%(name)s helps teams answer questions faster with live chat, a shared inbox, "
+"and self-service help articles — all in one place."
+msgstr ""
+
+msgid "Real-time support"
+msgstr ""
+
+msgid "Visitors get instant help without leaving your site."
+msgstr ""
+
+msgid "Agent inbox"
+msgstr ""
+
+msgid "Your team manages all chats from a shared inbox."
+msgstr ""
+
+msgid "Knowledge base"
+msgstr ""
+
+msgid "Link visitors to self-service articles when they need answers fast."
+msgstr ""
+
+msgid "Try the chat widget"
+msgstr ""
+
+msgid "Click the chat bubble in the corner."
+msgstr ""
+
+msgid "Send a test message as a visitor."
+msgstr ""
+
+msgid "Log in as an agent and reply from the inbox."
+msgstr ""
+
+msgid "Need a plan for your team?"
+msgstr ""
+
+msgid "View pricing"
+msgstr ""
+
+msgid "Pricing"
+msgstr ""
+
+msgid "Plans"
+msgstr ""
+
+msgid "Simple pricing for growing teams"
+msgstr ""
+
+msgid ""
+"Choose the plan that fits your support volume. Every plan includes the chat "
+"widget, shared inbox, and knowledge base."
+msgstr ""
+
+msgid "Starter"
+msgstr ""
+
+msgid "/month"
+msgstr ""
+
+msgid "For small teams getting started"
+msgstr ""
+
+msgid "Up to 3 agents"
+msgstr ""
+
+msgid "Live chat widget"
+msgstr ""
+
+msgid "Email support"
+msgstr ""
+
+msgid "See product tour"
+msgstr ""
+
+msgid "Business"
+msgstr ""
+
+msgid "Most popular for growing companies"
+msgstr ""
+
+msgid "Up to 10 agents"
+msgstr ""
+
+msgid "Shared inbox & CRM"
+msgstr ""
+
+msgid "Analytics dashboard"
+msgstr ""
+
+msgid "Priority support"
+msgstr ""
+
+msgid "Start free trial"
+msgstr ""
+
+msgid "Enterprise"
+msgstr ""
+
+msgid "Custom"
+msgstr ""
+
+msgid "For larger support organizations"
+msgstr ""
+
+msgid "Unlimited agents"
+msgstr ""
+
+msgid "Custom integrations"
+msgstr ""
+
+msgid "Dedicated onboarding"
+msgstr ""
+
+msgid "SLA & security review"
+msgstr ""
+
+msgid "Talk to sales"
+msgstr ""
+
+msgid "Questions about billing?"
+msgstr ""
+
+msgid "Browse billing help articles"
+msgstr ""
+
+msgid "or chat with us."
+msgstr ""
+
+msgid "Help"
+msgstr ""
+
+msgid "Chat with Morse"
+msgstr ""
+
+msgid "Close chat"
+msgstr ""
+
+msgid "Morse chat"
+msgstr ""
+
+msgid "Demo Website"
+msgstr ""
+
+msgid "Website name is required."
+msgstr ""
+
+msgid "Invalid or missing widget key"
+msgstr ""
+
+msgid "Thanks for reaching out! A support agent will be with you shortly."
+msgstr ""
+
+msgid "Conversation not found"
+msgstr ""

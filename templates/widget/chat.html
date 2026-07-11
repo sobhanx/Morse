@@ -1,21 +1,31 @@
+{% load i18n website_i18n %}
+{% get_current_language as LANGUAGE_CODE %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_CODE == 'fa' %}rtl{% else %}ltr{% endif %}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat — {{ website.name }}</title>
+    <title>{% with site_name=website|localized_name %}{% blocktrans with name=site_name %}Chat — {{ name }}{% endblocktrans %}{% endwith %}</title>
+    {% if LANGUAGE_CODE == 'fa' %}
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600&display=swap" rel="stylesheet">
+    {% else %}
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    {% endif %}
     <link rel="stylesheet" href="/static/css/widget.css">
+    <link rel="stylesheet" href="/static/css/rtl.css">
 </head>
 <body class="widget-body">
     <div class="widget-chat" id="widget-chat"
          data-widget-key="{{ widget_key }}">
         <div class="widget-header">
             <div class="widget-header-info">
-                <div class="widget-avatar">M</div>
-                <div>
-                    <strong>{{ website.name }}</strong>
-                    <span class="online-dot">We typically reply in minutes</span>
+                <div class="widget-avatar">
+                    <span class="widget-avatar-letter">M</span>
+                </div>
+                <div class="widget-header-copy">
+                    <span class="widget-brand-label">{% trans "Morse" %}</span>
+                    <strong class="widget-site-title">{{ website|localized_name }}</strong>
+                    <span class="online-dot">{% trans "We typically reply in minutes" %}</span>
                 </div>
             </div>
         </div>
@@ -31,20 +41,20 @@
         </div>
 
         <div class="widget-prechat" id="widget-prechat" {% if contact.name %}style="display:none"{% endif %}>
-            <p>Before we start, tell us a bit about yourself:</p>
-            <input type="text" id="visitor-name" placeholder="Your name" value="{{ contact.name }}">
-            <input type="email" id="visitor-email" placeholder="Your email" value="{{ contact.email }}">
-            <button type="button" id="save-contact-btn" class="widget-btn">Continue</button>
+            <p>{% trans "Before we start, tell us a bit about yourself:" %}</p>
+            <input type="text" id="visitor-name" placeholder="{% trans 'Your name' %}" value="{{ contact.name }}">
+            <input type="email" id="visitor-email" placeholder="{% trans 'Your email' %}" value="{{ contact.email }}">
+            <button type="button" id="save-contact-btn" class="widget-btn">{% trans "Continue" %}</button>
         </div>
 
         <form class="widget-input" id="widget-form">
-            <input type="text" id="widget-message-input" placeholder="Type a message..." autocomplete="off">
-            <button type="button" id="widget-send-btn" class="widget-send-btn" aria-label="Send">➤</button>
+            <input type="text" id="widget-message-input" placeholder="{% trans 'Type a message...' %}" autocomplete="off">
+            <button type="button" id="widget-send-btn" class="widget-send-btn" aria-label="{% trans 'Send' %}">➤</button>
         </form>
 
         <div class="widget-footer">
-            <span class="visitor-id-label">Your ID: <code>{{ contact.visitor_id }}</code></span>
-            <a href="{% url 'knowledge:help_center' %}?key={{ widget_key }}" target="_blank">Browse help articles</a>
+            <span class="visitor-id-label">{% trans "Your ID:" %} <code>{{ contact.visitor_id }}</code></span>
+            <a href="{% url 'knowledge:help_center' %}?key={{ widget_key }}" target="_blank">{% trans "Browse help articles" %}</a>
         </div>
     </div>
     <script src="/static/js/widget.js?v=2"></script>

@@ -1,38 +1,39 @@
 {% extends "base.html" %}
+{% load i18n website_i18n %}
 
-{% block title %}{{ website.name }}{% endblock %}
+{% block title %}{{ website|localized_name }}{% endblock %}
 {% block body_class %}demo-page{% endblock %}
 
 {% block body %}
 <div class="demo-site">
     {% include "widget/includes/demo_nav.html" with active_nav="demo" %}
     <main class="demo-main">
-        <span class="demo-badge">Live demo</span>
-        <h1>Customer support that feels built in</h1>
-        <p>{{ website.name }} helps teams answer questions faster with live chat, a shared inbox, and self-service help articles — all in one place.</p>
+        <span class="demo-badge">{% trans "Live demo" %}</span>
+        <h1>{% trans "Customer support that feels built in" %}</h1>
+        <p>{% with site_name=website|localized_name %}{% blocktrans with name=site_name %}{{ name }} helps teams answer questions faster with live chat, a shared inbox, and self-service help articles — all in one place.{% endblocktrans %}{% endwith %}</p>
         <div class="demo-cards">
             <div class="demo-card">
-                <h3>Real-time support</h3>
-                <p>Visitors get instant help without leaving your site.</p>
+                <h3>{% trans "Real-time support" %}</h3>
+                <p>{% trans "Visitors get instant help without leaving your site." %}</p>
             </div>
             <div class="demo-card">
-                <h3>Agent inbox</h3>
-                <p>Your team manages all chats from a shared inbox.</p>
+                <h3>{% trans "Agent inbox" %}</h3>
+                <p>{% trans "Your team manages all chats from a shared inbox." %}</p>
             </div>
             <div class="demo-card">
-                <h3>Knowledge base</h3>
-                <p>Link visitors to self-service articles when they need answers fast.</p>
+                <h3>{% trans "Knowledge base" %}</h3>
+                <p>{% trans "Link visitors to self-service articles when they need answers fast." %}</p>
             </div>
         </div>
         <div class="demo-steps">
-            <h4>Try the chat widget</h4>
+            <h4>{% trans "Try the chat widget" %}</h4>
             <ol>
-                <li>Click the chat bubble in the corner.</li>
-                <li>Send a test message as a visitor.</li>
-                <li>Log in as an agent and reply from the inbox.</li>
+                <li>{% trans "Click the chat bubble in the corner." %}</li>
+                <li>{% trans "Send a test message as a visitor." %}</li>
+                <li>{% trans "Log in as an agent and reply from the inbox." %}</li>
             </ol>
         </div>
-        <p class="demo-cta-text">Need a plan for your team? <a href="{% url 'widget:demo_pricing' %}?key={{ website.public_widget_key }}">View pricing</a></p>
+        <p class="demo-cta-text">{% trans "Need a plan for your team?" %} <a href="{% url 'widget:demo_pricing' %}?key={{ website.public_widget_key }}">{% trans "View pricing" %}</a></p>
     </main>
 </div>
 

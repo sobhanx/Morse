@@ -1,6 +1,7 @@
 {% extends "base.html" %}
+{% load i18n %}
 
-{% block title %}{{ article.title }} — Help Center{% endblock %}
+{% block title %}{{ article.title }} — {% trans "Help Center" %}{% endblock %}
 {% block body_class %}help-page{% endblock %}
 
 {% block body %}
@@ -8,15 +9,15 @@
     <div class="help-nav">
         <a href="{% url 'knowledge:help_center' %}?key={{ widget_key }}" class="nav-brand">
             <span class="logo-icon">💬</span>
-            <span>Help Center</span>
+            <span>{% trans "Help Center" %}</span>
         </a>
-        <a href="{% url 'widget:demo' %}?key={{ widget_key }}" class="btn btn-primary btn-sm">Chat with us</a>
+        <a href="{% url 'widget:demo' %}?key={{ widget_key }}" class="btn btn-primary btn-sm">{% trans "Chat with us" %}</a>
     </div>
 </header>
 
 <article class="article-detail">
     <nav class="breadcrumb">
-        <a href="{% url 'knowledge:help_center' %}?key={{ widget_key }}">Help Center</a>
+        <a href="{% url 'knowledge:help_center' %}?key={{ widget_key }}">{% trans "Help Center" %}</a>
         <span>/</span>
         <a href="{% url 'knowledge:help_center' %}?key={{ widget_key }}&q={{ article.category.name }}">{{ article.category.name }}</a>
     </nav>
@@ -25,7 +26,7 @@
         {{ article.content|linebreaks }}
     </div>
     <div class="article-footer">
-        <p>Still need help? <a href="{% url 'widget:demo' %}?key={{ widget_key }}">Start a live chat</a> with our team.</p>
+        <p>{% trans "Still need help?" %} <a href="{% url 'widget:demo' %}?key={{ widget_key }}">{% trans "Start a live chat" %}</a> {% trans "with our team." %}</p>
     </div>
 </article>
 {% endblock %}

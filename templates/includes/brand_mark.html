@@ -1,0 +1,5 @@
+{% load i18n %}
+<a href="{% url 'dashboard:landing' %}" class="brand-mark brand-mark--{{ size|default:'md' }}">
+    <span class="brand-mark-icon" aria-hidden="true">M</span>
+    <span class="brand-mark-text">{% trans "Morse" %}</span>
+</a>

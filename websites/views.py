@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
+from django.utils.translation import gettext as _
 from django.views.decorators.http import require_GET, require_POST
 
 from inbox.models import Conversation
@@ -44,7 +45,7 @@ def website_create(request):
         return render(
             request,
             "websites/create.html",
-            {"error": "Website name is required."},
+            {"error": _("Website name is required.")},
         )
 
     website = Website.objects.create(

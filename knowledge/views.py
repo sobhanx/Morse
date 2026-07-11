@@ -1,8 +1,8 @@
 from contextlib import contextmanager
 
-from django.db.models import Q
 from django.http import Http404
 from django.shortcuts import get_object_or_404, render
+from django.utils.translation import gettext as _
 from django.views.decorators.http import require_GET
 
 from websites.permissions import (
@@ -13,6 +13,11 @@ from websites.permissions import (
 from websites.tenant import reset_current_website, set_current_website
 
 from .models import Article, Category
+from .localization import (
+    filter_localized_articles,
+    localize_article,
+    localize_categories,
+)
 
 
 def _resolve_website(request):
@@ -36,19 +41,23 @@ def _website_context(website):
 def help_center(request):
     website = _resolve_website(request)
     if website is None:
-        raise Http404("Help center is not available yet")
+        raise Http404(_("Help center is not available yet"))
 
     query = request.GET.get("q", "").strip()
     with _website_context(website):
-        categories = Category.objects.prefetch_related("articles").all()
-        articles = Article.objects.filter(is_published=True).select_related(
-            "category"
-        )
-
         if query:
-            articles = articles.filter(
-                Q(title__icontains=query) | Q(content__icontains=query)
+            articles = filter_localized_articles(
+                Article.objects.filter(is_published=True).select_related("category"),
+                website,
+                query,
             )
+        else:
+            articles = []
+
+        categories = localize_categories(
+            Category.objects.prefetch_related("articles").all(),
+            website,
+        )
 
         return render(
             request,
@@ -67,12 +76,13 @@ def help_center(request):
 def article_detail(request, slug):
     website = _resolve_website(request)
     if website is None:
-        raise Http404("Help center is not available yet")
+        raise Http404(_("Help center is not available yet"))
 
     with _website_context(website):
         article = get_object_or_404(
             Article, slug=slug, is_published=True, website=website
         )
+        article = localize_article(article)
         article.views += 1
         article.save(update_fields=["views"])
         return render(

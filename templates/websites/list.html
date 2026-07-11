@@ -1,11 +1,12 @@
 {% extends "dashboard/base_dashboard.html" %}
+{% load i18n %}
 
-{% block page_title %}Websites{% endblock %}
+{% block page_title %}{% trans "Websites" %}{% endblock %}
 
 {% block dashboard_content %}
 <div class="page-toolbar">
-    <h2>Your websites</h2>
-    <p class="text-muted">Select a website to manage its inbox, contacts, and knowledge base.</p>
+    <h2>{% trans "Your websites" %}</h2>
+    <p class="text-muted">{% trans "Select a website to manage its inbox, contacts, and knowledge base." %}</p>
 </div>
 
 <div class="websites-grid">
@@ -15,27 +16,27 @@
         {% if website.domain %}<p class="website-domain">{{ website.domain }}</p>{% endif %}
         <p>
             {% if website.is_active %}
-            <span class="status-pill status-resolved">Active</span>
+            <span class="status-pill status-resolved">{% trans "Active" %}</span>
             {% else %}
-            <span class="status-pill status-pending">Not activated</span>
+            <span class="status-pill status-pending">{% trans "Not activated" %}</span>
             {% endif %}
         </p>
         <form method="post" action="{% url 'websites:switch' website.id %}">
             {% csrf_token %}
             <input type="hidden" name="next" value="{% if website.is_active %}{% url 'dashboard:inbox' %}{% else %}{% url 'websites:activate' website.id %}{% endif %}">
             <button type="submit" class="btn btn-primary btn-sm">
-                {% if website.is_active %}Open Chat Manager{% else %}Activate chat{% endif %}
+                {% if website.is_active %}{% trans "Open Chat Manager" %}{% else %}{% trans "Activate chat" %}{% endif %}
             </button>
         </form>
-        <p class="widget-key-hint">Widget key: <code>{{ website.public_widget_key|truncatechars:20 }}</code></p>
+        <p class="widget-key-hint">{% trans "Widget key:" %} <code>{{ website.public_widget_key|truncatechars:20 }}</code></p>
     </div>
     {% empty %}
-    <p class="empty-state">No websites yet. Create your first one below.</p>
+    <p class="empty-state">{% trans "No websites yet. Create your first one below." %}</p>
     {% endfor %}
 </div>
 
 <div class="website-create-card">
-    <h3>Create a website</h3>
-    <a href="{% url 'websites:create' %}" class="btn btn-primary btn-sm">New website</a>
+    <h3>{% trans "Create a website" %}</h3>
+    <a href="{% url 'websites:create' %}" class="btn btn-primary btn-sm">{% trans "New website" %}</a>
 </div>
 {% endblock %}

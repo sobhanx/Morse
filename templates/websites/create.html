@@ -1,11 +1,12 @@
 {% extends "dashboard/base_dashboard.html" %}
+{% load i18n %}
 
-{% block page_title %}Create website{% endblock %}
+{% block page_title %}{% trans "Create website" %}{% endblock %}
 
 {% block dashboard_content %}
 <div class="page-toolbar">
-    <h2>Create a website</h2>
-    <p class="text-muted">Add a new website to manage chat support, contacts, and knowledge base.</p>
+    <h2>{% trans "Create a website" %}</h2>
+    <p class="text-muted">{% trans "Add a new website to manage chat support, contacts, and knowledge base." %}</p>
 </div>
 
 <div class="website-create-card">
@@ -15,16 +16,16 @@
     <form method="post" action="{% url 'websites:create' %}" class="website-create-form website-create-form--stacked">
         {% csrf_token %}
         <div class="form-group">
-            <label for="name">Website name</label>
-            <input type="text" id="name" name="name" placeholder="My Store" required autofocus>
+            <label for="name">{% trans "Website name" %}</label>
+            <input type="text" id="name" name="name" placeholder="{% trans 'My Store' %}" required autofocus>
         </div>
         <div class="form-group">
-            <label for="domain">Domain (optional)</label>
+            <label for="domain">{% trans "Domain (optional)" %}</label>
             <input type="text" id="domain" name="domain" placeholder="example.com">
         </div>
         <div class="form-actions">
-            <button type="submit" class="btn btn-primary">Create website</button>
-            <a href="{% url 'websites:list' %}" class="btn btn-ghost">Cancel</a>
+            <button type="submit" class="btn btn-primary">{% trans "Create website" %}</button>
+            <a href="{% url 'websites:list' %}" class="btn btn-ghost">{% trans "Cancel" %}</a>
         </div>
     </form>
 </div>

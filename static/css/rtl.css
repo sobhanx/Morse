@@ -1,0 +1,191 @@
+/* RTL layout adjustments for Persian */
+
+html[dir="rtl"] body {
+    font-family: "Vazirmatn", "Tahoma", sans-serif;
+}
+
+html[dir="ltr"] body {
+    font-family: "Inter", system-ui, sans-serif;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.language-switcher {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 12px;
+}
+
+.language-form {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    width: 100%;
+}
+
+.language-icon {
+    font-size: 16px;
+    line-height: 1;
+}
+
+.language-select {
+    flex: 1;
+    padding: 6px 10px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface);
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.landing-nav-links .language-switcher {
+    margin-bottom: 0;
+}
+
+.landing-nav-links .language-form {
+    width: auto;
+}
+
+.landing-nav-links .language-select {
+    min-width: 110px;
+}
+
+.demo-header .language-switcher {
+    margin-bottom: 0;
+}
+
+.help-nav .language-switcher {
+    margin-bottom: 0;
+}
+
+html[dir="ltr"] .sidebar-nav {
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+html[dir="ltr"] .inbox-sidebar {
+    border-right: 1px solid var(--border);
+    border-left: none;
+}
+
+/* Sidebar */
+html[dir="rtl"] .sidebar-nav {
+    border-left: 1px solid var(--border);
+    border-right: none;
+}
+
+html[dir="ltr"] .sidebar-nav {
+    border-right: 1px solid var(--border);
+}
+
+/* Inbox */
+html[dir="rtl"] .inbox-sidebar {
+    border-left: 1px solid var(--border);
+    border-right: none;
+}
+
+html[dir="ltr"] .inbox-sidebar {
+    border-right: 1px solid var(--border);
+}
+
+html[dir="rtl"] .data-table th,
+html[dir="rtl"] .data-table td {
+    text-align: right;
+}
+
+html[dir="rtl"] .message-agent .message-meta {
+    text-align: left;
+}
+
+html[dir="rtl"] .message-visitor .message-bubble {
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 16px;
+}
+
+html[dir="rtl"] .message-agent .message-bubble {
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 16px;
+}
+
+html[dir="ltr"] .message-visitor .message-bubble {
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 16px;
+}
+
+html[dir="ltr"] .message-agent .message-bubble {
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 16px;
+}
+
+html[dir="rtl"] .demo-steps ol,
+html[dir="rtl"] .activation-steps ol {
+    padding-right: 20px;
+    padding-left: 0;
+}
+
+/* Widget positioning */
+html[dir="rtl"] .widget-launcher-stack {
+    left: 24px;
+    right: auto;
+    flex-direction: row-reverse;
+}
+
+html[dir="rtl"] .widget-frame {
+    left: 24px;
+    right: auto;
+}
+
+html[dir="rtl"] .widget-close {
+    left: 8px;
+    right: auto;
+}
+
+html[dir="rtl"] .widget-message-visitor {
+    justify-content: flex-start;
+}
+
+html[dir="rtl"] .widget-message-agent {
+    justify-content: flex-end;
+}
+
+html[dir="rtl"] .widget-message-visitor .widget-bubble {
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 14px;
+}
+
+html[dir="rtl"] .widget-message-agent .widget-bubble {
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 14px;
+}
+
+html[dir="ltr"] .widget-message-visitor .widget-bubble {
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 14px;
+}
+
+html[dir="ltr"] .widget-message-agent .widget-bubble {
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 14px;
+}
+
+html[dir="rtl"] .breadcrumb span {
+    display: inline-block;
+    transform: scaleX(-1);
+}
+
+@media (max-width: 600px) {
+    html[dir="rtl"] .widget-launcher,
+    html[dir="rtl"] .widget-frame {
+        left: 16px;
+    }
+}

@@ -1,4 +1,5 @@
 {% extends "dashboard/base_dashboard.html" %}
+{% load i18n %}
 
 {% block page_title %}{{ contact.display_name }}{% endblock %}
 
@@ -9,27 +10,27 @@
             <div class="conv-avatar large">{{ contact.initials }}</div>
             <div>
                 <h2>{{ contact.display_name }}</h2>
-                <p>{{ contact.email|default:"No email provided" }}</p>
-                <p class="visitor-id-badge">Visitor ID: <code>{{ contact.visitor_id }}</code></p>
+                <p>{% if contact.email %}{{ contact.email }}{% else %}{% trans "No email provided" %}{% endif %}</p>
+                <p class="visitor-id-badge">{% trans "Visitor ID:" %} <code>{{ contact.visitor_id }}</code></p>
             </div>
         </div>
         <dl class="contact-fields">
-            <dt>Visitor ID</dt><dd><code>{{ contact.visitor_id }}</code></dd>
-            <dt>Session</dt><dd><code>{{ contact.session_id }}</code></dd>
-            <dt>Phone</dt><dd>{{ contact.phone|default:"—" }}</dd>
-            <dt>Company</dt><dd>{{ contact.company|default:"—" }}</dd>
-            <dt>Location</dt><dd>{{ contact.location|default:"—" }}</dd>
-            <dt>First seen</dt><dd>{{ contact.created_at|date:"M d, Y H:i" }}</dd>
+            <dt>{% trans "Visitor ID" %}</dt><dd><code>{{ contact.visitor_id }}</code></dd>
+            <dt>{% trans "Session" %}</dt><dd><code>{{ contact.session_id }}</code></dd>
+            <dt>{% trans "Phone" %}</dt><dd>{{ contact.phone|default:"—" }}</dd>
+            <dt>{% trans "Company" %}</dt><dd>{{ contact.company|default:"—" }}</dd>
+            <dt>{% trans "Location" %}</dt><dd>{{ contact.location|default:"—" }}</dd>
+            <dt>{% trans "First seen" %}</dt><dd>{{ contact.created_at|date:"M d, Y H:i" }}</dd>
         </dl>
         <form method="post" action="{% url 'dashboard:update_contact_notes' contact.id %}">
             {% csrf_token %}
-            <label for="notes">Notes</label>
+            <label for="notes">{% trans "Notes" %}</label>
             <textarea name="notes" id="notes" rows="4">{{ contact.notes }}</textarea>
-            <button type="submit" class="btn btn-primary btn-sm">Save notes</button>
+            <button type="submit" class="btn btn-primary btn-sm">{% trans "Save notes" %}</button>
         </form>
     </div>
     <div class="contact-conversations">
-        <h3>Conversation history</h3>
+        <h3>{% trans "Conversation history" %}</h3>
         {% for conv in conversations %}
         <a href="{% url 'dashboard:inbox' %}?conversation={{ conv.id }}" class="history-item">
             <div class="history-top">
@@ -39,7 +40,7 @@
             <p>{{ conv.preview }}</p>
         </a>
         {% empty %}
-        <p class="empty-state">No conversations yet.</p>
+        <p class="empty-state">{% trans "No conversations yet." %}</p>
         {% endfor %}
     </div>
 </div>

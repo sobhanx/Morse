@@ -2,6 +2,7 @@ import json
 
 from django.http import Http404, JsonResponse
 from django.shortcuts import render
+from django.utils.translation import gettext as _
 from django.views.decorators.clickjacking import xframe_options_exempt
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_GET, require_POST
@@ -25,7 +26,7 @@ def _require_website(request):
     if website is None and is_public_showcase_path(request.path):
         website = get_demo_website()
     if website is None:
-        raise Http404("Invalid or missing widget key")
+        raise Http404(_("Invalid or missing widget key"))
     return website
 
 
@@ -126,7 +127,9 @@ def start_conversation(request):
         conversation=conversation,
         website=website,
         sender_type=Message.SenderType.SYSTEM,
-        content="Thanks for reaching out! A support agent will be with you shortly.",
+        content=_(
+            "Thanks for reaching out! A support agent will be with you shortly."
+        ),
     )
 
     return JsonResponse(
@@ -151,7 +154,7 @@ def update_contact(request):
     try:
         data = json.loads(request.body)
     except json.JSONDecodeError:
-        return JsonResponse({"error": "Invalid JSON"}, status=400)
+        return JsonResponse({"error": _("Invalid JSON")}, status=400)
 
     for field in ("name", "email", "phone", "company"):
         if field in data:
@@ -169,16 +172,16 @@ def send_message(request, conversation_id):
             pk=conversation_id, website=website
         )
     except Conversation.DoesNotExist:
-        return JsonResponse({"error": "Conversation not found"}, status=404)
+        return JsonResponse({"error": _("Conversation not found")}, status=404)
 
     try:
         data = json.loads(request.body)
     except json.JSONDecodeError:
-        return JsonResponse({"error": "Invalid JSON"}, status=400)
+        return JsonResponse({"error": _("Invalid JSON")}, status=400)
 
     content = data.get("content", "").strip()
     if not content:
-        return JsonResponse({"error": "Message cannot be empty"}, status=400)
+        return JsonResponse({"error": _("Message cannot be empty")}, status=400)
 
     message = Message.unscoped.create(
         conversation=conversation,

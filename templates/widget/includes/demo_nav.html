@@ -1,8 +1,10 @@
+{% load i18n website_i18n %}
 <header class="demo-header">
-    <a href="{% url 'widget:demo' %}?key={{ website.public_widget_key }}" class="demo-logo">{{ website.name }}</a>
+    <a href="{% url 'widget:demo' %}?key={{ website.public_widget_key }}" class="demo-logo">{{ website|localized_name }}</a>
     <nav>
-        <a href="{% url 'dashboard:landing' %}">Home</a>
-        <a href="{% url 'widget:demo_pricing' %}?key={{ website.public_widget_key }}"{% if active_nav == 'pricing' %} class="is-active" aria-current="page"{% endif %}>Pricing</a>
-        <a href="{% url 'knowledge:help_center' %}?key={{ website.public_widget_key }}"{% if active_nav == 'help' %} class="is-active" aria-current="page"{% endif %}>Help</a>
+        <a href="{% url 'dashboard:landing' %}">{% trans "Home" %}</a>
+        <a href="{% url 'widget:demo_pricing' %}?key={{ website.public_widget_key }}"{% if active_nav == 'pricing' %} class="is-active" aria-current="page"{% endif %}>{% trans "Pricing" %}</a>
+        <a href="{% url 'knowledge:help_center' %}?key={{ website.public_widget_key }}"{% if active_nav == 'help' %} class="is-active" aria-current="page"{% endif %}>{% trans "Help" %}</a>
+        {% include "includes/language_switcher.html" with switcher_id="demo" %}
     </nav>
 </header>

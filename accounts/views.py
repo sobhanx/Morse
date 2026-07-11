@@ -1,11 +1,12 @@
 from django.conf import settings
-from django.contrib.auth import logout
 from django.contrib import messages
 from django.contrib.auth import get_backends, login
+from django.contrib.auth import logout
 from django.db.models import Q
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse
+from django.utils.translation import gettext as _
 from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.http import require_POST
 
@@ -81,25 +82,29 @@ def sms_login_view(request):
         request.session["phone"] = phone
 
         if not phone:
-            context["error"] = "شماره تلفن وارد نشده است!"
+            context["error"] = _("Phone number is required.")
             return render(request, template_name, context)
 
         the_user = User.objects.filter(phone=phone).first()
 
         if not the_user:
             if not phone_validation(phone):
-                context["error"] = "شماره تلفن نامعتبر است! شماره باید با 09 شروع شده و 11 رقم باشد."
+                context["error"] = _(
+                    "Invalid phone number. It must start with 09 and be 11 digits."
+                )
                 return render(request, template_name, context)
             try:
                 the_user = User.objects.create_user(phone=phone, is_active=True)
             except Exception as exc:
-                context["error"] = f"خطا در ایجاد حساب کاربری! ({exc})"
+                context["error"] = _("Could not create account. (%(error)s)") % {
+                    "error": exc
+                }
                 return render(request, template_name, context)
 
         try:
             _send_phone_verify_sms(the_user, phone)
         except Exception:
-            context["error"] = "خطا در ایجاد رمز ورود!"
+            context["error"] = _("Could not send verification code.")
             return render(request, template_name, context)
 
         return redirect("accounts:sms-login-verification", phone=the_user.phone)
@@ -115,7 +120,7 @@ def sms_login_verification_view(request, phone):
         try:
             the_user = User.objects.get(phone=phone)
         except User.DoesNotExist:
-            context["error"] = "کاربر یافت نشد!"
+            context["error"] = _("User not found.")
             return render(request, template_name, context)
 
         verify_code = request.POST.get("verify_code", "").strip()
@@ -124,7 +129,7 @@ def sms_login_verification_view(request, phone):
 
         verify = VerifyCode.objects.filter(user=the_user, subject="phone", status=1)
         if not verify.exists():
-            context["error"] = "رمز ورود منقضی شده است!"
+            context["error"] = _("Verification code has expired.")
             return render(request, template_name, context)
 
         verify = verify.last()
@@ -137,7 +142,7 @@ def sms_login_verification_view(request, phone):
             the_user.save(update_fields=["valid_phone"])
 
             if not _login_user(request, the_user):
-                context["error"] = "خطا در احراز هویت کاربر!"
+                context["error"] = _("Authentication failed.")
                 return render(request, template_name, context)
 
             if "next" in request.session:
@@ -145,19 +150,19 @@ def sms_login_verification_view(request, phone):
                 if next_url.startswith("/admin") and not the_user.is_staff:
                     messages.error(
                         request,
-                        "You do not have permission to access the admin panel.",
+                        _("You do not have permission to access the admin panel."),
                     )
                     return redirect(get_post_login_redirect_url(request, the_user))
                 return redirect(next_url)
 
-            messages.success(request, "ورود با موفقیت انجام شد")
+            messages.success(request, _("Signed in successfully."))
             return redirect(get_post_login_redirect_url(request, the_user))
 
         verify.attempts += 1
         if verify.attempts >= 5:
             verify.status = 0
         verify.save()
-        context["error"] = "رمز ورود نامعتبر است!"
+        context["error"] = _("Invalid verification code.")
         return render(request, template_name, context)
 
     return render(request, template_name, context)
@@ -171,7 +176,7 @@ def resend_verification_code(request, phone):
         _send_phone_verify_sms(the_user, phone)
         return JsonResponse({"success": True})
     except User.DoesNotExist:
-        return JsonResponse({"success": False, "error": "کاربر یافت نشد!"})
+        return JsonResponse({"success": False, "error": _("User not found.")})
     except Exception as exc:
         return JsonResponse({"success": False, "error": str(exc)})
 

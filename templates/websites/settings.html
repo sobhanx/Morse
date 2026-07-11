@@ -1,6 +1,7 @@
 {% extends "dashboard/base_dashboard.html" %}
+{% load i18n %}
 
-{% block page_title %}Website Settings{% endblock %}
+{% block page_title %}{% trans "Website Settings" %}{% endblock %}
 
 {% block dashboard_content %}
 <div class="website-settings">
@@ -9,46 +10,46 @@
         {% if website.domain %}<p>{{ website.domain }}</p>{% endif %}
 
         <p>
-            Status:
+            {% trans "Status:" %}
             {% if website.is_active %}
-            <span class="status-pill status-resolved">Active</span>
+            <span class="status-pill status-resolved">{% trans "Active" %}</span>
             {% else %}
-            <span class="status-pill status-pending">Inactive</span>
-            <a href="{% url 'websites:activate' website.id %}" class="btn btn-primary btn-sm">Activate chat</a>
+            <span class="status-pill status-pending">{% trans "Inactive" %}</span>
+            <a href="{% url 'websites:activate' website.id %}" class="btn btn-primary btn-sm">{% trans "Activate chat" %}</a>
             {% endif %}
         </p>
 
         {% if website.is_active %}
         <form method="post" action="{% url 'websites:deactivate' website.id %}" style="margin-bottom: 1rem">
             {% csrf_token %}
-            <button type="submit" class="btn btn-ghost btn-sm">Deactivate chat</button>
+            <button type="submit" class="btn btn-ghost btn-sm">{% trans "Deactivate chat" %}</button>
         </form>
         {% endif %}
 
-        <h3>Embed chat widget</h3>
-        <p>Add this script before <code>&lt;/body&gt;</code> on your site:</p>
+        <h3>{% trans "Embed chat widget" %}</h3>
+        <p>{% trans "Add this script before" %} <code>&lt;/body&gt;</code> {% trans "on your site:" %}</p>
         <pre class="embed-code-block">&lt;script src="{{ embed_url }}"&gt;&lt;/script&gt;</pre>
 
-        <h3>Widget demo</h3>
-        <p><a href="{% url 'widget:demo' %}?key={{ website.public_widget_key }}" target="_blank">Open widget demo</a></p>
+        <h3>{% trans "Widget demo" %}</h3>
+        <p><a href="{% url 'widget:demo' %}?key={{ website.public_widget_key }}" target="_blank">{% trans "Open widget demo" %}</a></p>
 
-        <h3>Help center</h3>
-        <p><a href="{% url 'knowledge:help_center' %}?key={{ website.public_widget_key }}" target="_blank">Open help center</a></p>
+        <h3>{% trans "Help center" %}</h3>
+        <p><a href="{% url 'knowledge:help_center' %}?key={{ website.public_widget_key }}" target="_blank">{% trans "Open help center" %}</a></p>
 
-        <h3>API keys</h3>
+        <h3>{% trans "API keys" %}</h3>
         <dl class="key-list">
-            <dt>Public widget key</dt>
+            <dt>{% trans "Public widget key" %}</dt>
             <dd><code>{{ website.public_widget_key }}</code></dd>
-            <dt>Private API key</dt>
+            <dt>{% trans "Private API key" %}</dt>
             <dd><code>{{ website.private_api_key }}</code></dd>
         </dl>
 
-        <h3>Team agents</h3>
+        <h3>{% trans "Team agents" %}</h3>
         <ul>
             {% for membership in agents %}
             <li>{{ membership.user.get_full_name|default:membership.user.username }}</li>
             {% empty %}
-            <li>No agents assigned.</li>
+            <li>{% trans "No agents assigned." %}</li>
             {% endfor %}
         </ul>
     </div>

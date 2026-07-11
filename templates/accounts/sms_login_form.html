@@ -1,6 +1,7 @@
 {% extends "base.html" %}
+{% load i18n %}
 
-{% block title %}ورود | ثبت نام — {{ product_name }}{% endblock %}
+{% block title %}{% trans "Login | Sign up" %} — {{ product_name }}{% endblock %}
 {% block body_class %}auth-page{% endblock %}
 
 {% block body %}
@@ -8,8 +9,8 @@
     <div class="auth-card">
         <div class="auth-logo">
             <span class="logo-icon">💬</span>
-            <h1>ورود | ثبت نام</h1>
-            <p>شماره موبایل خود را وارد کنید</p>
+            <h1>{% trans "Login | Sign up" %}</h1>
+            <p>{% trans "Enter your mobile number" %}</p>
         </div>
 
         {% if error %}
@@ -19,7 +20,7 @@
         <form method="post" class="auth-form">
             {% csrf_token %}
             <div class="form-group">
-                <label for="phone">شماره موبایل</label>
+                <label for="phone">{% trans "Mobile number" %}</label>
                 <input
                     type="text"
                     id="phone"
@@ -33,10 +34,10 @@
                     autofocus
                 >
             </div>
-            <button type="submit" class="btn btn-primary btn-block">ارسال رمز یکبار مصرف</button>
+            <button type="submit" class="btn btn-primary btn-block">{% trans "Send one-time password" %}</button>
         </form>
 
-        <p class="auth-hint">با ورود، شرایط استفاده از سرویس را می‌پذیرید.</p>
+        <p class="auth-hint">{% trans "By signing in, you agree to the terms of service." %}</p>
     </div>
 </div>
 {% endblock %}

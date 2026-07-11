@@ -1,24 +1,25 @@
 {% extends "dashboard/base_dashboard.html" %}
+{% load i18n %}
 
-{% block page_title %}CRM — Contacts{% endblock %}
+{% block page_title %}{% trans "CRM — Contacts" %}{% endblock %}
 
 {% block dashboard_content %}
 <div class="page-toolbar">
     <form method="get" class="search-form">
-        <input type="search" name="q" placeholder="Search by name, email, or visitor ID..." value="{{ search }}">
-        <button type="submit" class="btn btn-primary btn-sm">Search</button>
+        <input type="search" name="q" placeholder="{% trans 'Search by name, email, or visitor ID...' %}" value="{{ search }}">
+        <button type="submit" class="btn btn-primary btn-sm">{% trans "Search" %}</button>
     </form>
 </div>
 <div class="data-table-wrap">
     <table class="data-table">
         <thead>
             <tr>
-                <th>Visitor ID</th>
-                <th>Contact</th>
-                <th>Email</th>
-                <th>Company</th>
-                <th>Conversations</th>
-                <th>Last updated</th>
+                <th>{% trans "Visitor ID" %}</th>
+                <th>{% trans "Contact" %}</th>
+                <th>{% trans "Email" %}</th>
+                <th>{% trans "Company" %}</th>
+                <th>{% trans "Conversations" %}</th>
+                <th>{% trans "Last updated" %}</th>
                 <th></th>
             </tr>
         </thead>
@@ -35,11 +36,11 @@
                 <td>{{ contact.email|default:"—" }}</td>
                 <td>{{ contact.company|default:"—" }}</td>
                 <td>{{ contact.conversation_count }}</td>
-                <td>{{ contact.updated_at|timesince }} ago</td>
-                <td><a href="{% url 'dashboard:contact_detail' contact.id %}" class="btn btn-ghost btn-sm">View</a></td>
+                <td>{% blocktrans with time=contact.updated_at|timesince %}{{ time }} ago{% endblocktrans %}</td>
+                <td><a href="{% url 'dashboard:contact_detail' contact.id %}" class="btn btn-ghost btn-sm">{% trans "View" %}</a></td>
             </tr>
             {% empty %}
-            <tr><td colspan="7" class="empty-cell">No contacts yet.</td></tr>
+            <tr><td colspan="7" class="empty-cell">{% trans "No contacts yet." %}</td></tr>
             {% endfor %}
         </tbody>
     </table>

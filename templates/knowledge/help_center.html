@@ -1,6 +1,7 @@
 {% extends "base.html" %}
+{% load i18n website_i18n %}
 
-{% block title %}Help Center{% endblock %}
+{% block title %}{% trans "Help Center" %}{% endblock %}
 {% block body_class %}help-page{% endblock %}
 
 {% block body %}
@@ -8,16 +9,17 @@
     <div class="help-nav">
         <a href="{% url 'knowledge:help_center' %}?key={{ widget_key }}" class="nav-brand">
             <span class="logo-icon">💬</span>
-            <span>{{ website.name }} Help Center</span>
+            <span>{% with site_name=website|localized_name %}{% blocktrans with name=site_name %}{{ name }} Help Center{% endblocktrans %}{% endwith %}</span>
         </a>
-        <a href="{% url 'widget:demo' %}?key={{ widget_key }}" class="btn btn-primary btn-sm">Chat with us</a>
+        <a href="{% url 'widget:demo' %}?key={{ widget_key }}" class="btn btn-primary btn-sm">{% trans "Chat with us" %}</a>
+        {% include "includes/language_switcher.html" with switcher_id="help" %}
     </div>
     <div class="help-hero">
-        <h1>How can we help you?</h1>
-        <p class="help-subtitle">Browse guides and answers for {{ website.name }}, or search for a specific topic.</p>
+        <h1>{% trans "How can we help you?" %}</h1>
+        <p class="help-subtitle">{% with site_name=website|localized_name %}{% blocktrans with name=site_name %}Browse guides and answers for {{ name }}, or search for a specific topic.{% endblocktrans %}{% endwith %}</p>
         <form method="get" class="help-search">
             <input type="hidden" name="key" value="{{ widget_key }}">
-            <input type="search" name="q" placeholder="Search articles..." value="{{ query }}">
+            <input type="search" name="q" placeholder="{% trans 'Search articles...' %}" value="{{ query }}">
         </form>
     </div>
 </header>
@@ -25,7 +27,7 @@
 <main class="help-content">
     {% if query %}
     <section class="help-section">
-        <h2>Search results for "{{ query }}"</h2>
+        <h2>{% blocktrans with query=query %}Search results for "{{ query }}"{% endblocktrans %}</h2>
         <div class="article-list">
             {% for article in articles %}
             <a href="{{ article.get_absolute_url }}" class="article-card">
@@ -33,16 +35,16 @@
                 <h3>{{ article.title }}</h3>
             </a>
             {% empty %}
-            <p>No articles found.</p>
+            <p>{% trans "No articles found." %}</p>
             {% endfor %}
         </div>
     </section>
     {% else %}
     {% if not categories %}
     <section class="help-section help-empty">
-        <h2>No articles yet</h2>
-        <p>Help articles for this workspace will appear here once they are published.</p>
-        <p><a href="{% url 'widget:demo' %}?key={{ widget_key }}" class="btn btn-primary btn-sm">Talk to support</a></p>
+        <h2>{% trans "No articles yet" %}</h2>
+        <p>{% trans "Help articles for this workspace will appear here once they are published." %}</p>
+        <p><a href="{% url 'widget:demo' %}?key={{ widget_key }}" class="btn btn-primary btn-sm">{% trans "Talk to support" %}</a></p>
     </section>
     {% endif %}
     {% for category in categories %}

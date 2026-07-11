@@ -30,6 +30,13 @@ WIDGET_EMBED_CROSS_ORIGIN = os.getenv("WIDGET_EMBED_CROSS_ORIGIN", "").lower() i
 
 _csrf_origins = os.getenv("CSRF_TRUSTED_ORIGINS", "")
 CSRF_TRUSTED_ORIGINS = [o.strip() for o in _csrf_origins.split(",") if o.strip()]
+if DEBUG and not CSRF_TRUSTED_ORIGINS:
+    CSRF_TRUSTED_ORIGINS = [
+        "http://127.0.0.1:8002",
+        "http://localhost:8002",
+        PUBLIC_BASE_URL,
+    ]
+    CSRF_TRUSTED_ORIGINS = list(dict.fromkeys(CSRF_TRUSTED_ORIGINS))
 
 INSTALLED_APPS = [
     "daphne",
@@ -51,6 +58,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -71,6 +79,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "django.template.context_processors.i18n",
                 "config.context_processors.branding",
             ],
         },
@@ -100,8 +109,13 @@ AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
 
-LANGUAGE_CODE = "en-us"
-TIME_ZONE = "UTC"
+LANGUAGE_CODE = "fa"
+LANGUAGES = [
+    ("fa", "فارسی"),
+    ("en", "English"),
+]
+LOCALE_PATHS = [BASE_DIR / "locale"]
+TIME_ZONE = "Asia/Tehran"
 USE_I18N = True
 USE_TZ = True
 
@@ -139,6 +153,8 @@ elif DEBUG:
     SESSION_COOKIE_SECURE = False
     CSRF_COOKIE_SAMESITE = "Lax"
     CSRF_COOKIE_SECURE = False
+    LANGUAGE_COOKIE_SAMESITE = "Lax"
+    LANGUAGE_COOKIE_SECURE = False
 else:
     SESSION_COOKIE_SAMESITE = "None"
     SESSION_COOKIE_SECURE = True

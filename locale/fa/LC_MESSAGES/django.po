@@ -1,0 +1,877 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-11 23:43+0330\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "Phone number is required."
+msgstr "شماره تلفن وارد نشده است!"
+
+msgid "Invalid phone number. It must start with 09 and be 11 digits."
+msgstr "شماره تلفن نامعتبر است! شماره باید با 09 شروع شده و 11 رقم باشد."
+
+#, python-format
+msgid "Could not create account. (%(error)s)"
+msgstr "خطا در ایجاد حساب کاربری! (%(error)s)"
+
+msgid "Could not send verification code."
+msgstr "خطا در ایجاد رمز ورود!"
+
+msgid "User not found."
+msgstr "کاربر یافت نشد!"
+
+msgid "Verification code has expired."
+msgstr "رمز ورود منقضی شده است!"
+
+msgid "Authentication failed."
+msgstr "خطا در احراز هویت کاربر!"
+
+msgid "You do not have permission to access the admin panel."
+msgstr "شما اجازه دسترسی به پنل مدیریت را ندارید."
+
+msgid "Signed in successfully."
+msgstr "ورود با موفقیت انجام شد"
+
+msgid "Invalid verification code."
+msgstr "رمز ورود نامعتبر است!"
+
+msgid "Morse"
+msgstr "مورس"
+
+#, python-format
+msgid "Visitor %(visitor_id)s"
+msgstr "بازدیدکننده %(visitor_id)s"
+
+msgid "Open"
+msgstr "باز"
+
+msgid "Pending"
+msgstr "در انتظار"
+
+msgid "Resolved"
+msgstr "حل‌شده"
+
+msgid "No messages yet"
+msgstr "هنوز پیامی نیست"
+
+msgid "Visitor"
+msgstr "بازدیدکننده"
+
+msgid "Agent"
+msgstr "پشتیبان"
+
+msgid "System"
+msgstr "سیستم"
+
+msgid "Invalid JSON"
+msgstr "JSON نامعتبر"
+
+msgid "Message cannot be empty"
+msgstr "پیام نمی‌تواند خالی باشد"
+
+msgid "Agent not on this website"
+msgstr "پشتیبان به این وب‌سایت تعلق ندارد"
+
+msgid "Help center is not available yet"
+msgstr "مرکز راهنما هنوز در دسترس نیست"
+
+msgid "Verify code"
+msgstr "تایید کد"
+
+msgid "Verify mobile number"
+msgstr "تایید شماره موبایل"
+
+msgid "Enter the verification code sent to your mobile number"
+msgstr "کد تایید ارسال شده به شماره موبایل خود را وارد کنید"
+
+msgid "Verification code"
+msgstr "کد تایید"
+
+msgid "Time remaining until resend"
+msgstr "زمان باقی‌مانده تا ارسال مجدد"
+
+msgid "Resend"
+msgstr "ارسال مجدد"
+
+msgid "Please enter the 5-digit verification code"
+msgstr "لطفاً کد تایید 5 رقمی را وارد کنید"
+
+msgid "Verification code has been resent."
+msgstr "کد تایید مجدداً ارسال شد."
+
+msgid "Error resending verification code"
+msgstr "خطا در ارسال مجدد کد"
+
+msgid "Login | Sign up"
+msgstr "ورود | ثبت نام"
+
+msgid "Enter your mobile number"
+msgstr "شماره موبایل خود را وارد کنید"
+
+msgid "Mobile number"
+msgstr "شماره موبایل"
+
+msgid "Send one-time password"
+msgstr "ارسال رمز یکبار مصرف"
+
+msgid "By signing in, you agree to the terms of service."
+msgstr "با ورود، شرایط استفاده از سرویس را می‌پذیرید."
+
+msgid "Home"
+msgstr "خانه"
+
+msgid "Please correct the error below."
+msgstr "لطفاً خطای زیر را اصلاح کنید."
+
+msgid "Please correct the errors below."
+msgstr "لطفاً خطاهای زیر را اصلاح کنید."
+
+msgid "Password:"
+msgstr "رمز عبور:"
+
+msgid "Log in"
+msgstr "ورود"
+
+msgid "Analytics"
+msgstr "تحلیل‌ها"
+
+msgid "Total conversations"
+msgstr "کل گفتگوها"
+
+msgid "Total messages"
+msgstr "کل پیام‌ها"
+
+msgid "Contacts"
+msgstr "مخاطبین"
+
+msgid "Resolution rate"
+msgstr "نرخ حل مسئله"
+
+msgid "Recent conversations"
+msgstr "گفتگوهای اخیر"
+
+msgid "Contact"
+msgstr "مخاطب"
+
+msgid "Status"
+msgstr "وضعیت"
+
+msgid "Created"
+msgstr "ایجاد شده"
+
+msgid "Dashboard"
+msgstr "داشبورد"
+
+msgid "Active site"
+msgstr "سایت فعال"
+
+msgid "Switch"
+msgstr "تغییر"
+
+msgid "Chat Manager"
+msgstr "مدیریت گفتگو"
+
+msgid "CRM"
+msgstr "مدیریت مشتری"
+
+msgid "Knowledge Base"
+msgstr "پایگاه دانش"
+
+msgid "Website Settings"
+msgstr "تنظیمات وب‌سایت"
+
+msgid "Platform Monitor"
+msgstr "پایش پلتفرم"
+
+msgid "Chat Widget"
+msgstr "ویجت گفتگو"
+
+msgid "Logout"
+msgstr "خروج"
+
+msgid "No email provided"
+msgstr "ایمیل ثبت نشده"
+
+msgid "Visitor ID:"
+msgstr "شناسه بازدیدکننده:"
+
+msgid "Visitor ID"
+msgstr "شناسه بازدیدکننده"
+
+msgid "Session"
+msgstr "نشست"
+
+msgid "Phone"
+msgstr "تلفن"
+
+msgid "Company"
+msgstr "شرکت"
+
+msgid "Location"
+msgstr "موقعیت"
+
+msgid "First seen"
+msgstr "اولین بازدید"
+
+msgid "Notes"
+msgstr "یادداشت‌ها"
+
+msgid "Save notes"
+msgstr "ذخیره یادداشت‌ها"
+
+msgid "Conversation history"
+msgstr "تاریخچه گفتگو"
+
+msgid "No conversations yet."
+msgstr "هنوز گفتگویی نیست."
+
+msgid "CRM — Contacts"
+msgstr "مدیریت مشتری — مخاطبین"
+
+msgid "Search by name, email, or visitor ID..."
+msgstr "جستجو بر اساس نام، ایمیل یا شناسه بازدیدکننده..."
+
+msgid "Search"
+msgstr "جستجو"
+
+msgid "Email"
+msgstr "ایمیل"
+
+msgid "Conversations"
+msgstr "گفتگوها"
+
+msgid "Last updated"
+msgstr "آخرین به‌روزرسانی"
+
+#, python-format
+msgid "%(time)s ago"
+msgstr "%(time)s پیش"
+
+msgid "View"
+msgstr "مشاهده"
+
+msgid "No contacts yet."
+msgstr "هنوز مخاطبی نیست."
+
+#, python-format
+msgid "%(count)s unread"
+msgstr "%(count)s خوانده‌نشده"
+
+#, python-format
+msgid "%(count)s open"
+msgstr "%(count)s باز"
+
+msgid "Chat is not active yet."
+msgstr "گفتگو هنوز فعال نشده است."
+
+msgid "Activate your widget"
+msgstr "ویجت خود را فعال کنید"
+
+msgid "to receive visitor questions."
+msgstr "تا سوالات بازدیدکنندگان را دریافت کنید."
+
+msgid "All"
+msgstr "همه"
+
+msgid "ID:"
+msgstr "شناسه:"
+
+msgid "No email"
+msgstr "بدون ایمیل"
+
+msgid "Unassigned"
+msgstr "اختصاص نیافته"
+
+msgid "View CRM"
+msgstr "مشاهده CRM"
+
+msgid "Type your reply..."
+msgstr "پاسخ خود را بنویسید..."
+
+msgid "Send"
+msgstr "ارسال"
+
+msgid "Select a conversation"
+msgstr "یک گفتگو انتخاب کنید"
+
+msgid "Choose a conversation from the sidebar to start chatting."
+msgstr "برای شروع گفتگو، یک مورد از نوار کناری انتخاب کنید."
+
+msgid "Customer Support Platform"
+msgstr "پلتفرم پشتیبانی مشتری"
+
+msgid "Help Center"
+msgstr "مرکز راهنما"
+
+msgid "Live Demo"
+msgstr "دموی زنده"
+
+msgid "Agent Login"
+msgstr "ورود پشتیبان"
+
+msgid "Get started"
+msgstr "شروع کنید"
+
+#, fuzzy
+#| msgid "Customer Support Platform"
+msgid "Customer support platform"
+msgstr "پلتفرم پشتیبانی مشتری"
+
+msgid "Augment your customer experience."
+msgstr "تجربه مشتری خود را ارتقا دهید."
+
+msgid "Support made for your team & customers."
+msgstr "پشتیبانی ساخته‌شده برای تیم و مشتریان شما."
+
+msgid ""
+"All-in-one omnichannel inbox, live chat widget, knowledge base, and CRM — "
+"built with Django."
+msgstr ""
+"صندوق ورودی همه‌کاناله، ویجت گفتگوی زنده، پایگاه دانش و CRM — همه با جنگو."
+
+msgid "Get started free"
+msgstr "شروع رایگان"
+
+msgid "Open Chat Manager"
+msgstr "باز کردن مدیریت گفتگو"
+
+#, python-format
+msgid "Everything you need in %(brand)s"
+msgstr "همه چیزهایی که در %(brand)s نیاز دارید"
+
+msgid ""
+"Embed real-time support on any website. Visitors chat instantly with your "
+"team."
+msgstr ""
+"پشتیبانی بلادرنگ را در هر وب‌سایتی نصب کنید. بازدیدکنندگان فوراً با تیم شما "
+"گفتگو می‌کنند."
+
+msgid "Shared Inbox"
+msgstr "صندوق ورودی مشترک"
+
+msgid ""
+"Centralize all conversations. Assign, filter, and resolve from one "
+"collaborative inbox."
+msgstr ""
+"همه گفتگوها را متمرکز کنید. از یک صندوق مشترک اختصاص دهید، فیلتر کنید و حل "
+"کنید."
+
+msgid "Support CRM"
+msgstr "CRM پشتیبانی"
+
+msgid ""
+"Track visitor profiles, notes, and full conversation history in one place."
+msgstr ""
+"پروفایل بازدیدکنندگان، یادداشت‌ها و تاریخچه کامل گفتگو را در یکجا دنبال کنید."
+
+msgid "Let customers find answers themselves with searchable help articles."
+msgstr "به مشتریان اجازه دهید با مقالات راهنما پاسخ خود را بیابند."
+
+msgid "Monitor conversation volume, resolution rates, and team performance."
+msgstr "حجم گفتگوها، نرخ حل مسئله و عملکرد تیم را پایش کنید."
+
+msgid "Real-time"
+msgstr "بلادرنگ"
+
+msgid ""
+"WebSocket-powered messaging for instant agent and visitor communication."
+msgstr "پیام‌رسانی WebSocket برای ارتباط فوری پشتیبان و بازدیدکننده."
+
+msgid "Language"
+msgstr "زبان"
+
+msgid "Chat with us"
+msgstr "با ما گفتگو کنید"
+
+msgid "Still need help?"
+msgstr "هنوز به کمک نیاز دارید؟"
+
+msgid "Start a live chat"
+msgstr "گفتگوی زنده را شروع کنید"
+
+msgid "with our team."
+msgstr "با تیم ما."
+
+#, python-format
+msgid "%(name)s Help Center"
+msgstr "مرکز راهنمای %(name)s"
+
+msgid "How can we help you?"
+msgstr "چگونه می‌توانیم کمکتان کنیم؟"
+
+#, python-format
+msgid "Browse guides and answers for %(name)s, or search for a specific topic."
+msgstr "راهنماها و پاسخ‌های %(name)s را ببینید یا موضوع خاصی را جستجو کنید."
+
+msgid "Search articles..."
+msgstr "جستجوی مقالات..."
+
+#, python-format
+msgid "Search results for \"%(query)s\""
+msgstr "نتایج جستجو برای «%(query)s»"
+
+msgid "No articles found."
+msgstr "مقاله‌ای یافت نشد."
+
+msgid "No articles yet"
+msgstr "هنوز مقاله‌ای نیست"
+
+msgid ""
+"Help articles for this workspace will appear here once they are published."
+msgstr "مقالات راهنما پس از انتشار در اینجا نمایش داده می‌شوند."
+
+msgid "Talk to support"
+msgstr "گفتگو با پشتیبانی"
+
+msgid "Activate Chat"
+msgstr "فعال‌سازی گفتگو"
+
+#, python-format
+msgid "Activate %(name)s"
+msgstr "فعال‌سازی %(name)s"
+
+msgid "Turn on live chat so visitors on your website can ask questions."
+msgstr "گفتگوی زنده را روشن کنید تا بازدیدکنندگان سایت بتوانند سوال بپرسند."
+
+msgid ""
+"Each visitor gets a unique ID — every message appears in your Chat Manager."
+msgstr ""
+"هر بازدیدکننده شناسه یکتا دارد — هر پیام در مدیریت گفتگو نمایش داده می‌شود."
+
+msgid "Chat is active. Visitors can send messages using your widget."
+msgstr "گفتگو فعال است. بازدیدکنندگان می‌توانند با ویجت پیام بفرستند."
+
+msgid "Copy the embed script"
+msgstr "کپی اسکریپت نصب"
+
+msgid "Add this before"
+msgstr "این را قبل از"
+
+msgid "on your site:"
+msgstr "در سایت خود اضافه کنید:"
+
+msgid "Activate chat"
+msgstr "فعال‌سازی گفتگو"
+
+msgid "When you're ready to accept visitor questions, activate your website."
+msgstr "وقتی آماده دریافت سوالات بازدیدکنندگان هستید، وب‌سایت را فعال کنید."
+
+msgid "Activate chat widget"
+msgstr "فعال‌سازی ویجت گفتگو"
+
+msgid "Widget key:"
+msgstr "کلید ویجت:"
+
+msgid "Preview widget demo"
+msgstr "پیش‌نمایش دموی ویجت"
+
+msgid "Platform monitor"
+msgstr "پایش پلتفرم"
+
+#, python-format
+msgid ""
+"Observe all customers, websites, and visitor questions across %(product)s."
+msgstr ""
+"همه مشتریان، وب‌سایت‌ها و سوالات بازدیدکنندگان را در %(product)s پایش کنید."
+
+msgid "Customers (owners)"
+msgstr "مشتریان (مالکان)"
+
+#, python-format
+msgid "Websites (%(active)s active)"
+msgstr "وب‌سایت‌ها (%(active)s فعال)"
+
+#, python-format
+msgid "Questions (%(open)s open)"
+msgstr "سوالات (%(open)s باز)"
+
+msgid "Unread"
+msgstr "خوانده‌نشده"
+
+msgid "All questions"
+msgstr "همه سوالات"
+
+msgid "Customers"
+msgstr "مشتریان"
+
+msgid "Websites"
+msgstr "وب‌سایت‌ها"
+
+msgid "Search..."
+msgstr "جستجو..."
+
+msgid "All statuses"
+msgstr "همه وضعیت‌ها"
+
+msgid "All websites"
+msgstr "همه وب‌سایت‌ها"
+
+msgid "Filter"
+msgstr "فیلتر"
+
+msgid "Clear"
+msgstr "پاک کردن"
+
+msgid "All visitor questions"
+msgstr "همه سوالات بازدیدکنندگان"
+
+msgid "Question / last message"
+msgstr "سوال / آخرین پیام"
+
+msgid "Website"
+msgstr "وب‌سایت"
+
+msgid "Owner"
+msgstr "مالک"
+
+msgid "Assigned agent"
+msgstr "پشتیبان اختصاص‌یافته"
+
+msgid "Updated"
+msgstr "به‌روزرسانی"
+
+msgid "No questions found."
+msgstr "سوالی یافت نشد."
+
+#, python-format
+msgid "Customers on %(product)s"
+msgstr "مشتریان %(product)s"
+
+msgid "Customer"
+msgstr "مشتری"
+
+msgid "Joined"
+msgstr "عضویت"
+
+msgid "Visitors"
+msgstr "بازدیدکنندگان"
+
+msgid "Questions"
+msgstr "سوالات"
+
+msgid "Agent replies"
+msgstr "پاسخ‌های پشتیبان"
+
+msgid "Last activity"
+msgstr "آخرین فعالیت"
+
+#, python-format
+msgid "%(owned)s (%(active)s active)"
+msgstr "%(owned)s (%(active)s فعال)"
+
+msgid "No customers found."
+msgstr "مشتری یافت نشد."
+
+msgid "Messages"
+msgstr "پیام‌ها"
+
+msgid "Active"
+msgstr "فعال"
+
+msgid "Inactive"
+msgstr "غیرفعال"
+
+msgid "Open inbox"
+msgstr "باز کردن صندوق ورودی"
+
+msgid "No websites found."
+msgstr "وب‌سایتی یافت نشد."
+
+msgid "Django admin: user usage"
+msgstr "مدیریت جنگو: مصرف کاربر"
+
+msgid "Django admin: website usage"
+msgstr "مدیریت جنگو: مصرف وب‌سایت"
+
+msgid "Create website"
+msgstr "ایجاد وب‌سایت"
+
+msgid "Create a website"
+msgstr "ایجاد وب‌سایت"
+
+msgid "Add a new website to manage chat support, contacts, and knowledge base."
+msgstr "وب‌سایت جدیدی برای مدیریت گفتگو، مخاطبین و پایگاه دانش اضافه کنید."
+
+msgid "Website name"
+msgstr "نام وب‌سایت"
+
+msgid "My Store"
+msgstr "فروشگاه من"
+
+msgid "Domain (optional)"
+msgstr "دامنه (اختیاری)"
+
+msgid "Cancel"
+msgstr "انصراف"
+
+msgid "Your websites"
+msgstr "وب‌سایت‌های شما"
+
+msgid "Select a website to manage its inbox, contacts, and knowledge base."
+msgstr "وب‌سایتی را برای مدیریت صندوق ورودی، مخاطبین و پایگاه دانش انتخاب کنید."
+
+msgid "Not activated"
+msgstr "فعال نشده"
+
+msgid "No websites yet. Create your first one below."
+msgstr "هنوز وب‌سایتی نیست. اولین مورد را در پایین بسازید."
+
+msgid "New website"
+msgstr "وب‌سایت جدید"
+
+msgid "Status:"
+msgstr "وضعیت:"
+
+msgid "Deactivate chat"
+msgstr "غیرفعال‌سازی گفتگو"
+
+msgid "Embed chat widget"
+msgstr "نصب ویجت گفتگو"
+
+msgid "Add this script before"
+msgstr "این اسکریپت را قبل از"
+
+msgid "Widget demo"
+msgstr "دموی ویجت"
+
+msgid "Open widget demo"
+msgstr "باز کردن دموی ویجت"
+
+msgid "Help center"
+msgstr "مرکز راهنما"
+
+msgid "Open help center"
+msgstr "باز کردن مرکز راهنما"
+
+msgid "API keys"
+msgstr "کلیدهای API"
+
+msgid "Public widget key"
+msgstr "کلید عمومی ویجت"
+
+msgid "Private API key"
+msgstr "کلید خصوصی API"
+
+msgid "Team agents"
+msgstr "پشتیبان‌های تیم"
+
+msgid "No agents assigned."
+msgstr "پشتیبانی اختصاص نیافته است."
+
+#, python-format
+msgid "Chat — %(name)s"
+msgstr "گفتگو — %(name)s"
+
+msgid "We typically reply in minutes"
+msgstr "معمولاً در چند دقیقه پاسخ می‌دهیم"
+
+msgid "Before we start, tell us a bit about yourself:"
+msgstr "قبل از شروع، کمی درباره خودتان بگویید:"
+
+msgid "Your name"
+msgstr "نام شما"
+
+msgid "Your email"
+msgstr "ایمیل شما"
+
+msgid "Continue"
+msgstr "ادامه"
+
+msgid "Type a message..."
+msgstr "پیام خود را بنویسید..."
+
+msgid "Your ID:"
+msgstr "شناسه شما:"
+
+msgid "Browse help articles"
+msgstr "مشاهده مقالات راهنما"
+
+msgid "Live demo"
+msgstr "دموی زنده"
+
+msgid "Customer support that feels built in"
+msgstr "پشتیبانی مشتری که بخشی از سایت شماست"
+
+#, python-format
+msgid ""
+"%(name)s helps teams answer questions faster with live chat, a shared inbox, "
+"and self-service help articles — all in one place."
+msgstr ""
+"%(name)s به تیم‌ها کمک می‌کند با گفتگوی زنده، صندوق مشترک و مقالات راهنما "
+"سریع‌تر پاسخ دهند — همه در یکجا."
+
+msgid "Real-time support"
+msgstr "پشتیبانی بلادرنگ"
+
+msgid "Visitors get instant help without leaving your site."
+msgstr "بازدیدکنندگان بدون ترک سایت، کمک فوری دریافت می‌کنند."
+
+msgid "Agent inbox"
+msgstr "صندوق ورودی پشتیبان"
+
+msgid "Your team manages all chats from a shared inbox."
+msgstr "تیم شما همه گفتگوها را از یک صندوق مشترک مدیریت می‌کند."
+
+msgid "Knowledge base"
+msgstr "پایگاه دانش"
+
+msgid "Link visitors to self-service articles when they need answers fast."
+msgstr "بازدیدکنندگان را به مقالات خودیاری هدایت کنید."
+
+msgid "Try the chat widget"
+msgstr "ویجت گفتگو را امتحان کنید"
+
+msgid "Click the chat bubble in the corner."
+msgstr "روی حباب گفتگو در گوشه کلیک کنید."
+
+msgid "Send a test message as a visitor."
+msgstr "به عنوان بازدیدکننده یک پیام آزمایشی بفرستید."
+
+msgid "Log in as an agent and reply from the inbox."
+msgstr "به عنوان پشتیبان وارد شوید و از صندوق ورودی پاسخ دهید."
+
+msgid "Need a plan for your team?"
+msgstr "به پلن برای تیم خود نیاز دارید؟"
+
+msgid "View pricing"
+msgstr "مشاهده قیمت‌ها"
+
+msgid "Pricing"
+msgstr "قیمت‌گذاری"
+
+msgid "Plans"
+msgstr "پلن‌ها"
+
+msgid "Simple pricing for growing teams"
+msgstr "قیمت‌گذاری ساده برای تیم‌های در حال رشد"
+
+msgid ""
+"Choose the plan that fits your support volume. Every plan includes the chat "
+"widget, shared inbox, and knowledge base."
+msgstr ""
+"پلنی را انتخاب کنید که با حجم پشتیبانی شما سازگار است. همه پلن‌ها شامل ویجت "
+"گفتگو، صندوق مشترک و پایگاه دانش هستند."
+
+msgid "Starter"
+msgstr "شروع"
+
+msgid "/month"
+msgstr "/ماه"
+
+msgid "For small teams getting started"
+msgstr "برای تیم‌های کوچک در شروع کار"
+
+msgid "Up to 3 agents"
+msgstr "تا ۳ پشتیبان"
+
+msgid "Live chat widget"
+msgstr "ویجت گفتگوی زنده"
+
+msgid "Email support"
+msgstr "پشتیبانی ایمیلی"
+
+msgid "See product tour"
+msgstr "مشاهده معرفی محصول"
+
+msgid "Business"
+msgstr "کسب‌وکار"
+
+msgid "Most popular for growing companies"
+msgstr "محبوب‌ترین برای شرکت‌های در حال رشد"
+
+msgid "Up to 10 agents"
+msgstr "تا ۱۰ پشتیبان"
+
+msgid "Shared inbox & CRM"
+msgstr "صندوق مشترک و CRM"
+
+msgid "Analytics dashboard"
+msgstr "داشبورد تحلیل‌ها"
+
+msgid "Priority support"
+msgstr "پشتیبانی اولویت‌دار"
+
+msgid "Start free trial"
+msgstr "شروع آزمایش رایگان"
+
+msgid "Enterprise"
+msgstr "سازمانی"
+
+msgid "Custom"
+msgstr "سفارشی"
+
+msgid "For larger support organizations"
+msgstr "برای سازمان‌های پشتیبانی بزرگ"
+
+msgid "Unlimited agents"
+msgstr "پشتیبان نامحدود"
+
+msgid "Custom integrations"
+msgstr "یکپارچه‌سازی سفارشی"
+
+msgid "Dedicated onboarding"
+msgstr "راه‌اندازی اختصاصی"
+
+msgid "SLA & security review"
+msgstr "SLA و بررسی امنیتی"
+
+msgid "Talk to sales"
+msgstr "تماس با فروش"
+
+msgid "Questions about billing?"
+msgstr "سوالی درباره صورتحساب دارید؟"
+
+msgid "Browse billing help articles"
+msgstr "مقالات راهنمای صورتحساب"
+
+msgid "or chat with us."
+msgstr "یا با ما گفتگو کنید."
+
+msgid "Help"
+msgstr "راهنما"
+
+#, fuzzy
+#| msgid "Chat with us"
+msgid "Chat with Morse"
+msgstr "گفتگو با مورس"
+
+msgid "Close chat"
+msgstr "بستن گفتگو"
+
+msgid "Morse chat"
+msgstr "گفتگوی مورس"
+
+msgid "Demo Website"
+msgstr "وب‌سایت دمو"
+
+msgid "Website name is required."
+msgstr "نام وب‌سایت الزامی است."
+
+msgid "Invalid or missing widget key"
+msgstr "کلید ویجت نامعتبر یا موجود نیست"
+
+msgid "Thanks for reaching out! A support agent will be with you shortly."
+msgstr "ممنون از پیام شما! به زودی یک پشتیبان پاسخ خواهد داد."
+
+msgid "Conversation not found"
+msgstr "گفتگو یافت نشد"
+
+#~ msgid "support platform"
+#~ msgstr "پلتفرم پشتیبانی"
+
+#~ msgid "One platform to delight your teams and customers"
+#~ msgstr "یک پلتفرم برای رضایت تیم و مشتریان شما"

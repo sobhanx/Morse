@@ -5,6 +5,7 @@ from channels.layers import get_channel_layer
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
+from django.utils.translation import gettext as _
 from django.views.decorators.http import require_POST
 
 from websites.models import WebsiteAgent
@@ -40,11 +41,11 @@ def send_agent_message(request, conversation_id):
     try:
         data = json.loads(request.body)
     except json.JSONDecodeError:
-        return JsonResponse({"error": "Invalid JSON"}, status=400)
+        return JsonResponse({"error": _("Invalid JSON")}, status=400)
 
     content = data.get("content", "").strip()
     if not content:
-        return JsonResponse({"error": "Message cannot be empty"}, status=400)
+        return JsonResponse({"error": _("Message cannot be empty")}, status=400)
 
     message = Message.objects.create(
         conversation=conversation,
@@ -69,7 +70,7 @@ def update_conversation(request, conversation_id):
     try:
         data = json.loads(request.body)
     except json.JSONDecodeError:
-        return JsonResponse({"error": "Invalid JSON"}, status=400)
+        return JsonResponse({"error": _("Invalid JSON")}, status=400)
 
     if "status" in data and data["status"] in Conversation.Status.values:
         conversation.status = data["status"]
@@ -84,7 +85,9 @@ def update_conversation(request, conversation_id):
             if not WebsiteAgent.objects.filter(
                 website=request.website, user=agent
             ).exists():
-                return JsonResponse({"error": "Agent not on this website"}, status=400)
+                return JsonResponse(
+                    {"error": _("Agent not on this website")}, status=400
+                )
             conversation.assigned_to = agent
     if data.get("mark_read"):
         conversation.is_unread = False

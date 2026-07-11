@@ -1,35 +1,36 @@
 {% extends "dashboard/base_dashboard.html" %}
+{% load i18n %}
 
-{% block page_title %}Chat Manager{% endblock %}
+{% block page_title %}{% trans "Chat Manager" %}{% endblock %}
 
 {% block dashboard_content %}
 <div class="inbox-layout">
     <aside class="inbox-sidebar">
         <div class="inbox-header">
-            <h2>Chat Manager</h2>
+            <h2>{% trans "Chat Manager" %}</h2>
             <div class="inbox-stats">
-                <span class="stat-badge">{{ stats.unread }} unread</span>
-                <span class="stat-badge open">{{ stats.open }} open</span>
+                <span class="stat-badge">{% blocktrans with count=stats.unread %}{{ count }} unread{% endblocktrans %}</span>
+                <span class="stat-badge open">{% blocktrans with count=stats.open %}{{ count }} open{% endblocktrans %}</span>
             </div>
         </div>
         {% if request.website and not request.website.is_active %}
         <div class="activation-banner">
-            Chat is not active yet.
-            <a href="{% url 'websites:activate' request.website.id %}">Activate your widget</a>
-            to receive visitor questions.
+            {% trans "Chat is not active yet." %}
+            <a href="{% url 'websites:activate' request.website.id %}">{% trans "Activate your widget" %}</a>
+            {% trans "to receive visitor questions." %}
         </div>
         {% endif %}
         <form class="inbox-search" method="get">
             {% if active_conversation %}
             <input type="hidden" name="conversation" value="{{ active_conversation.id }}">
             {% endif %}
-            <input type="search" name="q" placeholder="Search by name, email, or visitor ID..." value="{{ search }}">
+            <input type="search" name="q" placeholder="{% trans 'Search by name, email, or visitor ID...' %}" value="{{ search }}">
         </form>
         <div class="inbox-filters">
-            <a href="?status=all{% if search %}&q={{ search }}{% endif %}" class="filter-btn {% if status_filter == 'all' %}active{% endif %}">All</a>
-            <a href="?status=open{% if search %}&q={{ search }}{% endif %}" class="filter-btn {% if status_filter == 'open' %}active{% endif %}">Open</a>
-            <a href="?status=pending{% if search %}&q={{ search }}{% endif %}" class="filter-btn {% if status_filter == 'pending' %}active{% endif %}">Pending</a>
-            <a href="?status=resolved{% if search %}&q={{ search }}{% endif %}" class="filter-btn {% if status_filter == 'resolved' %}active{% endif %}">Resolved</a>
+            <a href="?status=all{% if search %}&q={{ search }}{% endif %}" class="filter-btn {% if status_filter == 'all' %}active{% endif %}">{% trans "All" %}</a>
+            <a href="?status=open{% if search %}&q={{ search }}{% endif %}" class="filter-btn {% if status_filter == 'open' %}active{% endif %}">{% trans "Open" %}</a>
+            <a href="?status=pending{% if search %}&q={{ search }}{% endif %}" class="filter-btn {% if status_filter == 'pending' %}active{% endif %}">{% trans "Pending" %}</a>
+            <a href="?status=resolved{% if search %}&q={{ search }}{% endif %}" class="filter-btn {% if status_filter == 'resolved' %}active{% endif %}">{% trans "Resolved" %}</a>
         </div>
         <div class="conversation-list">
             {% for conv in conversations %}
@@ -39,9 +40,9 @@
                 <div class="conv-body">
                     <div class="conv-top">
                         <span class="conv-name">{{ conv.contact.display_name }}</span>
-                        <span class="conv-time">{{ conv.updated_at|timesince }} ago</span>
+                        <span class="conv-time">{% blocktrans with time=conv.updated_at|timesince %}{{ time }} ago{% endblocktrans %}</span>
                     </div>
-                    <div class="conv-visitor-id">ID: <code>{{ conv.contact.visitor_id }}</code></div>
+                    <div class="conv-visitor-id">{% trans "ID:" %} <code>{{ conv.contact.visitor_id }}</code></div>
                     <div class="conv-preview">{{ conv.preview }}</div>
                     <div class="conv-meta">
                         <span class="status-pill status-{{ conv.status }}">{{ conv.get_status_display }}</span>
@@ -52,7 +53,7 @@
                 </div>
             </a>
             {% empty %}
-            <div class="empty-state">No conversations yet.</div>
+            <div class="empty-state">{% trans "No conversations yet." %}</div>
             {% endfor %}
         </div>
     </aside>
@@ -64,8 +65,8 @@
                 <div class="conv-avatar large">{{ active_conversation.contact.initials }}</div>
                 <div>
                     <h3>{{ active_conversation.contact.display_name }}</h3>
-                    <span class="contact-email">{{ active_conversation.contact.email|default:"No email" }}</span>
-                    <span class="visitor-id-badge">Visitor ID: <code>{{ active_conversation.contact.visitor_id }}</code></span>
+                    <span class="contact-email">{% if active_conversation.contact.email %}{{ active_conversation.contact.email }}{% else %}{% trans "No email" %}{% endif %}</span>
+                    <span class="visitor-id-badge">{% trans "Visitor ID:" %} <code>{{ active_conversation.contact.visitor_id }}</code></span>
                 </div>
             </div>
             <div class="chat-actions">
@@ -75,12 +76,12 @@
                     {% endfor %}
                 </select>
                 <select id="assign-select" class="select-sm" data-conversation-id="{{ active_conversation.id }}">
-                    <option value="">Unassigned</option>
+                    <option value="">{% trans "Unassigned" %}</option>
                     {% for agent in agents %}
                     <option value="{{ agent.id }}" {% if active_conversation.assigned_to_id == agent.id %}selected{% endif %}>{{ agent.get_full_name|default:agent.username }}</option>
                     {% endfor %}
                 </select>
-                <a href="{% url 'dashboard:contact_detail' active_conversation.contact.id %}" class="btn btn-ghost btn-sm">View CRM</a>
+                <a href="{% url 'dashboard:contact_detail' active_conversation.contact.id %}" class="btn btn-ghost btn-sm">{% trans "View CRM" %}</a>
             </div>
         </div>
         <div class="chat-messages" id="chat-messages"
@@ -98,14 +99,14 @@
         </div>
         <form class="chat-input" id="agent-chat-form" data-conversation-id="{{ active_conversation.id }}">
             {% csrf_token %}
-            <textarea id="message-input" placeholder="Type your reply..." rows="1"></textarea>
-            <button type="submit" class="btn btn-primary">Send</button>
+            <textarea id="message-input" placeholder="{% trans 'Type your reply...' %}" rows="1"></textarea>
+            <button type="submit" class="btn btn-primary">{% trans "Send" %}</button>
         </form>
         {% else %}
         <div class="chat-empty">
             <div class="empty-icon">📥</div>
-            <h3>Select a conversation</h3>
-            <p>Choose a conversation from the sidebar to start chatting.</p>
+            <h3>{% trans "Select a conversation" %}</h3>
+            <p>{% trans "Choose a conversation from the sidebar to start chatting." %}</p>
         </div>
         {% endif %}
     </main>

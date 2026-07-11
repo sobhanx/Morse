@@ -1,9 +1,19 @@
-<div id="morse-widget-launcher" class="widget-launcher" aria-label="Open chat">
-    <span class="launcher-icon">💬</span>
+{% load i18n %}
+<div class="widget-launcher-stack" id="morse-widget-launcher-stack">
+    <span class="widget-launcher-label">{% trans "Morse" %}</span>
+    <button
+        type="button"
+        id="morse-widget-launcher"
+        class="widget-launcher"
+        aria-label="{% trans 'Chat with Morse' %}"
+    >
+        <span class="launcher-pulse" aria-hidden="true"></span>
+        <span class="launcher-monogram" aria-hidden="true">M</span>
+    </button>
 </div>
 <div id="morse-widget-frame" class="widget-frame hidden">
-    <button id="morse-widget-close" class="widget-close" aria-label="Close chat">×</button>
-    <iframe src="{% url 'widget:chat' %}?key={{ website.public_widget_key }}" title="Morse chat"></iframe>
+    <button id="morse-widget-close" class="widget-close" aria-label="{% trans 'Close chat' %}">×</button>
+    <iframe src="{% url 'widget:chat' %}?key={{ website.public_widget_key }}" title="{% trans 'Morse chat' %}"></iframe>
 </div>
 <script>
 (function() {
