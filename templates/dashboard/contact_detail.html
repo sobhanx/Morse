@@ -1,0 +1,46 @@
+{% extends "dashboard/base_dashboard.html" %}
+
+{% block page_title %}{{ contact.display_name }}{% endblock %}
+
+{% block dashboard_content %}
+<div class="contact-detail-layout">
+    <div class="contact-card">
+        <div class="contact-header">
+            <div class="conv-avatar large">{{ contact.initials }}</div>
+            <div>
+                <h2>{{ contact.display_name }}</h2>
+                <p>{{ contact.email|default:"No email provided" }}</p>
+                <p class="visitor-id-badge">Visitor ID: <code>{{ contact.visitor_id }}</code></p>
+            </div>
+        </div>
+        <dl class="contact-fields">
+            <dt>Visitor ID</dt><dd><code>{{ contact.visitor_id }}</code></dd>
+            <dt>Session</dt><dd><code>{{ contact.session_id }}</code></dd>
+            <dt>Phone</dt><dd>{{ contact.phone|default:"—" }}</dd>
+            <dt>Company</dt><dd>{{ contact.company|default:"—" }}</dd>
+            <dt>Location</dt><dd>{{ contact.location|default:"—" }}</dd>
+            <dt>First seen</dt><dd>{{ contact.created_at|date:"M d, Y H:i" }}</dd>
+        </dl>
+        <form method="post" action="{% url 'dashboard:update_contact_notes' contact.id %}">
+            {% csrf_token %}
+            <label for="notes">Notes</label>
+            <textarea name="notes" id="notes" rows="4">{{ contact.notes }}</textarea>
+            <button type="submit" class="btn btn-primary btn-sm">Save notes</button>
+        </form>
+    </div>
+    <div class="contact-conversations">
+        <h3>Conversation history</h3>
+        {% for conv in conversations %}
+        <a href="{% url 'dashboard:inbox' %}?conversation={{ conv.id }}" class="history-item">
+            <div class="history-top">
+                <span class="status-pill status-{{ conv.status }}">{{ conv.get_status_display }}</span>
+                <span>{{ conv.updated_at|date:"M d, Y" }}</span>
+            </div>
+            <p>{{ conv.preview }}</p>
+        </a>
+        {% empty %}
+        <p class="empty-state">No conversations yet.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

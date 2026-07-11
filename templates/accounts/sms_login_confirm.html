@@ -1,0 +1,173 @@
+{% extends "base.html" %}
+
+{% block title %}تایید کد — {{ product_name }}{% endblock %}
+{% block body_class %}auth-page{% endblock %}
+
+{% block body %}
+<div class="auth-container">
+    <div class="auth-card">
+        <div class="auth-logo">
+            <span class="logo-icon">💬</span>
+            <h1>تایید شماره موبایل</h1>
+            <p>کد تایید ارسال شده به شماره موبایل خود را وارد کنید</p>
+        </div>
+
+        <form id="otp-form" method="post" class="auth-form" dir="ltr">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="verify_code">کد تایید</label>
+                <input
+                    type="text"
+                    id="verify_code"
+                    name="verify_code"
+                    inputmode="numeric"
+                    maxlength="5"
+                    class="otp-input"
+                    required
+                    autocomplete="one-time-code"
+                    placeholder="00000"
+                    dir="ltr"
+                >
+            </div>
+        </form>
+
+        {% if error %}
+        <div class="alert alert-error">{{ error }}</div>
+        {% endif %}
+
+        <div class="otp-resend">
+            <div id="countdownSection">
+                <p class="auth-hint">زمان باقی‌مانده تا ارسال مجدد</p>
+                <span id="countdown" class="otp-countdown">02:00</span>
+            </div>
+            <button
+                id="resendButton"
+                type="button"
+                onclick="resendOTP()"
+                class="btn btn-secondary btn-block hidden"
+                disabled
+            >
+                ارسال مجدد
+            </button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+.otp-input {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0.5em;
+    padding: 14px;
+}
+.otp-resend { margin-top: 20px; text-align: center; }
+.otp-countdown {
+    display: inline-block;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--primary);
+    margin-top: 8px;
+}
+.hidden { display: none; }
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  const otpInput = document.querySelector('input[name="verify_code"]');
+  const form = document.getElementById('otp-form');
+
+  if (otpInput) {
+    otpInput.addEventListener('input', (e) => {
+      e.target.value = e.target.value.replace(/\D/g, '');
+      if (e.target.value.length === 5) {
+        form.submit();
+      }
+    });
+
+    otpInput.addEventListener('paste', (e) => {
+      e.preventDefault();
+      const pastedData = e.clipboardData.getData('text').replace(/\D/g, '');
+      if (pastedData.length > 0) {
+        otpInput.value = pastedData.slice(0, 5);
+        if (otpInput.value.length === 5) {
+          form.submit();
+        }
+      }
+    });
+  }
+
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      if (otpInput && otpInput.value.length !== 5) {
+        e.preventDefault();
+        alert('لطفاً کد تایید 5 رقمی را وارد کنید');
+      }
+    });
+  }
+
+  const countdownEl = document.getElementById('countdown');
+  const countdownSection = document.getElementById('countdownSection');
+  const resendButton = document.getElementById('resendButton');
+  let endTime;
+  let timerInterval;
+
+  function updateTimer() {
+    const now = Date.now();
+    const remaining = Math.max(0, Math.ceil((endTime - now) / 1000));
+
+    if (remaining > 0) {
+      const minutes = Math.floor(remaining / 60);
+      const seconds = remaining % 60;
+      countdownEl.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+      timerInterval = setTimeout(updateTimer, 100);
+    } else {
+      clearTimeout(timerInterval);
+      countdownSection.classList.add('hidden');
+      resendButton.classList.remove('hidden');
+      resendButton.disabled = false;
+    }
+  }
+
+  function startTimer() {
+    endTime = Date.now() + 120000;
+    countdownSection.classList.remove('hidden');
+    resendButton.classList.add('hidden');
+    resendButton.disabled = true;
+    clearTimeout(timerInterval);
+    updateTimer();
+  }
+
+  startTimer();
+
+  async function resendOTP() {
+    resendButton.disabled = true;
+
+    try {
+      const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+      const response = await fetch(`{% url "accounts:resend-code" phone %}`, {
+        method: 'POST',
+        headers: {
+          'X-CSRFToken': csrfToken,
+          'Content-Type': 'application/json'
+        }
+      });
+      const data = await response.json();
+      if (data.success) {
+        startTimer();
+        alert('کد تایید مجدداً ارسال شد.');
+      } else {
+        resendButton.disabled = false;
+        alert(data.error || 'خطا در ارسال مجدد کد');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      resendButton.disabled = false;
+      alert('خطا در ارسال مجدد کد');
+    }
+  }
+</script>
+{% endblock %}

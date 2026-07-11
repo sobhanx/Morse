@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}{{ article.title }} — Help Center{% endblock %}
+{% block body_class %}help-page{% endblock %}
+
+{% block body %}
+<header class="help-header compact">
+    <div class="help-nav">
+        <a href="{% url 'knowledge:help_center' %}" class="nav-brand">
+            <span class="logo-icon">💬</span>
+            <span>Help Center</span>
+        </a>
+        <a href="{% url 'widget:demo' %}" class="btn btn-primary btn-sm">Chat with us</a>
+    </div>
+</header>
+
+<article class="article-detail">
+    <nav class="breadcrumb">
+        <a href="{% url 'knowledge:help_center' %}">Help Center</a>
+        <span>/</span>
+        <a href="{% url 'knowledge:help_center' %}?q={{ article.category.name }}">{{ article.category.name }}</a>
+    </nav>
+    <h1>{{ article.title }}</h1>
+    <div class="article-body">
+        {{ article.content|linebreaks }}
+    </div>
+    <div class="article-footer">
+        <p>Still need help? <a href="{% url 'widget:demo' %}?key={{ widget_key }}">Start a live chat</a> with our team.</p>
+    </div>
+</article>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "dashboard/base_dashboard.html" %}
+
+{% block page_title %}Websites{% endblock %}
+
+{% block dashboard_content %}
+<div class="page-toolbar">
+    <h2>Your websites</h2>
+    <p class="text-muted">Select a website to manage its inbox, contacts, and knowledge base.</p>
+</div>
+
+<div class="websites-grid">
+    {% for website in websites %}
+    <div class="website-card {% if active_website and active_website.id == website.id %}active{% endif %}">
+        <h3>{{ website.name }}</h3>
+        {% if website.domain %}<p class="website-domain">{{ website.domain }}</p>{% endif %}
+        <p>
+            {% if website.is_active %}
+            <span class="status-pill status-resolved">Active</span>
+            {% else %}
+            <span class="status-pill status-pending">Not activated</span>
+            {% endif %}
+        </p>
+        <form method="post" action="{% url 'websites:switch' website.id %}">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{% if website.is_active %}{% url 'dashboard:inbox' %}{% else %}{% url 'websites:activate' website.id %}{% endif %}">
+            <button type="submit" class="btn btn-primary btn-sm">
+                {% if website.is_active %}Open Chat Manager{% else %}Activate chat{% endif %}
+            </button>
+        </form>
+        <p class="widget-key-hint">Widget key: <code>{{ website.public_widget_key|truncatechars:20 }}</code></p>
+    </div>
+    {% empty %}
+    <p class="empty-state">No websites yet. Create your first one below.</p>
+    {% endfor %}
+</div>
+
+<div class="website-create-card">
+    <h3>Create a website</h3>
+    <a href="{% url 'websites:create' %}" class="btn btn-primary btn-sm">New website</a>
+</div>
+{% endblock %}

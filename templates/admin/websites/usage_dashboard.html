@@ -1,0 +1,103 @@
+{% extends "admin/base_site.html" %}
+{% load i18n %}
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+    <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+    &rsaquo; Website usage
+</div>
+{% endblock %}
+
+{% block content %}
+<div id="content-main">
+    <h1>Website usage overview</h1>
+    <p>Platform-wide usage across all {{ product_name }} websites.</p>
+
+    <div style="display:flex;flex-wrap:wrap;gap:12px;margin:20px 0">
+        <div style="background:#f6f8fa;border:1px solid #d0d7de;border-radius:8px;padding:16px 20px;min-width:140px">
+            <div style="font-size:24px;font-weight:700">{{ totals.websites }}</div>
+            <div style="color:#57606a;font-size:13px">Websites ({{ totals.active_websites }} active)</div>
+        </div>
+        <div style="background:#f6f8fa;border:1px solid #d0d7de;border-radius:8px;padding:16px 20px;min-width:140px">
+            <div style="font-size:24px;font-weight:700">{{ totals.contacts }}</div>
+            <div style="color:#57606a;font-size:13px">Visitors</div>
+        </div>
+        <div style="background:#f6f8fa;border:1px solid #d0d7de;border-radius:8px;padding:16px 20px;min-width:140px">
+            <div style="font-size:24px;font-weight:700">{{ totals.conversations }}</div>
+            <div style="color:#57606a;font-size:13px">Conversations</div>
+        </div>
+        <div style="background:#f6f8fa;border:1px solid #d0d7de;border-radius:8px;padding:16px 20px;min-width:140px">
+            <div style="font-size:24px;font-weight:700">{{ totals.messages }}</div>
+            <div style="color:#57606a;font-size:13px">Messages</div>
+        </div>
+        <div style="background:#f6f8fa;border:1px solid #d0d7de;border-radius:8px;padding:16px 20px;min-width:140px">
+            <div style="font-size:24px;font-weight:700">{{ totals.agents }}</div>
+            <div style="color:#57606a;font-size:13px">Agents</div>
+        </div>
+        <div style="background:#f6f8fa;border:1px solid #d0d7de;border-radius:8px;padding:16px 20px;min-width:140px">
+            <div style="font-size:24px;font-weight:700">{{ totals.articles }}</div>
+            <div style="color:#57606a;font-size:13px">KB articles</div>
+        </div>
+        <div style="background:#fff5f5;border:1px solid #f0c4c4;border-radius:8px;padding:16px 20px;min-width:140px">
+            <div style="font-size:24px;font-weight:700;color:#c62828">{{ totals.unread }}</div>
+            <div style="color:#57606a;font-size:13px">Unread conversations</div>
+        </div>
+    </div>
+
+    <div class="module" id="changelist">
+        <div class="results">
+            <table id="result_list" style="width:100%">
+                <thead>
+                    <tr>
+                        <th scope="col">Website</th>
+                        <th scope="col">Owner</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Visitors</th>
+                        <th scope="col">Conversations</th>
+                        <th scope="col">Open</th>
+                        <th scope="col">Resolved</th>
+                        <th scope="col">Unread</th>
+                        <th scope="col">Messages</th>
+                        <th scope="col">Agents</th>
+                        <th scope="col">Articles</th>
+                        <th scope="col">Last activity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in usage_rows %}
+                    <tr class="{% cycle 'row1' 'row2' %}">
+                        <th scope="row">
+                            <a href="{% url 'admin:websites_website_change' row.website.pk %}"><strong>{{ row.website.name }}</strong></a>
+                            {% if row.website.domain %}<br><span style="color:#666">{{ row.website.domain }}</span>{% endif %}
+                        </th>
+                        <td>{{ row.website.owner.get_full_name|default:row.website.owner.phone }}</td>
+                        <td>
+                            {% if row.website.is_active %}
+                            <span style="color:#0a7a3e;font-weight:600">Active</span>
+                            {% else %}
+                            <span style="color:#9a6700;font-weight:600">Inactive</span>
+                            {% endif %}
+                        </td>
+                        <td>{{ row.visitors }}</td>
+                        <td>{{ row.conversations }}</td>
+                        <td>{{ row.open_count }}</td>
+                        <td>{{ row.resolved_count }}</td>
+                        <td>{% if row.unread %}<strong style="color:#c62828">{{ row.unread }}</strong>{% else %}0{% endif %}</td>
+                        <td>{{ row.messages }}</td>
+                        <td>{{ row.agents }}</td>
+                        <td>{{ row.articles }}</td>
+                        <td>{% if row.last_activity %}{{ row.last_activity|date:"Y-m-d H:i" }}{% else %}—{% endif %}</td>
+                    </tr>
+                    {% empty %}
+                    <tr><td colspan="12">No websites yet.</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <p style="margin-top:16px">
+        <a href="{% url 'admin:websites_website_changelist' %}" class="button">Manage websites</a>
+    </p>
+</div>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends "dashboard/base_dashboard.html" %}
+
+{% block page_title %}CRM — Contacts{% endblock %}
+
+{% block dashboard_content %}
+<div class="page-toolbar">
+    <form method="get" class="search-form">
+        <input type="search" name="q" placeholder="Search by name, email, or visitor ID..." value="{{ search }}">
+        <button type="submit" class="btn btn-primary btn-sm">Search</button>
+    </form>
+</div>
+<div class="data-table-wrap">
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Visitor ID</th>
+                <th>Contact</th>
+                <th>Email</th>
+                <th>Company</th>
+                <th>Conversations</th>
+                <th>Last updated</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for contact in contacts %}
+            <tr>
+                <td><code>{{ contact.visitor_id }}</code></td>
+                <td>
+                    <div class="table-contact">
+                        <div class="conv-avatar small">{{ contact.initials }}</div>
+                        {{ contact.display_name }}
+                    </div>
+                </td>
+                <td>{{ contact.email|default:"—" }}</td>
+                <td>{{ contact.company|default:"—" }}</td>
+                <td>{{ contact.conversation_count }}</td>
+                <td>{{ contact.updated_at|timesince }} ago</td>
+                <td><a href="{% url 'dashboard:contact_detail' contact.id %}" class="btn btn-ghost btn-sm">View</a></td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="7" class="empty-cell">No contacts yet.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends "admin/login.html" %}
+{% load i18n %}
+
+{% block content %}
+<div id="content-main">
+{% if form.errors and not form.non_field_errors %}
+<p class="errornote">
+{% if form.errors.items|length == 1 %}{% translate "Please correct the error below." %}{% else %}{% translate "Please correct the errors below." %}{% endif %}
+</p>
+{% endif %}
+{% if form.non_field_errors %}
+{% for error in form.non_field_errors %}
+<p class="errornote">{{ error }}</p>
+{% endfor %}
+{% endif %}
+<form action="{{ app_path }}" method="post" id="login-form">{% csrf_token %}
+  <div class="form-row">
+    {{ form.username.errors }}
+    <label for="id_username" class="required">Phone number:</label>
+    {{ form.username }}
+    <p class="help" style="margin-top:6px;color:#666">11-digit mobile, e.g. 09000000000</p>
+  </div>
+  <div class="form-row">
+    {{ form.password.errors }}
+    <label for="id_password" class="required">{% translate 'Password:' %}</label>
+    {{ form.password }}
+    <input type="hidden" name="next" value="{{ next }}">
+    <p class="help" style="margin-top:6px;color:#666">Only works if an admin set a password for your account.</p>
+  </div>
+  <div class="submit-row">
+    <input type="submit" value="{% translate 'Log in' %}">
+  </div>
+</form>
+
+<div style="margin-top:24px;padding-top:16px;border-top:1px solid #ddd">
+  <p><strong>Log in with SMS code</strong> (recommended for phone accounts):</p>
+  <p style="margin:8px 0">
+    <a href="/accounts/login/?next={{ next|urlencode }}" class="button" style="padding:8px 16px">
+      Continue with SMS OTP
+    </a>
+  </p>
+  <p class="help" style="color:#666">Use this if you signed up via mobile OTP and do not have a password.</p>
+</div>
+</div>
+{% endblock %}

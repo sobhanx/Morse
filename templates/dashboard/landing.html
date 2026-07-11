@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}{{ product_name }} — Customer Support Platform{% endblock %}
+{% block body_class %}landing-page{% endblock %}
+
+{% block body %}
+<header class="landing-header">
+    <div class="landing-nav">
+        <div class="nav-brand">
+            <span class="logo-icon">💬</span>
+            <span>{{ product_name }}</span>
+        </div>
+        <div class="landing-nav-links">
+            <a href="{% url 'knowledge:help_center' %}">Help Center</a>
+            <a href="{% url 'widget:demo' %}">Live Demo</a>
+            <a href="{% url 'accounts:login' %}" class="btn btn-primary">Agent Login</a>
+            <a href="{% url 'accounts:signup' %}" class="btn btn-outline">Get started</a>
+        </div>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="hero-content">
+        <span class="hero-badge">{{ product_name }} — support platform</span>
+        <h1>Augment your customer experience.<br>Support made for your team &amp; customers.</h1>
+        <p class="hero-sub">All-in-one omnichannel inbox, live chat widget, knowledge base, and CRM — built with Django.</p>
+        <div class="hero-actions">
+            <a href="{% url 'accounts:signup' %}" class="btn btn-primary btn-lg">Get started free</a>
+            <a href="{% url 'accounts:login' %}" class="btn btn-outline btn-lg">Open Chat Manager</a>
+        </div>
+    </div>
+</section>
+
+<section class="features">
+    <h2>One platform to delight your teams and customers</h2>
+    <div class="features-grid">
+        <div class="feature-card">
+            <span class="feature-icon">💬</span>
+            <h3>Chat Widget</h3>
+            <p>Embed real-time support on any website. Visitors chat instantly with your team.</p>
+        </div>
+        <div class="feature-card">
+            <span class="feature-icon">📥</span>
+            <h3>Shared Inbox</h3>
+            <p>Centralize all conversations. Assign, filter, and resolve from one collaborative inbox.</p>
+        </div>
+        <div class="feature-card">
+            <span class="feature-icon">👥</span>
+            <h3>Support CRM</h3>
+            <p>Track visitor profiles, notes, and full conversation history in one place.</p>
+        </div>
+        <div class="feature-card">
+            <span class="feature-icon">📚</span>
+            <h3>Knowledge Base</h3>
+            <p>Let customers find answers themselves with searchable help articles.</p>
+        </div>
+        <div class="feature-card">
+            <span class="feature-icon">📊</span>
+            <h3>Analytics</h3>
+            <p>Monitor conversation volume, resolution rates, and team performance.</p>
+        </div>
+        <div class="feature-card">
+            <span class="feature-icon">⚡</span>
+            <h3>Real-time</h3>
+            <p>WebSocket-powered messaging for instant agent and visitor communication.</p>
+        </div>
+    </div>
+</section>
+
+<footer class="landing-footer">
+    <p>{{ product_name }}</p>
+</footer>
+{% endblock %}

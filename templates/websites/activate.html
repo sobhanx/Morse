@@ -1,0 +1,47 @@
+{% extends "dashboard/base_dashboard.html" %}
+
+{% block page_title %}Activate Chat{% endblock %}
+
+{% block dashboard_content %}
+<div class="activation-page">
+    <div class="activation-card">
+        <h2>Activate {{ website.name }}</h2>
+        <p class="text-muted">
+            Turn on live chat so visitors on your website can ask questions.
+            Each visitor gets a unique ID — every message appears in your Chat Manager.
+        </p>
+
+        {% if website.is_active %}
+        <div class="alert alert-success">
+            Chat is active. Visitors can send messages using your widget.
+        </div>
+        <a href="{% url 'dashboard:inbox' %}" class="btn btn-primary">Open Chat Manager</a>
+        {% else %}
+        <div class="activation-steps">
+            <div class="step">
+                <span class="step-num">1</span>
+                <div>
+                    <h3>Copy the embed script</h3>
+                    <p>Add this before <code>&lt;/body&gt;</code> on your site:</p>
+                    <pre class="embed-code-block">&lt;script src="{{ embed_url }}"&gt;&lt;/script&gt;</pre>
+                </div>
+            </div>
+            <div class="step">
+                <span class="step-num">2</span>
+                <div>
+                    <h3>Activate chat</h3>
+                    <p>When you're ready to accept visitor questions, activate your website.</p>
+                    <form method="post" action="{% url 'websites:activate_toggle' website.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary btn-lg">Activate chat widget</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <p class="widget-key-hint">Widget key: <code>{{ website.public_widget_key }}</code></p>
+        <p><a href="{% url 'widget:demo' %}?key={{ website.public_widget_key }}" target="_blank">Preview widget demo</a></p>
+    </div>
+</div>
+{% endblock %}

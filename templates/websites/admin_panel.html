@@ -1,0 +1,285 @@
+{% extends "dashboard/base_dashboard.html" %}
+
+{% block page_title %}Platform Monitor{% endblock %}
+
+{% block dashboard_content %}
+<div class="page-toolbar">
+    <h2>Platform monitor</h2>
+    <p class="text-muted">Observe all customers, websites, and visitor questions across {{ product_name }}.</p>
+</div>
+
+<div class="platform-stats">
+    <div class="stat-card">
+        <div class="stat-value">{{ totals.customers }}</div>
+        <div class="stat-label">Customers (owners)</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-value">{{ totals.websites }}</div>
+        <div class="stat-label">Websites ({{ totals.active_websites }} active)</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-value">{{ totals.conversations }}</div>
+        <div class="stat-label">Questions ({{ totals.open_conversations }} open)</div>
+    </div>
+    <div class="stat-card stat-card-alert">
+        <div class="stat-value">{{ totals.unread_conversations }}</div>
+        <div class="stat-label">Unread</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-value">{{ totals.messages }}</div>
+        <div class="stat-label">Total messages</div>
+    </div>
+</div>
+
+<div class="platform-tabs">
+    <a href="?tab=questions{% if search %}&q={{ search }}{% endif %}{% if status != 'all' %}&status={{ status }}{% endif %}{% if website_id %}&website={{ website_id }}{% endif %}"
+       class="platform-tab {% if tab == 'questions' %}active{% endif %}">All questions</a>
+    <a href="?tab=customers{% if search %}&q={{ search }}{% endif %}"
+       class="platform-tab {% if tab == 'customers' %}active{% endif %}">Customers</a>
+    <a href="?tab=websites{% if search %}&q={{ search }}{% endif %}"
+       class="platform-tab {% if tab == 'websites' %}active{% endif %}">Websites</a>
+</div>
+
+<form method="get" class="platform-filters">
+    <input type="hidden" name="tab" value="{{ tab }}">
+    <input type="search" name="q" placeholder="Search..." value="{{ search }}">
+    {% if tab == 'questions' %}
+    <select name="status">
+        <option value="all" {% if status == 'all' %}selected{% endif %}>All statuses</option>
+        <option value="open" {% if status == 'open' %}selected{% endif %}>Open</option>
+        <option value="pending" {% if status == 'pending' %}selected{% endif %}>Pending</option>
+        <option value="resolved" {% if status == 'resolved' %}selected{% endif %}>Resolved</option>
+    </select>
+    <select name="website">
+        <option value="">All websites</option>
+        {% for w in website_choices %}
+        <option value="{{ w.id }}" {% if website_id == w.id|stringformat:"s" %}selected{% endif %}>{{ w.name }}</option>
+        {% endfor %}
+    </select>
+    {% endif %}
+    <button type="submit" class="btn btn-primary btn-sm">Filter</button>
+    <a href="?tab={{ tab }}" class="btn btn-ghost btn-sm">Clear</a>
+</form>
+
+{% if tab == 'questions' %}
+<div class="data-table-wrap">
+    <h3>All visitor questions</h3>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Visitor</th>
+                <th>Question / last message</th>
+                <th>Website</th>
+                <th>Owner</th>
+                <th>Assigned agent</th>
+                <th>Status</th>
+                <th>Updated</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for conv in conversations %}
+            <tr class="{% if conv.is_unread %}row-unread{% endif %}">
+                <td>
+                    <code>{{ conv.contact.visitor_id }}</code><br>
+                    <span>{{ conv.contact.display_name }}</span>
+                </td>
+                <td class="question-preview">
+                    {% if conv.subject %}<strong>{{ conv.subject }}</strong><br>{% endif %}
+                    {{ conv.preview }}
+                </td>
+                <td>
+                    <strong>{{ conv.website.name }}</strong>
+                    {% if conv.website.domain %}<br><span class="text-muted">{{ conv.website.domain }}</span>{% endif %}
+                </td>
+                <td>{{ conv.website.owner.get_full_name|default:conv.website.owner.phone }}</td>
+                <td>
+                    {% if conv.assigned_to %}
+                    {{ conv.assigned_to.get_full_name|default:conv.assigned_to.phone }}
+                    {% else %}
+                    <span class="text-muted">—</span>
+                    {% endif %}
+                </td>
+                <td><span class="status-pill status-{{ conv.status }}">{{ conv.get_status_display }}</span></td>
+                <td>{{ conv.updated_at|timesince }} ago</td>
+                <td>
+                    <form method="post" action="{% url 'websites:switch' conv.website.id %}" style="display:inline">
+                        {% csrf_token %}
+                        <input type="hidden" name="next" value="{% url 'dashboard:inbox' %}?conversation={{ conv.id }}">
+                        <button type="submit" class="btn btn-ghost btn-sm">View</button>
+                    </form>
+                </td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="8" class="empty-cell">No questions found.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% elif tab == 'customers' %}
+<div class="data-table-wrap">
+    <h3>Customers on {{ product_name }}</h3>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Customer</th>
+                <th>Phone</th>
+                <th>Joined</th>
+                <th>Websites</th>
+                <th>Visitors</th>
+                <th>Questions</th>
+                <th>Unread</th>
+                <th>Agent replies</th>
+                <th>Last activity</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in customer_rows %}
+            <tr>
+                <td><strong>{{ row.user.get_full_name|default:"—" }}</strong></td>
+                <td>{{ row.user.phone }}</td>
+                <td>{{ row.user.date_joined|date:"Y-m-d" }}</td>
+                <td>{{ row.owned_websites }} ({{ row.active_sites }} active)</td>
+                <td>{{ row.visitors }}</td>
+                <td>{{ row.conversations }}</td>
+                <td>{% if row.unread %}<strong class="text-danger">{{ row.unread }}</strong>{% else %}0{% endif %}</td>
+                <td>{{ row.agent_replies }}</td>
+                <td>
+                    {% if row.last_activity %}
+                    {{ row.last_activity|timesince }} ago
+                    {% else %}—{% endif %}
+                </td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="9" class="empty-cell">No customers found.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% else %}
+<div class="data-table-wrap">
+    <h3>All websites</h3>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Website</th>
+                <th>Owner</th>
+                <th>Status</th>
+                <th>Visitors</th>
+                <th>Questions</th>
+                <th>Messages</th>
+                <th>Unread</th>
+                <th>Created</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in website_rows %}
+            <tr>
+                <td>
+                    <strong>{{ row.website.name }}</strong>
+                    {% if row.website.domain %}<br><span class="text-muted">{{ row.website.domain }}</span>{% endif %}
+                </td>
+                <td>{{ row.website.owner.get_full_name|default:row.website.owner.phone }}</td>
+                <td>
+                    {% if row.website.is_active %}
+                    <span class="status-pill status-resolved">Active</span>
+                    {% else %}
+                    <span class="status-pill status-pending">Inactive</span>
+                    {% endif %}
+                </td>
+                <td>{{ row.visitors }}</td>
+                <td>{{ row.conversations }}</td>
+                <td>{{ row.messages }}</td>
+                <td>{% if row.unread %}<strong class="text-danger">{{ row.unread }}</strong>{% else %}0{% endif %}</td>
+                <td>{{ row.website.created_at|date:"Y-m-d" }}</td>
+                <td>
+                    <form method="post" action="{% url 'websites:switch' row.website.id %}" style="display:inline">
+                        {% csrf_token %}
+                        <input type="hidden" name="next" value="{% url 'dashboard:inbox' %}">
+                        <button type="submit" class="btn btn-ghost btn-sm">Open inbox</button>
+                    </form>
+                </td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="9" class="empty-cell">No websites found.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endif %}
+
+<p class="platform-admin-links">
+    <a href="{% url 'admin:user-usage-dashboard' %}" target="_blank">Django admin: user usage</a>
+    ·
+    <a href="{% url 'admin:website-usage-dashboard' %}" target="_blank">Django admin: website usage</a>
+</p>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+.platform-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 0 24px 20px;
+}
+.stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    min-width: 140px;
+    flex: 1;
+}
+.stat-card-alert { border-color: #fecaca; background: #fff5f5; }
+.stat-value { font-size: 28px; font-weight: 700; line-height: 1.2; }
+.stat-label { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
+.platform-tabs {
+    display: flex;
+    gap: 8px;
+    margin: 0 24px 16px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0;
+}
+.platform-tab {
+    padding: 10px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+}
+.platform-tab:hover { color: var(--text); text-decoration: none; }
+.platform-tab.active {
+    color: var(--primary);
+    border-bottom-color: var(--primary);
+}
+.platform-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    margin: 0 24px 20px;
+}
+.platform-filters input[type="search"],
+.platform-filters select {
+    padding: 8px 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 14px;
+}
+.platform-filters input[type="search"] { min-width: 220px; }
+.question-preview { max-width: 280px; font-size: 13px; color: var(--text-muted); }
+.row-unread { background: #f0f7ff; }
+.text-danger { color: var(--danger); }
+.platform-admin-links {
+    margin: 24px;
+    font-size: 13px;
+    color: var(--text-muted);
+}
+</style>
+{% endblock %}

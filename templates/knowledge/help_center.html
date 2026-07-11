@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}Help Center{% endblock %}
+{% block body_class %}help-page{% endblock %}
+
+{% block body %}
+<header class="help-header">
+    <div class="help-nav">
+        <a href="{% url 'dashboard:landing' %}" class="nav-brand">
+            <span class="logo-icon">💬</span>
+            <span>{{ product_name }}</span>
+        </a>
+        <a href="{% url 'widget:demo' %}?key={{ widget_key }}" class="btn btn-primary btn-sm">Chat with us</a>
+    </div>
+    <div class="help-hero">
+        <h1>How can we help you?</h1>
+        <form method="get" class="help-search">
+            <input type="hidden" name="key" value="{{ widget_key }}">
+            <input type="search" name="q" placeholder="Search articles..." value="{{ query }}">
+        </form>
+    </div>
+</header>
+
+<main class="help-content">
+    {% if query %}
+    <section class="help-section">
+        <h2>Search results for "{{ query }}"</h2>
+        <div class="article-list">
+            {% for article in articles %}
+            <a href="{{ article.get_absolute_url }}" class="article-card">
+                <span class="article-category">{{ article.category.name }}</span>
+                <h3>{{ article.title }}</h3>
+            </a>
+            {% empty %}
+            <p>No articles found.</p>
+            {% endfor %}
+        </div>
+    </section>
+    {% else %}
+    {% for category in categories %}
+    <section class="help-section">
+        <h2>{{ category.name }}</h2>
+        {% if category.description %}<p>{{ category.description }}</p>{% endif %}
+        <div class="article-list">
+            {% for article in category.articles.all %}
+            {% if article.is_published %}
+            <a href="{{ article.get_absolute_url }}" class="article-card">
+                <h3>{{ article.title }}</h3>
+            </a>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </section>
+    {% endfor %}
+    {% endif %}
+</main>
+{% endblock %}

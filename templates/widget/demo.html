@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}Widget Demo — {{ website.name }}{% endblock %}
+{% block body_class %}demo-page{% endblock %}
+
+{% block body %}
+<div class="demo-site">
+    <header class="demo-header">
+        <span class="demo-logo">{{ website.name }}</span>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Pricing</a>
+            <a href="{% url 'knowledge:help_center' %}?key={{ website.public_widget_key }}">Help</a>
+        </nav>
+    </header>
+    <main class="demo-main">
+        <h1>Welcome to our product</h1>
+        <p>This page demonstrates the embeddable chat widget. Click the chat bubble in the bottom-right corner to start a conversation with support.</p>
+        <div class="demo-cards">
+            <div class="demo-card">
+                <h3>Real-time support</h3>
+                <p>Visitors get instant help without leaving your site.</p>
+            </div>
+            <div class="demo-card">
+                <h3>Agent inbox</h3>
+                <p>Your team manages all chats from a shared inbox.</p>
+            </div>
+            <div class="demo-card">
+                <h3>Easy embed</h3>
+                <p>Add one script tag to any website.</p>
+            </div>
+        </div>
+        <div class="embed-code">
+            <h4>Embed code</h4>
+            <pre>&lt;script src="{{ request.scheme }}://{{ request.get_host }}{% url 'widget:embed' %}?key={{ website.public_widget_key }}"&gt;&lt;/script&gt;</pre>
+        </div>
+    </main>
+</div>
+
+<div id="morse-widget-launcher" class="widget-launcher" aria-label="Open chat">
+    <span class="launcher-icon">💬</span>
+</div>
+<div id="morse-widget-frame" class="widget-frame hidden">
+    <button id="morse-widget-close" class="widget-close" aria-label="Close chat">×</button>
+    <iframe src="{% url 'widget:chat' %}?key={{ website.public_widget_key }}" title="Morse chat"></iframe>
+</div>
+<script>
+(function() {
+    const launcher = document.getElementById('morse-widget-launcher');
+    const frame = document.getElementById('morse-widget-frame');
+    const closeBtn = document.getElementById('morse-widget-close');
+    launcher.addEventListener('click', () => frame.classList.remove('hidden'));
+    closeBtn.addEventListener('click', () => frame.classList.add('hidden'));
+})();
+</script>
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="/static/css/widget.css">
+{% endblock %}

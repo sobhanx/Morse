@@ -1,0 +1,47 @@
+{% extends "dashboard/base_dashboard.html" %}
+
+{% block page_title %}Analytics{% endblock %}
+
+{% block dashboard_content %}
+<div class="analytics-grid">
+    <div class="metric-card">
+        <span class="metric-label">Total conversations</span>
+        <span class="metric-value">{{ total_conversations }}</span>
+    </div>
+    <div class="metric-card">
+        <span class="metric-label">Total messages</span>
+        <span class="metric-value">{{ total_messages }}</span>
+    </div>
+    <div class="metric-card">
+        <span class="metric-label">Contacts</span>
+        <span class="metric-value">{{ total_contacts }}</span>
+    </div>
+    <div class="metric-card accent">
+        <span class="metric-label">Resolution rate</span>
+        <span class="metric-value">{{ resolution_rate }}%</span>
+    </div>
+</div>
+<div class="analytics-section">
+    <h3>Recent conversations</h3>
+    <div class="data-table-wrap">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Contact</th>
+                    <th>Status</th>
+                    <th>Created</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for conv in recent_conversations %}
+                <tr>
+                    <td>{{ conv.contact.display_name }}</td>
+                    <td><span class="status-pill status-{{ conv.status }}">{{ conv.get_status_display }}</span></td>
+                    <td>{{ conv.created_at|date:"M d, Y H:i" }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

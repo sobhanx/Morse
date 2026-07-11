@@ -1,0 +1,18 @@
+{% extends "admin/index.html" %}
+
+{% block content %}
+<div class="module" style="margin-bottom:20px">
+    <table>
+        <caption><a href="{% url 'admin:user-usage-dashboard' %}" class="section" style="font-size:14px">Usage dashboards</a></caption>
+        <tr>
+            <th scope="row"><a href="{% url 'admin:user-usage-dashboard' %}">User usage</a></th>
+            <td><a href="{% url 'admin:user-usage-dashboard' %}" class="addlink">Per-user stats</a></td>
+        </tr>
+        <tr>
+            <th scope="row"><a href="{% url 'admin:website-usage-dashboard' %}">Website usage</a></th>
+            <td><a href="{% url 'admin:website-usage-dashboard' %}" class="addlink">Per-website stats</a></td>
+        </tr>
+    </table>
+</div>
+{{ block.super }}
+{% endblock %}

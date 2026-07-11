@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}ورود | ثبت نام — {{ product_name }}{% endblock %}
+{% block body_class %}auth-page{% endblock %}
+
+{% block body %}
+<div class="auth-container">
+    <div class="auth-card">
+        <div class="auth-logo">
+            <span class="logo-icon">💬</span>
+            <h1>ورود | ثبت نام</h1>
+            <p>شماره موبایل خود را وارد کنید</p>
+        </div>
+
+        {% if error %}
+        <div class="alert alert-error">{{ error }}</div>
+        {% endif %}
+
+        <form method="post" class="auth-form">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="phone">شماره موبایل</label>
+                <input
+                    type="text"
+                    id="phone"
+                    name="phone"
+                    dir="ltr"
+                    placeholder="09xxxxxxxxx"
+                    required
+                    maxlength="11"
+                    oninput="this.value = this.value.slice(0, 11)"
+                    value="{% if request.POST.phone %}{{ request.POST.phone }}{% else %}{{ request.session.phone }}{% endif %}"
+                    autofocus
+                >
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">ارسال رمز یکبار مصرف</button>
+        </form>
+
+        <p class="auth-hint">با ورود، شرایط استفاده از سرویس را می‌پذیرید.</p>
+    </div>
+</div>
+{% endblock %}
