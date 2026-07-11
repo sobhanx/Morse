@@ -1,8 +1,11 @@
 from urllib.parse import parse_qs
 
+from django.conf import settings
 from django.http import JsonResponse
 
 from .models import Website
+
+DEMO_DOMAIN = getattr(settings, "DEMO_WEBSITE_DOMAIN", "demo.example.com")
 
 
 def get_widget_key_from_request(request):
@@ -31,6 +34,22 @@ def resolve_website_by_widget_key(key, *, require_active=True):
     if require_active and not website.is_active:
         return None
     return website
+
+
+def get_demo_website():
+    """Return the public demo tenant used for marketing pages without a widget key."""
+    from .demo import ensure_demo_website
+
+    website = ensure_demo_website()
+    if website:
+        return website
+    return (
+        Website.objects.filter(is_active=True).order_by("created_at").first()
+    )
+
+
+def is_public_showcase_path(path):
+    return path.startswith("/help/") or path.startswith("/widget/demo")
 
 
 def user_can_access_website(user, website):

@@ -6,19 +6,19 @@
 {% block body %}
 <header class="help-header compact">
     <div class="help-nav">
-        <a href="{% url 'knowledge:help_center' %}" class="nav-brand">
+        <a href="{% url 'knowledge:help_center' %}?key={{ widget_key }}" class="nav-brand">
             <span class="logo-icon">💬</span>
             <span>Help Center</span>
         </a>
-        <a href="{% url 'widget:demo' %}" class="btn btn-primary btn-sm">Chat with us</a>
+        <a href="{% url 'widget:demo' %}?key={{ widget_key }}" class="btn btn-primary btn-sm">Chat with us</a>
     </div>
 </header>
 
 <article class="article-detail">
     <nav class="breadcrumb">
-        <a href="{% url 'knowledge:help_center' %}">Help Center</a>
+        <a href="{% url 'knowledge:help_center' %}?key={{ widget_key }}">Help Center</a>
         <span>/</span>
-        <a href="{% url 'knowledge:help_center' %}?q={{ article.category.name }}">{{ article.category.name }}</a>
+        <a href="{% url 'knowledge:help_center' %}?key={{ widget_key }}&q={{ article.category.name }}">{{ article.category.name }}</a>
     </nav>
     <h1>{{ article.title }}</h1>
     <div class="article-body">

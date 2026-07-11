@@ -11,8 +11,8 @@
             <span>{{ product_name }}</span>
         </div>
         <div class="landing-nav-links">
-            <a href="{% url 'knowledge:help_center' %}">Help Center</a>
-            <a href="{% url 'widget:demo' %}">Live Demo</a>
+            <a href="{% url 'knowledge:help_center' %}{% if demo_website %}?key={{ demo_website.public_widget_key }}{% endif %}">Help Center</a>
+            <a href="{% url 'widget:demo' %}{% if demo_website %}?key={{ demo_website.public_widget_key }}{% endif %}">Live Demo</a>
             <a href="{% url 'accounts:login' %}" class="btn btn-primary">Agent Login</a>
             <a href="{% url 'accounts:signup' %}" class="btn btn-outline">Get started</a>
         </div>

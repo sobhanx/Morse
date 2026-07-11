@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}Pricing — {{ website.name }}{% endblock %}
+{% block body_class %}demo-page{% endblock %}
+
+{% block body %}
+<div class="demo-site">
+    {% include "widget/includes/demo_nav.html" with active_nav="pricing" %}
+    <main class="demo-main">
+        <span class="demo-badge">Plans</span>
+        <h1>Simple pricing for growing teams</h1>
+        <p>Choose the plan that fits your support volume. Every plan includes the chat widget, shared inbox, and knowledge base.</p>
+        <div class="demo-pricing-grid">
+            <div class="demo-pricing-card">
+                <h3>Starter</h3>
+                <p class="demo-price"><span>$29</span>/month</p>
+                <p class="demo-price-note">For small teams getting started</p>
+                <ul>
+                    <li>Up to 3 agents</li>
+                    <li>Live chat widget</li>
+                    <li>Help center</li>
+                    <li>Email support</li>
+                </ul>
+                <a href="{% url 'widget:demo' %}?key={{ website.public_widget_key }}" class="btn btn-outline btn-sm">See product tour</a>
+            </div>
+            <div class="demo-pricing-card featured">
+                <h3>Business</h3>
+                <p class="demo-price"><span>$79</span>/month</p>
+                <p class="demo-price-note">Most popular for growing companies</p>
+                <ul>
+                    <li>Up to 10 agents</li>
+                    <li>Shared inbox &amp; CRM</li>
+                    <li>Analytics dashboard</li>
+                    <li>Priority support</li>
+                </ul>
+                <a href="{% url 'widget:demo' %}?key={{ website.public_widget_key }}" class="btn btn-primary btn-sm">Start free trial</a>
+            </div>
+            <div class="demo-pricing-card">
+                <h3>Enterprise</h3>
+                <p class="demo-price"><span>Custom</span></p>
+                <p class="demo-price-note">For larger support organizations</p>
+                <ul>
+                    <li>Unlimited agents</li>
+                    <li>Custom integrations</li>
+                    <li>Dedicated onboarding</li>
+                    <li>SLA &amp; security review</li>
+                </ul>
+                <a href="{% url 'widget:demo' %}?key={{ website.public_widget_key }}" class="btn btn-outline btn-sm">Talk to sales</a>
+            </div>
+        </div>
+        <p class="demo-cta-text">Questions about billing? <a href="{% url 'knowledge:help_center' %}?key={{ website.public_widget_key }}&q=Billing">Browse billing help articles</a> or chat with us.</p>
+    </main>
+</div>
+
+{% include "widget/includes/demo_widget.html" %}
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="/static/css/widget.css">
+{% endblock %}

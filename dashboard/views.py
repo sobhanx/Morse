@@ -9,6 +9,7 @@ from inbox.models import Conversation, Message
 from websites.models import WebsiteAgent
 from websites.permissions import (
     get_accessible_websites,
+    get_demo_website,
     set_active_website,
     website_required,
 )
@@ -181,4 +182,8 @@ def landing(request):
         if website.owner_id == request.user.id and not website.is_active:
             return redirect("websites:activate", website_id=website.id)
         return redirect("dashboard:inbox")
-    return render(request, "dashboard/landing.html")
+    return render(
+        request,
+        "dashboard/landing.html",
+        {"demo_website": get_demo_website()},
+    )

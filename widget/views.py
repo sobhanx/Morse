@@ -9,12 +9,24 @@ from django.views.decorators.http import require_GET, require_POST
 from contacts.models import Contact
 from inbox.models import Conversation, Message
 from inbox.views import _broadcast_message
+from websites.permissions import (
+    get_demo_website,
+    get_widget_key_from_request,
+    is_public_showcase_path,
+    resolve_website_by_widget_key,
+)
 
 
 def _require_website(request):
-    if not request.website:
+    key = get_widget_key_from_request(request)
+    website = resolve_website_by_widget_key(key) if key else None
+    if website is None:
+        website = request.website
+    if website is None and is_public_showcase_path(request.path):
+        website = get_demo_website()
+    if website is None:
         raise Http404("Invalid or missing widget key")
-    return request.website
+    return website
 
 
 def _session_key(website):
@@ -80,6 +92,12 @@ def embed_script(request):
 def demo_page(request):
     website = _require_website(request)
     return render(request, "widget/demo.html", {"website": website})
+
+
+@require_GET
+def demo_pricing(request):
+    website = _require_website(request)
+    return render(request, "widget/demo_pricing.html", {"website": website})
 
 
 @csrf_exempt

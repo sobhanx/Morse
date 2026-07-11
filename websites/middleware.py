@@ -2,7 +2,9 @@ from asgiref.sync import iscoroutinefunction, sync_to_async
 from django.utils.decorators import sync_and_async_middleware
 
 from .permissions import (
+    get_demo_website,
     get_widget_key_from_request,
+    is_public_showcase_path,
     resolve_dashboard_website,
     resolve_website_by_widget_key,
 )
@@ -24,7 +26,10 @@ def _resolve_website(request):
 
     if path.startswith(WIDGET_PREFIXES):
         key = get_widget_key_from_request(request)
-        return resolve_website_by_widget_key(key)
+        website = resolve_website_by_widget_key(key)
+        if website is None and is_public_showcase_path(path):
+            website = get_demo_website()
+        return website
 
     if request.user.is_authenticated and _is_dashboard_path(path):
         return resolve_dashboard_website(request)

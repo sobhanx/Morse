@@ -1,0 +1,16 @@
+<div id="morse-widget-launcher" class="widget-launcher" aria-label="Open chat">
+    <span class="launcher-icon">💬</span>
+</div>
+<div id="morse-widget-frame" class="widget-frame hidden">
+    <button id="morse-widget-close" class="widget-close" aria-label="Close chat">×</button>
+    <iframe src="{% url 'widget:chat' %}?key={{ website.public_widget_key }}" title="Morse chat"></iframe>
+</div>
+<script>
+(function() {
+    const launcher = document.getElementById('morse-widget-launcher');
+    const frame = document.getElementById('morse-widget-frame');
+    const closeBtn = document.getElementById('morse-widget-close');
+    launcher.addEventListener('click', () => frame.classList.remove('hidden'));
+    closeBtn.addEventListener('click', () => frame.classList.add('hidden'));
+})();
+</script>

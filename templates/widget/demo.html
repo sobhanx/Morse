@@ -1,21 +1,15 @@
 {% extends "base.html" %}
 
-{% block title %}Widget Demo — {{ website.name }}{% endblock %}
+{% block title %}{{ website.name }}{% endblock %}
 {% block body_class %}demo-page{% endblock %}
 
 {% block body %}
 <div class="demo-site">
-    <header class="demo-header">
-        <span class="demo-logo">{{ website.name }}</span>
-        <nav>
-            <a href="#">Home</a>
-            <a href="#">Pricing</a>
-            <a href="{% url 'knowledge:help_center' %}?key={{ website.public_widget_key }}">Help</a>
-        </nav>
-    </header>
+    {% include "widget/includes/demo_nav.html" with active_nav="demo" %}
     <main class="demo-main">
-        <h1>Welcome to our product</h1>
-        <p>This page demonstrates the embeddable chat widget. Click the chat bubble in the bottom-right corner to start a conversation with support.</p>
+        <span class="demo-badge">Live demo</span>
+        <h1>Customer support that feels built in</h1>
+        <p>{{ website.name }} helps teams answer questions faster with live chat, a shared inbox, and self-service help articles — all in one place.</p>
         <div class="demo-cards">
             <div class="demo-card">
                 <h3>Real-time support</h3>
@@ -26,33 +20,23 @@
                 <p>Your team manages all chats from a shared inbox.</p>
             </div>
             <div class="demo-card">
-                <h3>Easy embed</h3>
-                <p>Add one script tag to any website.</p>
+                <h3>Knowledge base</h3>
+                <p>Link visitors to self-service articles when they need answers fast.</p>
             </div>
         </div>
-        <div class="embed-code">
-            <h4>Embed code</h4>
-            <pre>&lt;script src="{{ request.scheme }}://{{ request.get_host }}{% url 'widget:embed' %}?key={{ website.public_widget_key }}"&gt;&lt;/script&gt;</pre>
+        <div class="demo-steps">
+            <h4>Try the chat widget</h4>
+            <ol>
+                <li>Click the chat bubble in the corner.</li>
+                <li>Send a test message as a visitor.</li>
+                <li>Log in as an agent and reply from the inbox.</li>
+            </ol>
         </div>
+        <p class="demo-cta-text">Need a plan for your team? <a href="{% url 'widget:demo_pricing' %}?key={{ website.public_widget_key }}">View pricing</a></p>
     </main>
 </div>
 
-<div id="morse-widget-launcher" class="widget-launcher" aria-label="Open chat">
-    <span class="launcher-icon">💬</span>
-</div>
-<div id="morse-widget-frame" class="widget-frame hidden">
-    <button id="morse-widget-close" class="widget-close" aria-label="Close chat">×</button>
-    <iframe src="{% url 'widget:chat' %}?key={{ website.public_widget_key }}" title="Morse chat"></iframe>
-</div>
-<script>
-(function() {
-    const launcher = document.getElementById('morse-widget-launcher');
-    const frame = document.getElementById('morse-widget-frame');
-    const closeBtn = document.getElementById('morse-widget-close');
-    launcher.addEventListener('click', () => frame.classList.remove('hidden'));
-    closeBtn.addEventListener('click', () => frame.classList.add('hidden'));
-})();
-</script>
+{% include "widget/includes/demo_widget.html" %}
 {% endblock %}
 
 {% block extra_css %}

@@ -6,14 +6,15 @@
 {% block body %}
 <header class="help-header">
     <div class="help-nav">
-        <a href="{% url 'dashboard:landing' %}" class="nav-brand">
+        <a href="{% url 'knowledge:help_center' %}?key={{ widget_key }}" class="nav-brand">
             <span class="logo-icon">💬</span>
-            <span>{{ product_name }}</span>
+            <span>{{ website.name }} Help Center</span>
         </a>
         <a href="{% url 'widget:demo' %}?key={{ widget_key }}" class="btn btn-primary btn-sm">Chat with us</a>
     </div>
     <div class="help-hero">
         <h1>How can we help you?</h1>
+        <p class="help-subtitle">Browse guides and answers for {{ website.name }}, or search for a specific topic.</p>
         <form method="get" class="help-search">
             <input type="hidden" name="key" value="{{ widget_key }}">
             <input type="search" name="q" placeholder="Search articles..." value="{{ query }}">
@@ -37,6 +38,13 @@
         </div>
     </section>
     {% else %}
+    {% if not categories %}
+    <section class="help-section help-empty">
+        <h2>No articles yet</h2>
+        <p>Help articles for this workspace will appear here once they are published.</p>
+        <p><a href="{% url 'widget:demo' %}?key={{ widget_key }}" class="btn btn-primary btn-sm">Talk to support</a></p>
+    </section>
+    {% endif %}
     {% for category in categories %}
     <section class="help-section">
         <h2>{{ category.name }}</h2>

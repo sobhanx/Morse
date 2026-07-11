@@ -1,0 +1,8 @@
+<header class="demo-header">
+    <a href="{% url 'widget:demo' %}?key={{ website.public_widget_key }}" class="demo-logo">{{ website.name }}</a>
+    <nav>
+        <a href="{% url 'dashboard:landing' %}">Home</a>
+        <a href="{% url 'widget:demo_pricing' %}?key={{ website.public_widget_key }}"{% if active_nav == 'pricing' %} class="is-active" aria-current="page"{% endif %}>Pricing</a>
+        <a href="{% url 'knowledge:help_center' %}?key={{ website.public_widget_key }}"{% if active_nav == 'help' %} class="is-active" aria-current="page"{% endif %}>Help</a>
+    </nav>
+</header>

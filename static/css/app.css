@@ -468,6 +468,8 @@ a:hover { text-decoration: underline; }
 }
 .help-hero { max-width: 600px; margin: 0 auto; text-align: center; }
 .help-hero h1 { font-size: 36px; margin-bottom: 20px; }
+.help-subtitle { color: var(--text-muted); margin-bottom: 20px; font-size: 16px; }
+.help-empty { text-align: center; padding: 40px 20px; }
 .help-search input {
     width: 100%;
     padding: 14px 20px;
