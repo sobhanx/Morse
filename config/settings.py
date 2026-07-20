@@ -1,7 +1,10 @@
 import os
 from pathlib import Path
+from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+load_dotenv(BASE_DIR / ".env")
 
 PRODUCT_NAME = os.getenv("PRODUCT_NAME", "Morse")
 
@@ -123,6 +126,9 @@ STATIC_URL = "/static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 AUTH_USER_MODEL = "accounts.User"
@@ -130,6 +136,9 @@ AUTH_USER_MODEL = "accounts.User"
 SMS_IR_API_KEY = os.getenv("SMS_IR_API_KEY", "")
 SMS_IR_LINE_NUMBER = os.getenv("SMS_IR_LINE_NUMBER", "")
 SMS_IR_VERIFY_TEMPLATE_ID = os.getenv("SMS_IR_VERIFY_TEMPLATE_ID", "")
+TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "")
+
+
 
 LOGIN_URL = "accounts:login"
 LOGIN_REDIRECT_URL = "dashboard:inbox"

@@ -3,6 +3,7 @@ from django.utils.translation import get_language
 from websites.permissions import DEMO_DOMAIN
 
 from .demo_content import DEMO_KB
+from .models import Article
 
 
 def _language_code():
@@ -44,10 +45,12 @@ def localize_categories(categories, website, language=None):
     result = []
     for category in categories:
         cat = localize_category(category, language)
+        # Use unscoped related articles so tenant context cannot empty the list.
         articles = []
-        for article in category.articles.all():
-            if article.is_published:
-                articles.append(localize_article(article, language))
+        for article in Article.unscoped.filter(
+            category_id=category.id, is_published=True
+        ):
+            articles.append(localize_article(article, language))
         cat._prefetched_objects_cache = {"articles": articles}
         result.append(cat)
     return result

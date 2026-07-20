@@ -27,6 +27,12 @@ class TenantQuerySet(models.QuerySet):
 class TenantManager(models.Manager):
     def get_queryset(self):
         qs = super().get_queryset()
+        # Django 5.2 builds reverse related managers (e.g. category.articles) as a
+        # subclass of the *default* manager. Those managers set `instance` and
+        # already constrain rows via the FK. Applying website filtering here would
+        # hide related objects whenever the website ContextVar is missing/wrong.
+        if getattr(self, "instance", None) is not None:
+            return qs
         website = get_current_website()
         if website is not None:
             qs = qs.filter(website=website)
@@ -48,3 +54,4 @@ class TenantModel(models.Model):
 
     class Meta:
         abstract = True
+        base_manager_name = "unscoped"

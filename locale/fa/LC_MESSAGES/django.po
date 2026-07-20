@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-11 23:43+0330\n"
+"POT-Creation-Date: 2026-07-20 11:25+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,341 +18,491 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
+#: accounts/views.py:85
 msgid "Phone number is required."
 msgstr "شماره تلفن وارد نشده است!"
 
+#: accounts/views.py:93
 msgid "Invalid phone number. It must start with 09 and be 11 digits."
 msgstr "شماره تلفن نامعتبر است! شماره باید با 09 شروع شده و 11 رقم باشد."
 
+#: accounts/views.py:99
 #, python-format
 msgid "Could not create account. (%(error)s)"
 msgstr "خطا در ایجاد حساب کاربری! (%(error)s)"
 
+#: accounts/views.py:107
 msgid "Could not send verification code."
 msgstr "خطا در ایجاد رمز ورود!"
 
+#: accounts/views.py:123 accounts/views.py:179
 msgid "User not found."
 msgstr "کاربر یافت نشد!"
 
+#: accounts/views.py:132
 msgid "Verification code has expired."
 msgstr "رمز ورود منقضی شده است!"
 
+#: accounts/views.py:145
 msgid "Authentication failed."
 msgstr "خطا در احراز هویت کاربر!"
 
+#: accounts/views.py:153
 msgid "You do not have permission to access the admin panel."
 msgstr "شما اجازه دسترسی به پنل مدیریت را ندارید."
 
+#: accounts/views.py:158
 msgid "Signed in successfully."
 msgstr "ورود با موفقیت انجام شد"
 
+#: accounts/views.py:165
 msgid "Invalid verification code."
 msgstr "رمز ورود نامعتبر است!"
 
+#: config/context_processors.py:9 templates/dashboard/landing.html:4
+#: templates/dashboard/landing.html:28 templates/dashboard/landing.html:80
+#: templates/includes/brand_mark.html:4 templates/widget/chat.html:26
 msgid "Morse"
 msgstr "مورس"
 
+#: contacts/models.py:52
 #, python-format
 msgid "Visitor %(visitor_id)s"
 msgstr "بازدیدکننده %(visitor_id)s"
 
+#: inbox/models.py:12 templates/dashboard/inbox.html:31
+#: templates/websites/admin_panel.html:50
 msgid "Open"
 msgstr "باز"
 
+#: inbox/models.py:13 templates/dashboard/inbox.html:32
+#: templates/websites/admin_panel.html:51
 msgid "Pending"
 msgstr "در انتظار"
 
+#: inbox/models.py:14 templates/dashboard/inbox.html:33
+#: templates/websites/admin_panel.html:52
 msgid "Resolved"
 msgstr "حل‌شده"
 
+#: inbox/models.py:53
 msgid "No messages yet"
 msgstr "هنوز پیامی نیست"
 
+#: inbox/models.py:55 inbox/models.py:113 widget/views.py:259
+msgid "Voice message"
+msgstr "پیام صوتی"
+
+#: inbox/models.py:61 templates/websites/admin_panel.html:71
 msgid "Visitor"
 msgstr "بازدیدکننده"
 
+#: inbox/models.py:62
 msgid "Agent"
 msgstr "پشتیبان"
 
+#: inbox/models.py:63 inbox/models.py:127
 msgid "System"
 msgstr "سیستم"
 
+#: inbox/models.py:66
+msgid "Text"
+msgstr "متن"
+
+#: inbox/models.py:67
+msgid "Audio"
+msgstr "صوتی"
+
+#: inbox/views.py:104 inbox/views.py:133 widget/views.py:157
+#: widget/views.py:180
 msgid "Invalid JSON"
 msgstr "JSON نامعتبر"
 
+#: inbox/views.py:108 widget/views.py:184
 msgid "Message cannot be empty"
 msgstr "پیام نمی‌تواند خالی باشد"
 
+#: inbox/views.py:149
 msgid "Agent not on this website"
 msgstr "پشتیبان به این وب‌سایت تعلق ندارد"
 
+#: knowledge/views.py:44 knowledge/views.py:79
 msgid "Help center is not available yet"
 msgstr "مرکز راهنما هنوز در دسترس نیست"
 
+#: templates/accounts/sms_login_confirm.html:4
 msgid "Verify code"
 msgstr "تایید کد"
 
+#: templates/accounts/sms_login_confirm.html:12
 msgid "Verify mobile number"
 msgstr "تایید شماره موبایل"
 
+#: templates/accounts/sms_login_confirm.html:13
 msgid "Enter the verification code sent to your mobile number"
 msgstr "کد تایید ارسال شده به شماره موبایل خود را وارد کنید"
 
+#: templates/accounts/sms_login_confirm.html:19
 msgid "Verification code"
 msgstr "کد تایید"
 
+#: templates/accounts/sms_login_confirm.html:41
 msgid "Time remaining until resend"
 msgstr "زمان باقی‌مانده تا ارسال مجدد"
 
+#: templates/accounts/sms_login_confirm.html:51
 msgid "Resend"
 msgstr "ارسال مجدد"
 
+#: templates/accounts/sms_login_confirm.html:108
 msgid "Please enter the 5-digit verification code"
 msgstr "لطفاً کد تایید 5 رقمی را وارد کنید"
 
+#: templates/accounts/sms_login_confirm.html:162
 msgid "Verification code has been resent."
 msgstr "کد تایید مجدداً ارسال شد."
 
+#: templates/accounts/sms_login_confirm.html:165
+#: templates/accounts/sms_login_confirm.html:170
 msgid "Error resending verification code"
 msgstr "خطا در ارسال مجدد کد"
 
+#: templates/accounts/sms_login_form.html:4
+#: templates/accounts/sms_login_form.html:12
 msgid "Login | Sign up"
 msgstr "ورود | ثبت نام"
 
+#: templates/accounts/sms_login_form.html:13
 msgid "Enter your mobile number"
 msgstr "شماره موبایل خود را وارد کنید"
 
+#: templates/accounts/sms_login_form.html:23
 msgid "Mobile number"
 msgstr "شماره موبایل"
 
+#: templates/accounts/sms_login_form.html:37
 msgid "Send one-time password"
 msgstr "ارسال رمز یکبار مصرف"
 
+#: templates/accounts/sms_login_form.html:40
 msgid "By signing in, you agree to the terms of service."
 msgstr "با ورود، شرایط استفاده از سرویس را می‌پذیرید."
 
+#: templates/admin/accounts/user_usage_dashboard.html:6
+#: templates/admin/websites/usage_dashboard.html:6
+#: templates/widget/includes/demo_nav.html:5
 msgid "Home"
 msgstr "خانه"
 
+#: templates/admin/login.html:8
 msgid "Please correct the error below."
 msgstr "لطفاً خطای زیر را اصلاح کنید."
 
+#: templates/admin/login.html:8
 msgid "Please correct the errors below."
 msgstr "لطفاً خطاهای زیر را اصلاح کنید."
 
+#: templates/admin/login.html:25
 msgid "Password:"
 msgstr "رمز عبور:"
 
+#: templates/admin/login.html:31
 msgid "Log in"
 msgstr "ورود"
 
+#: templates/dashboard/analytics.html:4
+#: templates/dashboard/base_dashboard.html:42
+#: templates/dashboard/landing.html:66
 msgid "Analytics"
 msgstr "تحلیل‌ها"
 
+#: templates/dashboard/analytics.html:9
 msgid "Total conversations"
 msgstr "کل گفتگوها"
 
+#: templates/dashboard/analytics.html:13 templates/websites/admin_panel.html:31
 msgid "Total messages"
 msgstr "کل پیام‌ها"
 
+#: templates/dashboard/analytics.html:17
 msgid "Contacts"
 msgstr "مخاطبین"
 
+#: templates/dashboard/analytics.html:21
 msgid "Resolution rate"
 msgstr "نرخ حل مسئله"
 
+#: templates/dashboard/analytics.html:26
 msgid "Recent conversations"
 msgstr "گفتگوهای اخیر"
 
+#: templates/dashboard/analytics.html:31 templates/dashboard/contacts.html:18
 msgid "Contact"
 msgstr "مخاطب"
 
+#: templates/dashboard/analytics.html:32 templates/websites/admin_panel.html:76
+#: templates/websites/admin_panel.html:170
 msgid "Status"
 msgstr "وضعیت"
 
+#: templates/dashboard/analytics.html:33
+#: templates/websites/admin_panel.html:175
 msgid "Created"
 msgstr "ایجاد شده"
 
+#: templates/dashboard/base_dashboard.html:8
+#: templates/dashboard/base_dashboard.html:70
 msgid "Dashboard"
 msgstr "داشبورد"
 
+#: templates/dashboard/base_dashboard.html:27
 msgid "Active site"
 msgstr "سایت فعال"
 
+#: templates/dashboard/base_dashboard.html:29
 msgid "Switch"
 msgstr "تغییر"
 
+#: templates/dashboard/base_dashboard.html:33 templates/dashboard/inbox.html:4
+#: templates/dashboard/inbox.html:10
 msgid "Chat Manager"
 msgstr "مدیریت گفتگو"
 
+#: templates/dashboard/base_dashboard.html:36
 msgid "CRM"
 msgstr "مدیریت مشتری"
 
+#: templates/dashboard/base_dashboard.html:39
+#: templates/dashboard/landing.html:61
 msgid "Knowledge Base"
 msgstr "پایگاه دانش"
 
+#: templates/dashboard/base_dashboard.html:45
+#: templates/websites/settings.html:4
 msgid "Website Settings"
 msgstr "تنظیمات وب‌سایت"
 
+#: templates/dashboard/base_dashboard.html:49
+#: templates/websites/admin_panel.html:4
 msgid "Platform Monitor"
 msgstr "پایش پلتفرم"
 
+#: templates/dashboard/base_dashboard.html:53
+#: templates/dashboard/landing.html:46
 msgid "Chat Widget"
 msgstr "ویجت گفتگو"
 
+#: templates/dashboard/base_dashboard.html:64
 msgid "Logout"
 msgstr "خروج"
 
+#: templates/dashboard/contact_detail.html:13
 msgid "No email provided"
 msgstr "ایمیل ثبت نشده"
 
+#: templates/dashboard/contact_detail.html:14 templates/dashboard/inbox.html:69
 msgid "Visitor ID:"
 msgstr "شناسه بازدیدکننده:"
 
+#: templates/dashboard/contact_detail.html:18
+#: templates/dashboard/contacts.html:17
 msgid "Visitor ID"
 msgstr "شناسه بازدیدکننده"
 
+#: templates/dashboard/contact_detail.html:19
 msgid "Session"
 msgstr "نشست"
 
+#: templates/dashboard/contact_detail.html:20
+#: templates/websites/admin_panel.html:128
 msgid "Phone"
 msgstr "تلفن"
 
+#: templates/dashboard/contact_detail.html:21
+#: templates/dashboard/contacts.html:20
 msgid "Company"
 msgstr "شرکت"
 
+#: templates/dashboard/contact_detail.html:22
 msgid "Location"
 msgstr "موقعیت"
 
+#: templates/dashboard/contact_detail.html:23
 msgid "First seen"
 msgstr "اولین بازدید"
 
+#: templates/dashboard/contact_detail.html:27
 msgid "Notes"
 msgstr "یادداشت‌ها"
 
+#: templates/dashboard/contact_detail.html:29
 msgid "Save notes"
 msgstr "ذخیره یادداشت‌ها"
 
+#: templates/dashboard/contact_detail.html:33
 msgid "Conversation history"
 msgstr "تاریخچه گفتگو"
 
+#: templates/dashboard/contact_detail.html:43 templates/dashboard/inbox.html:56
 msgid "No conversations yet."
 msgstr "هنوز گفتگویی نیست."
 
+#: templates/dashboard/contacts.html:4
 msgid "CRM — Contacts"
 msgstr "مدیریت مشتری — مخاطبین"
 
+#: templates/dashboard/contacts.html:9 templates/dashboard/inbox.html:27
 msgid "Search by name, email, or visitor ID..."
 msgstr "جستجو بر اساس نام، ایمیل یا شناسه بازدیدکننده..."
 
+#: templates/dashboard/contacts.html:10
 msgid "Search"
 msgstr "جستجو"
 
+#: templates/dashboard/contacts.html:19
 msgid "Email"
 msgstr "ایمیل"
 
+#: templates/dashboard/contacts.html:21
 msgid "Conversations"
 msgstr "گفتگوها"
 
+#: templates/dashboard/contacts.html:22
 msgid "Last updated"
 msgstr "آخرین به‌روزرسانی"
 
+#: templates/dashboard/contacts.html:39 templates/dashboard/inbox.html:43
+#: templates/websites/admin_panel.html:105
+#: templates/websites/admin_panel.html:151
 #, python-format
 msgid "%(time)s ago"
 msgstr "%(time)s پیش"
 
+#: templates/dashboard/contacts.html:40 templates/websites/admin_panel.html:110
 msgid "View"
 msgstr "مشاهده"
 
+#: templates/dashboard/contacts.html:43
 msgid "No contacts yet."
 msgstr "هنوز مخاطبی نیست."
 
+#: templates/dashboard/inbox.html:12
 #, python-format
 msgid "%(count)s unread"
 msgstr "%(count)s خوانده‌نشده"
 
+#: templates/dashboard/inbox.html:13
 #, python-format
 msgid "%(count)s open"
 msgstr "%(count)s باز"
 
+#: templates/dashboard/inbox.html:18
 msgid "Chat is not active yet."
 msgstr "گفتگو هنوز فعال نشده است."
 
+#: templates/dashboard/inbox.html:19
 msgid "Activate your widget"
 msgstr "ویجت خود را فعال کنید"
 
+#: templates/dashboard/inbox.html:20
 msgid "to receive visitor questions."
 msgstr "تا سوالات بازدیدکنندگان را دریافت کنید."
 
+#: templates/dashboard/inbox.html:30
 msgid "All"
 msgstr "همه"
 
+#: templates/dashboard/inbox.html:45
 msgid "ID:"
 msgstr "شناسه:"
 
+#: templates/dashboard/inbox.html:68
 msgid "No email"
 msgstr "بدون ایمیل"
 
+#: templates/dashboard/inbox.html:79
 msgid "Unassigned"
 msgstr "اختصاص نیافته"
 
+#: templates/dashboard/inbox.html:84
 msgid "View CRM"
 msgstr "مشاهده CRM"
 
+#: templates/dashboard/inbox.html:111
 msgid "Type your reply..."
 msgstr "پاسخ خود را بنویسید..."
 
+#: templates/dashboard/inbox.html:112 templates/widget/chat.html:75
+#: templates/widget/chat.html:78
 msgid "Send"
 msgstr "ارسال"
 
+#: templates/dashboard/inbox.html:117
 msgid "Select a conversation"
 msgstr "یک گفتگو انتخاب کنید"
 
+#: templates/dashboard/inbox.html:118
 msgid "Choose a conversation from the sidebar to start chatting."
 msgstr "برای شروع گفتگو، یک مورد از نوار کناری انتخاب کنید."
 
+#: templates/dashboard/landing.html:4
 msgid "Customer Support Platform"
 msgstr "پلتفرم پشتیبانی مشتری"
 
+#: templates/dashboard/landing.html:12
+#: templates/knowledge/article_detail.html:4
+#: templates/knowledge/article_detail.html:12
+#: templates/knowledge/article_detail.html:20
+#: templates/knowledge/help_center.html:4
 msgid "Help Center"
 msgstr "مرکز راهنما"
 
+#: templates/dashboard/landing.html:13
 msgid "Live Demo"
 msgstr "دموی زنده"
 
+#: templates/dashboard/landing.html:14
 msgid "Agent Login"
 msgstr "ورود پشتیبان"
 
+#: templates/dashboard/landing.html:15
 msgid "Get started"
 msgstr "شروع کنید"
 
+#: templates/dashboard/landing.html:31 templates/dashboard/landing.html:82
 #, fuzzy
 #| msgid "Customer Support Platform"
 msgid "Customer support platform"
 msgstr "پلتفرم پشتیبانی مشتری"
 
+#: templates/dashboard/landing.html:32
 msgid "Augment your customer experience."
 msgstr "تجربه مشتری خود را ارتقا دهید."
 
+#: templates/dashboard/landing.html:32
 msgid "Support made for your team & customers."
 msgstr "پشتیبانی ساخته‌شده برای تیم و مشتریان شما."
 
+#: templates/dashboard/landing.html:33
 msgid ""
-"All-in-one omnichannel inbox, live chat widget, knowledge base, and CRM — "
-"built with Django."
-msgstr ""
-"صندوق ورودی همه‌کاناله، ویجت گفتگوی زنده، پایگاه دانش و CRM — همه با جنگو."
+"All-in-one omnichannel inbox, live chat widget, knowledge base, and CRM."
+msgstr "صندوق ورودی همه‌کاناله، ویجت گفتگوی زنده، پایگاه دانش و CRM."
 
+#: templates/dashboard/landing.html:35
 msgid "Get started free"
 msgstr "شروع رایگان"
 
+#: templates/dashboard/landing.html:36 templates/websites/activate.html:19
+#: templates/websites/list.html:28
 msgid "Open Chat Manager"
 msgstr "باز کردن مدیریت گفتگو"
 
+#: templates/dashboard/landing.html:42
 #, python-format
 msgid "Everything you need in %(brand)s"
 msgstr "همه چیزهایی که در %(brand)s نیاز دارید"
 
+#: templates/dashboard/landing.html:47
 msgid ""
 "Embed real-time support on any website. Visitors chat instantly with your "
 "team."
@@ -360,9 +510,11 @@ msgstr ""
 "پشتیبانی بلادرنگ را در هر وب‌سایتی نصب کنید. بازدیدکنندگان فوراً با تیم شما "
 "گفتگو می‌کنند."
 
+#: templates/dashboard/landing.html:51
 msgid "Shared Inbox"
 msgstr "صندوق ورودی مشترک"
 
+#: templates/dashboard/landing.html:52
 msgid ""
 "Centralize all conversations. Assign, filter, and resolve from one "
 "collaborative inbox."
@@ -370,342 +522,492 @@ msgstr ""
 "همه گفتگوها را متمرکز کنید. از یک صندوق مشترک اختصاص دهید، فیلتر کنید و حل "
 "کنید."
 
+#: templates/dashboard/landing.html:56
 msgid "Support CRM"
 msgstr "CRM پشتیبانی"
 
+#: templates/dashboard/landing.html:57
 msgid ""
 "Track visitor profiles, notes, and full conversation history in one place."
 msgstr ""
 "پروفایل بازدیدکنندگان، یادداشت‌ها و تاریخچه کامل گفتگو را در یکجا دنبال کنید."
 
+#: templates/dashboard/landing.html:62
 msgid "Let customers find answers themselves with searchable help articles."
 msgstr "به مشتریان اجازه دهید با مقالات راهنما پاسخ خود را بیابند."
 
+#: templates/dashboard/landing.html:67
 msgid "Monitor conversation volume, resolution rates, and team performance."
 msgstr "حجم گفتگوها، نرخ حل مسئله و عملکرد تیم را پایش کنید."
 
+#: templates/dashboard/landing.html:71
 msgid "Real-time"
 msgstr "بلادرنگ"
 
+#: templates/dashboard/landing.html:72
 msgid ""
 "WebSocket-powered messaging for instant agent and visitor communication."
 msgstr "پیام‌رسانی WebSocket برای ارتباط فوری پشتیبان و بازدیدکننده."
 
+#: templates/includes/language_switcher.html:7
 msgid "Language"
 msgstr "زبان"
 
+#: templates/knowledge/article_detail.html:14
+#: templates/knowledge/help_center.html:14
 msgid "Chat with us"
 msgstr "با ما گفتگو کنید"
 
+#: templates/knowledge/article_detail.html:29
 msgid "Still need help?"
 msgstr "هنوز به کمک نیاز دارید؟"
 
+#: templates/knowledge/article_detail.html:29
 msgid "Start a live chat"
 msgstr "گفتگوی زنده را شروع کنید"
 
+#: templates/knowledge/article_detail.html:29
 msgid "with our team."
 msgstr "با تیم ما."
 
+#: templates/knowledge/help_center.html:12
 #, python-format
 msgid "%(name)s Help Center"
 msgstr "مرکز راهنمای %(name)s"
 
+#: templates/knowledge/help_center.html:18
 msgid "How can we help you?"
 msgstr "چگونه می‌توانیم کمکتان کنیم؟"
 
+#: templates/knowledge/help_center.html:19
 #, python-format
 msgid "Browse guides and answers for %(name)s, or search for a specific topic."
 msgstr "راهنماها و پاسخ‌های %(name)s را ببینید یا موضوع خاصی را جستجو کنید."
 
+#: templates/knowledge/help_center.html:22
 msgid "Search articles..."
 msgstr "جستجوی مقالات..."
 
+#: templates/knowledge/help_center.html:30
 #, python-format
 msgid "Search results for \"%(query)s\""
 msgstr "نتایج جستجو برای «%(query)s»"
 
+#: templates/knowledge/help_center.html:38
 msgid "No articles found."
 msgstr "مقاله‌ای یافت نشد."
 
+#: templates/knowledge/help_center.html:45
 msgid "No articles yet"
 msgstr "هنوز مقاله‌ای نیست"
 
+#: templates/knowledge/help_center.html:46
 msgid ""
 "Help articles for this workspace will appear here once they are published."
 msgstr "مقالات راهنما پس از انتشار در اینجا نمایش داده می‌شوند."
 
+#: templates/knowledge/help_center.html:47
 msgid "Talk to support"
 msgstr "گفتگو با پشتیبانی"
 
+#: templates/websites/activate.html:4
 msgid "Activate Chat"
 msgstr "فعال‌سازی گفتگو"
 
+#: templates/websites/activate.html:9
 #, python-format
 msgid "Activate %(name)s"
 msgstr "فعال‌سازی %(name)s"
 
+#: templates/websites/activate.html:11
 msgid "Turn on live chat so visitors on your website can ask questions."
 msgstr "گفتگوی زنده را روشن کنید تا بازدیدکنندگان سایت بتوانند سوال بپرسند."
 
+#: templates/websites/activate.html:12
 msgid ""
 "Each visitor gets a unique ID — every message appears in your Chat Manager."
 msgstr ""
 "هر بازدیدکننده شناسه یکتا دارد — هر پیام در مدیریت گفتگو نمایش داده می‌شود."
 
+#: templates/websites/activate.html:17
 msgid "Chat is active. Visitors can send messages using your widget."
 msgstr "گفتگو فعال است. بازدیدکنندگان می‌توانند با ویجت پیام بفرستند."
 
+#: templates/websites/activate.html:25
 msgid "Copy the embed script"
 msgstr "کپی اسکریپت نصب"
 
+#: templates/websites/activate.html:26
 msgid "Add this before"
 msgstr "این را قبل از"
 
+#: templates/websites/activate.html:26 templates/websites/settings.html:30
 msgid "on your site:"
 msgstr "در سایت خود اضافه کنید:"
 
+#: templates/websites/activate.html:33 templates/websites/list.html:28
+#: templates/websites/settings.html:18
 msgid "Activate chat"
 msgstr "فعال‌سازی گفتگو"
 
+#: templates/websites/activate.html:34
 msgid "When you're ready to accept visitor questions, activate your website."
 msgstr "وقتی آماده دریافت سوالات بازدیدکنندگان هستید، وب‌سایت را فعال کنید."
 
+#: templates/websites/activate.html:37
 msgid "Activate chat widget"
 msgstr "فعال‌سازی ویجت گفتگو"
 
+#: templates/websites/activate.html:44 templates/websites/list.html:31
 msgid "Widget key:"
 msgstr "کلید ویجت:"
 
+#: templates/websites/activate.html:45
 msgid "Preview widget demo"
 msgstr "پیش‌نمایش دموی ویجت"
 
+#: templates/websites/admin_panel.html:8
 msgid "Platform monitor"
 msgstr "پایش پلتفرم"
 
+#: templates/websites/admin_panel.html:9
 #, python-format
 msgid ""
 "Observe all customers, websites, and visitor questions across %(product)s."
 msgstr ""
 "همه مشتریان، وب‌سایت‌ها و سوالات بازدیدکنندگان را در %(product)s پایش کنید."
 
+#: templates/websites/admin_panel.html:15
 msgid "Customers (owners)"
 msgstr "مشتریان (مالکان)"
 
+#: templates/websites/admin_panel.html:19
 #, python-format
 msgid "Websites (%(active)s active)"
 msgstr "وب‌سایت‌ها (%(active)s فعال)"
 
+#: templates/websites/admin_panel.html:23
 #, python-format
 msgid "Questions (%(open)s open)"
 msgstr "سوالات (%(open)s باز)"
 
+#: templates/websites/admin_panel.html:27
+#: templates/websites/admin_panel.html:133
+#: templates/websites/admin_panel.html:174
 msgid "Unread"
 msgstr "خوانده‌نشده"
 
+#: templates/websites/admin_panel.html:37
 msgid "All questions"
 msgstr "همه سوالات"
 
+#: templates/websites/admin_panel.html:39
 msgid "Customers"
 msgstr "مشتریان"
 
+#: templates/websites/admin_panel.html:41
+#: templates/websites/admin_panel.html:130 templates/websites/list.html:4
 msgid "Websites"
 msgstr "وب‌سایت‌ها"
 
+#: templates/websites/admin_panel.html:46
 msgid "Search..."
 msgstr "جستجو..."
 
+#: templates/websites/admin_panel.html:49
 msgid "All statuses"
 msgstr "همه وضعیت‌ها"
 
+#: templates/websites/admin_panel.html:55
+#: templates/websites/admin_panel.html:164
 msgid "All websites"
 msgstr "همه وب‌سایت‌ها"
 
+#: templates/websites/admin_panel.html:61
 msgid "Filter"
 msgstr "فیلتر"
 
+#: templates/websites/admin_panel.html:62
 msgid "Clear"
 msgstr "پاک کردن"
 
+#: templates/websites/admin_panel.html:67
 msgid "All visitor questions"
 msgstr "همه سوالات بازدیدکنندگان"
 
+#: templates/websites/admin_panel.html:72
 msgid "Question / last message"
 msgstr "سوال / آخرین پیام"
 
+#: templates/websites/admin_panel.html:73
+#: templates/websites/admin_panel.html:168
 msgid "Website"
 msgstr "وب‌سایت"
 
+#: templates/websites/admin_panel.html:74
+#: templates/websites/admin_panel.html:169
 msgid "Owner"
 msgstr "مالک"
 
+#: templates/websites/admin_panel.html:75
 msgid "Assigned agent"
 msgstr "پشتیبان اختصاص‌یافته"
 
+#: templates/websites/admin_panel.html:77
 msgid "Updated"
 msgstr "به‌روزرسانی"
 
+#: templates/websites/admin_panel.html:115
 msgid "No questions found."
 msgstr "سوالی یافت نشد."
 
+#: templates/websites/admin_panel.html:123
 #, python-format
 msgid "Customers on %(product)s"
 msgstr "مشتریان %(product)s"
 
+#: templates/websites/admin_panel.html:127
 msgid "Customer"
 msgstr "مشتری"
 
+#: templates/websites/admin_panel.html:129
 msgid "Joined"
 msgstr "عضویت"
 
+#: templates/websites/admin_panel.html:131
+#: templates/websites/admin_panel.html:171
 msgid "Visitors"
 msgstr "بازدیدکنندگان"
 
+#: templates/websites/admin_panel.html:132
+#: templates/websites/admin_panel.html:172
 msgid "Questions"
 msgstr "سوالات"
 
+#: templates/websites/admin_panel.html:134
 msgid "Agent replies"
 msgstr "پاسخ‌های پشتیبان"
 
+#: templates/websites/admin_panel.html:135
 msgid "Last activity"
 msgstr "آخرین فعالیت"
 
+#: templates/websites/admin_panel.html:144
 #, python-format
 msgid "%(owned)s (%(active)s active)"
 msgstr "%(owned)s (%(active)s فعال)"
 
+#: templates/websites/admin_panel.html:156
 msgid "No customers found."
 msgstr "مشتری یافت نشد."
 
+#: templates/websites/admin_panel.html:173
 msgid "Messages"
 msgstr "پیام‌ها"
 
+#: templates/websites/admin_panel.html:189 templates/websites/list.html:19
+#: templates/websites/settings.html:15
 msgid "Active"
 msgstr "فعال"
 
+#: templates/websites/admin_panel.html:191 templates/websites/settings.html:17
 msgid "Inactive"
 msgstr "غیرفعال"
 
+#: templates/websites/admin_panel.html:203
 msgid "Open inbox"
 msgstr "باز کردن صندوق ورودی"
 
+#: templates/websites/admin_panel.html:208
 msgid "No websites found."
 msgstr "وب‌سایتی یافت نشد."
 
+#: templates/websites/admin_panel.html:216
 msgid "Django admin: user usage"
 msgstr "مدیریت جنگو: مصرف کاربر"
 
+#: templates/websites/admin_panel.html:218
 msgid "Django admin: website usage"
 msgstr "مدیریت جنگو: مصرف وب‌سایت"
 
+#: templates/websites/create.html:4 templates/websites/create.html:27
 msgid "Create website"
 msgstr "ایجاد وب‌سایت"
 
+#: templates/websites/create.html:8 templates/websites/list.html:39
 msgid "Create a website"
 msgstr "ایجاد وب‌سایت"
 
+#: templates/websites/create.html:9
 msgid "Add a new website to manage chat support, contacts, and knowledge base."
 msgstr "وب‌سایت جدیدی برای مدیریت گفتگو، مخاطبین و پایگاه دانش اضافه کنید."
 
+#: templates/websites/create.html:19
 msgid "Website name"
 msgstr "نام وب‌سایت"
 
+#: templates/websites/create.html:20
 msgid "My Store"
 msgstr "فروشگاه من"
 
+#: templates/websites/create.html:23
 msgid "Domain (optional)"
 msgstr "دامنه (اختیاری)"
 
+#: templates/websites/create.html:28
 msgid "Cancel"
 msgstr "انصراف"
 
+#: templates/websites/list.html:8
 msgid "Your websites"
 msgstr "وب‌سایت‌های شما"
 
+#: templates/websites/list.html:9
 msgid "Select a website to manage its inbox, contacts, and knowledge base."
 msgstr "وب‌سایتی را برای مدیریت صندوق ورودی، مخاطبین و پایگاه دانش انتخاب کنید."
 
+#: templates/websites/list.html:21
 msgid "Not activated"
 msgstr "فعال نشده"
 
+#: templates/websites/list.html:34
 msgid "No websites yet. Create your first one below."
 msgstr "هنوز وب‌سایتی نیست. اولین مورد را در پایین بسازید."
 
+#: templates/websites/list.html:40
 msgid "New website"
 msgstr "وب‌سایت جدید"
 
+#: templates/websites/settings.html:13
 msgid "Status:"
 msgstr "وضعیت:"
 
+#: templates/websites/settings.html:25
 msgid "Deactivate chat"
 msgstr "غیرفعال‌سازی گفتگو"
 
+#: templates/websites/settings.html:29
 msgid "Embed chat widget"
 msgstr "نصب ویجت گفتگو"
 
+#: templates/websites/settings.html:30
 msgid "Add this script before"
 msgstr "این اسکریپت را قبل از"
 
+#: templates/websites/settings.html:33
 msgid "Widget demo"
 msgstr "دموی ویجت"
 
+#: templates/websites/settings.html:34
 msgid "Open widget demo"
 msgstr "باز کردن دموی ویجت"
 
+#: templates/websites/settings.html:36 templates/widget/demo_pricing.html:22
 msgid "Help center"
 msgstr "مرکز راهنما"
 
+#: templates/websites/settings.html:37
 msgid "Open help center"
 msgstr "باز کردن مرکز راهنما"
 
+#: templates/websites/settings.html:39
 msgid "API keys"
 msgstr "کلیدهای API"
 
+#: templates/websites/settings.html:41
 msgid "Public widget key"
 msgstr "کلید عمومی ویجت"
 
+#: templates/websites/settings.html:43
 msgid "Private API key"
 msgstr "کلید خصوصی API"
 
+#: templates/websites/settings.html:47
 msgid "Team agents"
 msgstr "پشتیبان‌های تیم"
 
+#: templates/websites/settings.html:52
 msgid "No agents assigned."
 msgstr "پشتیبانی اختصاص نیافته است."
 
+#: templates/widget/chat.html:8
 #, python-format
 msgid "Chat — %(name)s"
 msgstr "گفتگو — %(name)s"
 
+#: templates/widget/chat.html:28
 msgid "We typically reply in minutes"
 msgstr "معمولاً در چند دقیقه پاسخ می‌دهیم"
 
-msgid "Before we start, tell us a bit about yourself:"
-msgstr "قبل از شروع، کمی درباره خودتان بگویید:"
+#: templates/widget/chat.html:53
+msgid "To help us assist you better, please provide your information:"
+msgstr "برای راهنمایی‌ بهتر، لطفاً اطلاعات خود را وارد کنید:"
 
+#: templates/widget/chat.html:54
 msgid "Your name"
 msgstr "نام شما"
 
+#: templates/widget/chat.html:55
 msgid "Your email"
 msgstr "ایمیل شما"
 
+#: templates/widget/chat.html:56
 msgid "Continue"
 msgstr "ادامه"
 
+#: templates/widget/chat.html:61
+msgid "Microphone access is required to record voice messages."
+msgstr "برای ضبط پیام صوتی باید به میکروفون دسترسی بدهید."
+
+#: templates/widget/chat.html:62
+msgid "Voice recording is not supported in this browser."
+msgstr "ضبط صدا در این مرورگر پشتیبانی نمی‌شود."
+
+#: templates/widget/chat.html:63
+msgid "Could not send voice message. Please try again."
+msgstr "ارسال پیام صوتی ممکن نشد. دوباره تلاش کنید."
+
+#: templates/widget/chat.html:64
+msgid "Record voice message"
+msgstr "ضبط پیام صوتی"
+
+#: templates/widget/chat.html:64
+msgid "Record voice (max 1 min)"
+msgstr "ضبط صدا (حداکثر ۱ دقیقه)"
+
+#: templates/widget/chat.html:73
+msgid "Recording…"
+msgstr "در حال ضبط…"
+
+#: templates/widget/chat.html:74
+msgid "Cancel recording"
+msgstr "لغو ضبط"
+
+#: templates/widget/chat.html:75
+msgid "Send voice message"
+msgstr "ارسال پیام صوتی"
+
+#: templates/widget/chat.html:77
 msgid "Type a message..."
 msgstr "پیام خود را بنویسید..."
 
+#: templates/widget/chat.html:82
 msgid "Your ID:"
 msgstr "شناسه شما:"
 
+#: templates/widget/chat.html:83
 msgid "Browse help articles"
 msgstr "مشاهده مقالات راهنما"
 
+#: templates/widget/demo.html:11
 msgid "Live demo"
 msgstr "دموی زنده"
 
+#: templates/widget/demo.html:12
 msgid "Customer support that feels built in"
 msgstr "پشتیبانی مشتری که بخشی از سایت شماست"
 
+#: templates/widget/demo.html:13
 #, python-format
 msgid ""
 "%(name)s helps teams answer questions faster with live chat, a shared inbox, "
@@ -714,51 +1016,68 @@ msgstr ""
 "%(name)s به تیم‌ها کمک می‌کند با گفتگوی زنده، صندوق مشترک و مقالات راهنما "
 "سریع‌تر پاسخ دهند — همه در یکجا."
 
+#: templates/widget/demo.html:16
 msgid "Real-time support"
 msgstr "پشتیبانی بلادرنگ"
 
+#: templates/widget/demo.html:17
 msgid "Visitors get instant help without leaving your site."
 msgstr "بازدیدکنندگان بدون ترک سایت، کمک فوری دریافت می‌کنند."
 
+#: templates/widget/demo.html:20
 msgid "Agent inbox"
 msgstr "صندوق ورودی پشتیبان"
 
+#: templates/widget/demo.html:21
 msgid "Your team manages all chats from a shared inbox."
 msgstr "تیم شما همه گفتگوها را از یک صندوق مشترک مدیریت می‌کند."
 
+#: templates/widget/demo.html:24
 msgid "Knowledge base"
 msgstr "پایگاه دانش"
 
+#: templates/widget/demo.html:25
 msgid "Link visitors to self-service articles when they need answers fast."
 msgstr "بازدیدکنندگان را به مقالات خودیاری هدایت کنید."
 
+#: templates/widget/demo.html:29
 msgid "Try the chat widget"
 msgstr "ویجت گفتگو را امتحان کنید"
 
+#: templates/widget/demo.html:31
 msgid "Click the chat bubble in the corner."
 msgstr "روی حباب گفتگو در گوشه کلیک کنید."
 
+#: templates/widget/demo.html:32
 msgid "Send a test message as a visitor."
 msgstr "به عنوان بازدیدکننده یک پیام آزمایشی بفرستید."
 
+#: templates/widget/demo.html:33
 msgid "Log in as an agent and reply from the inbox."
 msgstr "به عنوان پشتیبان وارد شوید و از صندوق ورودی پاسخ دهید."
 
+#: templates/widget/demo.html:36
 msgid "Need a plan for your team?"
 msgstr "به پلن برای تیم خود نیاز دارید؟"
 
+#: templates/widget/demo.html:36
 msgid "View pricing"
 msgstr "مشاهده قیمت‌ها"
 
+#: templates/widget/demo_pricing.html:4
+#: templates/widget/includes/demo_nav.html:6
 msgid "Pricing"
 msgstr "قیمت‌گذاری"
 
+#: templates/widget/demo_pricing.html:11
 msgid "Plans"
 msgstr "پلن‌ها"
 
+#: templates/widget/demo_pricing.html:12
 msgid "Simple pricing for growing teams"
 msgstr "قیمت‌گذاری ساده برای تیم‌های در حال رشد"
 
+#: templates/widget/demo_pricing.html:13
 msgid ""
 "Choose the plan that fits your support volume. Every plan includes the chat "
 "widget, shared inbox, and knowledge base."
@@ -766,112 +1085,164 @@ msgstr ""
 "پلنی را انتخاب کنید که با حجم پشتیبانی شما سازگار است. همه پلن‌ها شامل ویجت "
 "گفتگو، صندوق مشترک و پایگاه دانش هستند."
 
+#: templates/widget/demo_pricing.html:16
 msgid "Starter"
 msgstr "شروع"
 
+#: templates/widget/demo_pricing.html:17 templates/widget/demo_pricing.html:29
 msgid "/month"
 msgstr "/ماه"
 
+#: templates/widget/demo_pricing.html:18
 msgid "For small teams getting started"
 msgstr "برای تیم‌های کوچک در شروع کار"
 
+#: templates/widget/demo_pricing.html:20
 msgid "Up to 3 agents"
 msgstr "تا ۳ پشتیبان"
 
+#: templates/widget/demo_pricing.html:21
 msgid "Live chat widget"
 msgstr "ویجت گفتگوی زنده"
 
+#: templates/widget/demo_pricing.html:23
 msgid "Email support"
 msgstr "پشتیبانی ایمیلی"
 
+#: templates/widget/demo_pricing.html:25
 msgid "See product tour"
 msgstr "مشاهده معرفی محصول"
 
+#: templates/widget/demo_pricing.html:28
 msgid "Business"
 msgstr "کسب‌وکار"
 
+#: templates/widget/demo_pricing.html:30
 msgid "Most popular for growing companies"
 msgstr "محبوب‌ترین برای شرکت‌های در حال رشد"
 
+#: templates/widget/demo_pricing.html:32
 msgid "Up to 10 agents"
 msgstr "تا ۱۰ پشتیبان"
 
+#: templates/widget/demo_pricing.html:33
 msgid "Shared inbox & CRM"
 msgstr "صندوق مشترک و CRM"
 
+#: templates/widget/demo_pricing.html:34
 msgid "Analytics dashboard"
 msgstr "داشبورد تحلیل‌ها"
 
+#: templates/widget/demo_pricing.html:35
 msgid "Priority support"
 msgstr "پشتیبانی اولویت‌دار"
 
+#: templates/widget/demo_pricing.html:37
 msgid "Start free trial"
 msgstr "شروع آزمایش رایگان"
 
+#: templates/widget/demo_pricing.html:40
 msgid "Enterprise"
 msgstr "سازمانی"
 
+#: templates/widget/demo_pricing.html:41
 msgid "Custom"
 msgstr "سفارشی"
 
+#: templates/widget/demo_pricing.html:42
 msgid "For larger support organizations"
 msgstr "برای سازمان‌های پشتیبانی بزرگ"
 
+#: templates/widget/demo_pricing.html:44
 msgid "Unlimited agents"
 msgstr "پشتیبان نامحدود"
 
+#: templates/widget/demo_pricing.html:45
 msgid "Custom integrations"
 msgstr "یکپارچه‌سازی سفارشی"
 
+#: templates/widget/demo_pricing.html:46
 msgid "Dedicated onboarding"
 msgstr "راه‌اندازی اختصاصی"
 
+#: templates/widget/demo_pricing.html:47
 msgid "SLA & security review"
 msgstr "SLA و بررسی امنیتی"
 
+#: templates/widget/demo_pricing.html:49
 msgid "Talk to sales"
 msgstr "تماس با فروش"
 
+#: templates/widget/demo_pricing.html:52
 msgid "Questions about billing?"
 msgstr "سوالی درباره صورتحساب دارید؟"
 
+#: templates/widget/demo_pricing.html:52
 msgid "Browse billing help articles"
 msgstr "مقالات راهنمای صورتحساب"
 
+#: templates/widget/demo_pricing.html:52
 msgid "or chat with us."
 msgstr "یا با ما گفتگو کنید."
 
+#: templates/widget/includes/demo_nav.html:7
 msgid "Help"
 msgstr "راهنما"
 
+#: templates/widget/includes/demo_widget.html:3
+msgid "Support"
+msgstr "پشتیبانی"
+
+#: templates/widget/includes/demo_widget.html:8
 #, fuzzy
 #| msgid "Chat with us"
 msgid "Chat with Morse"
 msgstr "گفتگو با مورس"
 
+#: templates/widget/includes/demo_widget.html:15
 msgid "Close chat"
 msgstr "بستن گفتگو"
 
+#: templates/widget/includes/demo_widget.html:18
 msgid "Morse chat"
 msgstr "گفتگوی مورس"
 
+#: websites/demo.py:15
 msgid "Demo Website"
 msgstr "وب‌سایت دمو"
 
+#: websites/views.py:48
 msgid "Website name is required."
 msgstr "نام وب‌سایت الزامی است."
 
+#: widget/views.py:29
 msgid "Invalid or missing widget key"
 msgstr "کلید ویجت نامعتبر یا موجود نیست"
 
+#: widget/views.py:131
 msgid "Thanks for reaching out! A support agent will be with you shortly."
 msgstr "ممنون از پیام شما! به زودی یک پشتیبان پاسخ خواهد داد."
 
+#: widget/views.py:175 widget/views.py:214
 msgid "Conversation not found"
 msgstr "گفتگو یافت نشد"
 
-#~ msgid "support platform"
-#~ msgstr "پلتفرم پشتیبانی"
+#: widget/views.py:218
+msgid "Audio file is required"
+msgstr "فایل صوتی الزامی است"
+
+#: widget/views.py:222
+msgid "Voice message is too large (max 5 MB)"
+msgstr "پیام صوتی خیلی بزرگ است (حداکثر ۵ مگابایت)"
+
+#: widget/views.py:235
+msgid "Unsupported audio format"
+msgstr "فرمت صوتی پشتیبانی نمی‌شود"
+
+#: widget/views.py:248
+#, python-format
+msgid "Voice messages cannot exceed %(seconds)s seconds"
+msgstr "پیام‌های صوتی نمی‌توانند بیشتر از %(seconds)s ثانیه باشند"
 
 #~ msgid "One platform to delight your teams and customers"
 #~ msgstr "یک پلتفرم برای رضایت تیم و مشتریان شما"

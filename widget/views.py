@@ -1,4 +1,5 @@
 import json
+import uuid
 
 from django.http import Http404, JsonResponse
 from django.shortcuts import render
@@ -34,25 +35,120 @@ def _session_key(website):
     return f"visitor_session_{website.id}"
 
 
-def _get_or_create_contact(request, website):
+def _parse_visitor_uuid(raw):
+    """Parse a client-supplied visitor UUID (maps to Contact.session_id)."""
+    if not raw:
+        return None
+    try:
+        return uuid.UUID(str(raw).strip())
+    except (ValueError, TypeError, AttributeError):
+        return None
+
+
+def _get_visitor_id_from_request(request):
+    """
+    Resolve the persistent anonymous visitor id from the request.
+
+    Accepted sources (first match wins):
+    - Query string: ?visitor_id=<uuid>
+    - Header: X-Visitor-Id
+    - Cookie: morse_vid_<widget_key>
+    - JSON body: { "visitor_id": "<uuid>" }
+    - Multipart/form: visitor_id=<uuid>
+    """
+    raw = request.GET.get("visitor_id") or request.META.get("HTTP_X_VISITOR_ID")
+    if raw:
+        return _parse_visitor_uuid(raw)
+
+    widget_key = get_widget_key_from_request(request)
+    if widget_key:
+        cookie_name = "morse_vid_" + "".join(
+            ch if ch.isalnum() or ch in "-_" else "" for ch in widget_key
+        )
+        cookie_value = request.COOKIES.get(cookie_name)
+        parsed = _parse_visitor_uuid(cookie_value)
+        if parsed:
+            return parsed
+
+    if request.method == "POST":
+        form_value = request.POST.get("visitor_id")
+        if form_value:
+            return _parse_visitor_uuid(form_value)
+
+        content_type = (request.META.get("CONTENT_TYPE") or "").lower()
+        if "application/json" in content_type and request.body:
+            try:
+                data = json.loads(request.body)
+            except (json.JSONDecodeError, TypeError, ValueError):
+                data = None
+            if isinstance(data, dict) and data.get("visitor_id"):
+                return _parse_visitor_uuid(data.get("visitor_id"))
+
+    return None
+
+
+def _get_or_create_contact(request, website, *, create=True):
+    """
+    Resolve the anonymous visitor Contact for this website.
+
+    Priority:
+    1. Persistent visitor_id from the client (localStorage UUID → Contact.session_id)
+    2. Django session cookie fallback (legacy / same-tab continuity)
+    3. Optionally create a new Contact (chat bootstrap only)
+    """
     session_key = _session_key(website)
-    session_id = request.session.get(session_key)
     contact = None
-    if session_id:
+
+    client_id = _get_visitor_id_from_request(request)
+    if client_id:
         try:
-            contact = Contact.objects.get(session_id=session_id, website=website)
-        except (Contact.DoesNotExist, ValueError):
-            contact = None
+            contact = Contact.objects.get(session_id=client_id, website=website)
+        except Contact.DoesNotExist:
+            if create:
+                # First request with a newly generated client UUID — create Contact
+                # using that UUID as the stable identity.
+                contact = Contact.objects.create(website=website, session_id=client_id)
+
     if not contact:
+        session_id = request.session.get(session_key)
+        if session_id:
+            try:
+                contact = Contact.objects.get(session_id=session_id, website=website)
+            except (Contact.DoesNotExist, ValueError):
+                contact = None
+
+    if not contact and create:
         contact = Contact.objects.create(website=website)
+
+    if contact:
         request.session[session_key] = str(contact.session_id)
     return contact
+
+
+def _contact_owns_conversation(contact, conversation):
+    return (
+        contact is not None
+        and conversation.contact_id == contact.id
+        and conversation.website_id == contact.website_id
+    )
 
 
 @xframe_options_exempt
 @require_GET
 def chat_widget(request):
     website = _require_website(request)
+    widget_key = website.public_widget_key
+
+    # Require a client visitor_id before creating/loading a Contact, so the first
+    # HTML response does not mint an orphan identity. The bootstrap page writes
+    # localStorage and redirects with ?visitor_id=...
+    if not _get_visitor_id_from_request(request):
+        return render(
+            request,
+            "widget/chat_bootstrap.html",
+            {"widget_key": widget_key},
+        )
+
     contact = _get_or_create_contact(request, website)
     conversation = (
         Conversation.objects.filter(contact=contact, website=website)
@@ -64,7 +160,6 @@ def chat_widget(request):
             contact=contact, website=website
         )
     messages = conversation.messages.all()
-    widget_key = website.public_widget_key
     return render(
         request,
         "widget/chat.html",
@@ -85,7 +180,7 @@ def embed_script(request):
         request,
         "widget/embed.js",
         {"widget_key": website.public_widget_key},
-        content_type="application/javascript",
+        content_type="application/javascript; charset=utf-8",
     )
 
 
@@ -136,6 +231,9 @@ def start_conversation(request):
         {
             "conversation_id": conversation.id,
             "contact_id": str(contact.session_id),
+            # Stable anonymous identity (UUID stored in localStorage as morse_visitor_id)
+            "persistent_visitor_id": str(contact.session_id),
+            # Short public display code shown in the widget footer / inbox
             "visitor_id": contact.visitor_id,
             "greeting": {
                 "content": greeting.content,
@@ -160,18 +258,22 @@ def update_contact(request):
         if field in data:
             setattr(contact, field, data[field])
     contact.save()
-    return JsonResponse({"ok": True})
+    return JsonResponse({"ok": True, "persistent_visitor_id": str(contact.session_id)})
 
 
 @csrf_exempt
 @require_POST
 def send_message(request, conversation_id):
     website = _require_website(request)
+    contact = _get_or_create_contact(request, website, create=False)
     try:
         conversation = Conversation.unscoped.get(
             pk=conversation_id, website=website
         )
     except Conversation.DoesNotExist:
+        return JsonResponse({"error": _("Conversation not found")}, status=404)
+
+    if not contact or not _contact_owns_conversation(contact, conversation):
         return JsonResponse({"error": _("Conversation not found")}, status=404)
 
     try:
@@ -197,12 +299,81 @@ def send_message(request, conversation_id):
     return JsonResponse(
         {
             "ok": True,
-            "message": {
-                "id": message.id,
-                "content": message.content,
-                "sender_type": message.sender_type,
-                "sender_name": message.sender_name,
-                "created_at": message.created_at.isoformat(),
+            "message": message.to_payload(),
+        }
+    )
+
+
+@csrf_exempt
+@require_POST
+def send_voice_message(request, conversation_id):
+    website = _require_website(request)
+    contact = _get_or_create_contact(request, website, create=False)
+    try:
+        conversation = Conversation.unscoped.get(
+            pk=conversation_id, website=website
+        )
+    except Conversation.DoesNotExist:
+        return JsonResponse({"error": _("Conversation not found")}, status=404)
+
+    if not contact or not _contact_owns_conversation(contact, conversation):
+        return JsonResponse({"error": _("Conversation not found")}, status=404)
+
+    audio_file = request.FILES.get("audio")
+    if not audio_file:
+        return JsonResponse({"error": _("Audio file is required")}, status=400)
+
+    if audio_file.size > Message.MAX_VOICE_BYTES:
+        return JsonResponse(
+            {"error": _("Voice message is too large (max 5 MB)")},
+            status=400,
+        )
+
+    content_type = (getattr(audio_file, "content_type", "") or "").split(";")[0].strip()
+    # Some browsers omit or use generic types; allow empty/octet-stream with audio extension.
+    name = (getattr(audio_file, "name", "") or "").lower()
+    has_audio_ext = name.endswith(
+        (".webm", ".ogg", ".mp3", ".mp4", ".m4a", ".wav", ".aac")
+    )
+    if content_type and content_type not in Message.ALLOWED_AUDIO_TYPES:
+        if content_type not in ("application/octet-stream",) or not has_audio_ext:
+            return JsonResponse(
+                {"error": _("Unsupported audio format")},
+                status=400,
+            )
+
+    try:
+        duration = int(request.POST.get("duration_seconds") or 0)
+    except (TypeError, ValueError):
+        duration = 0
+    if duration < 1:
+        duration = 1
+    if duration > Message.MAX_VOICE_SECONDS:
+        return JsonResponse(
+            {
+                "error": _("Voice messages cannot exceed %(seconds)s seconds")
+                % {"seconds": Message.MAX_VOICE_SECONDS}
             },
+            status=400,
+        )
+
+    message = Message.unscoped.create(
+        conversation=conversation,
+        website=website,
+        sender_type=Message.SenderType.VISITOR,
+        message_type=Message.MessageType.AUDIO,
+        content=_("Voice message"),
+        audio=audio_file,
+        duration_seconds=duration,
+    )
+    conversation.is_unread = True
+    conversation.status = Conversation.Status.OPEN
+    conversation.save(update_fields=["is_unread", "status", "updated_at"])
+
+    _broadcast_message(message)
+    return JsonResponse(
+        {
+            "ok": True,
+            "message": message.to_payload(),
         }
     )

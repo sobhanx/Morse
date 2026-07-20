@@ -93,7 +93,16 @@
                     <span class="message-sender">{{ msg.sender_name }}</span>
                     <span class="message-time">{{ msg.created_at|date:"M d, H:i" }}</span>
                 </div>
-                <div class="message-bubble">{{ msg.content }}</div>
+                <div class="message-bubble{% if msg.message_type == 'audio' %} message-bubble-audio{% endif %}">
+                    {% if msg.message_type == 'audio' and msg.audio %}
+                    <audio class="message-audio" controls preload="metadata">
+                        <source src="{{ msg.audio_url }}" type="{{ msg.audio_mime_type }}">
+                    </audio>
+                    {% if msg.duration_seconds %}<span class="message-audio-duration">{{ msg.duration_seconds }}s</span>{% endif %}
+                    {% else %}
+                    {{ msg.content }}
+                    {% endif %}
+                </div>
             </div>
             {% endfor %}
         </div>
@@ -115,6 +124,6 @@
 
 {% block extra_js %}
 {% if active_conversation %}
-<script src="/static/js/inbox.js"></script>
+<script src="/static/js/inbox.js?v=2"></script>
 {% endif %}
 {% endblock %}

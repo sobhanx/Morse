@@ -29,4 +29,9 @@
         <p>{% trans "Still need help?" %} <a href="{% url 'widget:demo' %}?key={{ widget_key }}">{% trans "Start a live chat" %}</a> {% trans "with our team." %}</p>
     </div>
 </article>
+{% include "widget/includes/demo_widget.html" %}
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="/static/css/widget.css">
 {% endblock %}

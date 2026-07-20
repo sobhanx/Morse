@@ -1,6 +1,6 @@
 # Morse
 
-A Crisp-inspired customer support platform built with Django. **Multi-tenant SaaS**: each customer owns one or more websites with fully isolated data. Customers integrate using only a generated **widget key** — no project-specific configuration required.
+**Multi-tenant SaaS** customer support platform: each customer owns one or more websites with fully isolated data. Customers integrate using only a generated **widget key** — no project-specific configuration required.
 
 ## Features
 
@@ -144,5 +144,3 @@ dashboard/       # Agent UI scoped to session active website
 - Daphne ASGI server
 - SQLite (development)
 - Vanilla JS + CSS
-
-Inspired by [Crisp](https://crisp.chat/en/).

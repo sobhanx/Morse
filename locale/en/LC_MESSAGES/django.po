@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-11 23:43+0330\n"
+"POT-Creation-Date: 2026-07-20 11:25+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,838 +18,1213 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: accounts/views.py:85
 msgid "Phone number is required."
 msgstr ""
 
+#: accounts/views.py:93
 msgid "Invalid phone number. It must start with 09 and be 11 digits."
 msgstr ""
 
+#: accounts/views.py:99
 #, python-format
 msgid "Could not create account. (%(error)s)"
 msgstr ""
 
+#: accounts/views.py:107
 msgid "Could not send verification code."
 msgstr ""
 
+#: accounts/views.py:123 accounts/views.py:179
 msgid "User not found."
 msgstr ""
 
+#: accounts/views.py:132
 msgid "Verification code has expired."
 msgstr ""
 
+#: accounts/views.py:145
 msgid "Authentication failed."
 msgstr ""
 
+#: accounts/views.py:153
 msgid "You do not have permission to access the admin panel."
 msgstr ""
 
+#: accounts/views.py:158
 msgid "Signed in successfully."
 msgstr ""
 
+#: accounts/views.py:165
 msgid "Invalid verification code."
 msgstr ""
 
+#: config/context_processors.py:9 templates/dashboard/landing.html:4
+#: templates/dashboard/landing.html:28 templates/dashboard/landing.html:80
+#: templates/includes/brand_mark.html:4 templates/widget/chat.html:26
 msgid "Morse"
 msgstr ""
 
+#: contacts/models.py:52
 #, python-format
 msgid "Visitor %(visitor_id)s"
 msgstr ""
 
+#: inbox/models.py:12 templates/dashboard/inbox.html:31
+#: templates/websites/admin_panel.html:50
 msgid "Open"
 msgstr ""
 
+#: inbox/models.py:13 templates/dashboard/inbox.html:32
+#: templates/websites/admin_panel.html:51
 msgid "Pending"
 msgstr ""
 
+#: inbox/models.py:14 templates/dashboard/inbox.html:33
+#: templates/websites/admin_panel.html:52
 msgid "Resolved"
 msgstr ""
 
+#: inbox/models.py:53
 msgid "No messages yet"
 msgstr ""
 
+#: inbox/models.py:55 inbox/models.py:113 widget/views.py:259
+msgid "Voice message"
+msgstr ""
+
+#: inbox/models.py:61 templates/websites/admin_panel.html:71
 msgid "Visitor"
 msgstr ""
 
+#: inbox/models.py:62
 msgid "Agent"
 msgstr ""
 
+#: inbox/models.py:63 inbox/models.py:127
 msgid "System"
 msgstr ""
 
+#: inbox/models.py:66
+msgid "Text"
+msgstr ""
+
+#: inbox/models.py:67
+msgid "Audio"
+msgstr ""
+
+#: inbox/views.py:104 inbox/views.py:133 widget/views.py:157
+#: widget/views.py:180
 msgid "Invalid JSON"
 msgstr ""
 
+#: inbox/views.py:108 widget/views.py:184
 msgid "Message cannot be empty"
 msgstr ""
 
+#: inbox/views.py:149
 msgid "Agent not on this website"
 msgstr ""
 
+#: knowledge/views.py:44 knowledge/views.py:79
 msgid "Help center is not available yet"
 msgstr ""
 
+#: templates/accounts/sms_login_confirm.html:4
 msgid "Verify code"
 msgstr ""
 
+#: templates/accounts/sms_login_confirm.html:12
 msgid "Verify mobile number"
 msgstr ""
 
+#: templates/accounts/sms_login_confirm.html:13
 msgid "Enter the verification code sent to your mobile number"
 msgstr ""
 
+#: templates/accounts/sms_login_confirm.html:19
 msgid "Verification code"
 msgstr ""
 
+#: templates/accounts/sms_login_confirm.html:41
 msgid "Time remaining until resend"
 msgstr ""
 
+#: templates/accounts/sms_login_confirm.html:51
 msgid "Resend"
 msgstr ""
 
+#: templates/accounts/sms_login_confirm.html:108
 msgid "Please enter the 5-digit verification code"
 msgstr ""
 
+#: templates/accounts/sms_login_confirm.html:162
 msgid "Verification code has been resent."
 msgstr ""
 
+#: templates/accounts/sms_login_confirm.html:165
+#: templates/accounts/sms_login_confirm.html:170
 msgid "Error resending verification code"
 msgstr ""
 
+#: templates/accounts/sms_login_form.html:4
+#: templates/accounts/sms_login_form.html:12
 msgid "Login | Sign up"
 msgstr ""
 
+#: templates/accounts/sms_login_form.html:13
 msgid "Enter your mobile number"
 msgstr ""
 
+#: templates/accounts/sms_login_form.html:23
 msgid "Mobile number"
 msgstr ""
 
+#: templates/accounts/sms_login_form.html:37
 msgid "Send one-time password"
 msgstr ""
 
+#: templates/accounts/sms_login_form.html:40
 msgid "By signing in, you agree to the terms of service."
 msgstr ""
 
+#: templates/admin/accounts/user_usage_dashboard.html:6
+#: templates/admin/websites/usage_dashboard.html:6
+#: templates/widget/includes/demo_nav.html:5
 msgid "Home"
 msgstr ""
 
+#: templates/admin/login.html:8
 msgid "Please correct the error below."
 msgstr ""
 
+#: templates/admin/login.html:8
 msgid "Please correct the errors below."
 msgstr ""
 
+#: templates/admin/login.html:25
 msgid "Password:"
 msgstr ""
 
+#: templates/admin/login.html:31
 msgid "Log in"
 msgstr ""
 
+#: templates/dashboard/analytics.html:4
+#: templates/dashboard/base_dashboard.html:42
+#: templates/dashboard/landing.html:66
 msgid "Analytics"
 msgstr ""
 
+#: templates/dashboard/analytics.html:9
 msgid "Total conversations"
 msgstr ""
 
+#: templates/dashboard/analytics.html:13 templates/websites/admin_panel.html:31
 msgid "Total messages"
 msgstr ""
 
+#: templates/dashboard/analytics.html:17
 msgid "Contacts"
 msgstr ""
 
+#: templates/dashboard/analytics.html:21
 msgid "Resolution rate"
 msgstr ""
 
+#: templates/dashboard/analytics.html:26
 msgid "Recent conversations"
 msgstr ""
 
+#: templates/dashboard/analytics.html:31 templates/dashboard/contacts.html:18
 msgid "Contact"
 msgstr ""
 
+#: templates/dashboard/analytics.html:32 templates/websites/admin_panel.html:76
+#: templates/websites/admin_panel.html:170
 msgid "Status"
 msgstr ""
 
+#: templates/dashboard/analytics.html:33
+#: templates/websites/admin_panel.html:175
 msgid "Created"
 msgstr ""
 
+#: templates/dashboard/base_dashboard.html:8
+#: templates/dashboard/base_dashboard.html:70
 msgid "Dashboard"
 msgstr ""
 
+#: templates/dashboard/base_dashboard.html:27
 msgid "Active site"
 msgstr ""
 
+#: templates/dashboard/base_dashboard.html:29
 msgid "Switch"
 msgstr ""
 
+#: templates/dashboard/base_dashboard.html:33 templates/dashboard/inbox.html:4
+#: templates/dashboard/inbox.html:10
 msgid "Chat Manager"
 msgstr ""
 
+#: templates/dashboard/base_dashboard.html:36
 msgid "CRM"
 msgstr ""
 
+#: templates/dashboard/base_dashboard.html:39
+#: templates/dashboard/landing.html:61
 msgid "Knowledge Base"
 msgstr ""
 
+#: templates/dashboard/base_dashboard.html:45
+#: templates/websites/settings.html:4
 msgid "Website Settings"
 msgstr ""
 
+#: templates/dashboard/base_dashboard.html:49
+#: templates/websites/admin_panel.html:4
 msgid "Platform Monitor"
 msgstr ""
 
+#: templates/dashboard/base_dashboard.html:53
+#: templates/dashboard/landing.html:46
 msgid "Chat Widget"
 msgstr ""
 
+#: templates/dashboard/base_dashboard.html:64
 msgid "Logout"
 msgstr ""
 
+#: templates/dashboard/contact_detail.html:13
 msgid "No email provided"
 msgstr ""
 
+#: templates/dashboard/contact_detail.html:14 templates/dashboard/inbox.html:69
 msgid "Visitor ID:"
 msgstr ""
 
+#: templates/dashboard/contact_detail.html:18
+#: templates/dashboard/contacts.html:17
 msgid "Visitor ID"
 msgstr ""
 
+#: templates/dashboard/contact_detail.html:19
 msgid "Session"
 msgstr ""
 
+#: templates/dashboard/contact_detail.html:20
+#: templates/websites/admin_panel.html:128
 msgid "Phone"
 msgstr ""
 
+#: templates/dashboard/contact_detail.html:21
+#: templates/dashboard/contacts.html:20
 msgid "Company"
 msgstr ""
 
+#: templates/dashboard/contact_detail.html:22
 msgid "Location"
 msgstr ""
 
+#: templates/dashboard/contact_detail.html:23
 msgid "First seen"
 msgstr ""
 
+#: templates/dashboard/contact_detail.html:27
 msgid "Notes"
 msgstr ""
 
+#: templates/dashboard/contact_detail.html:29
 msgid "Save notes"
 msgstr ""
 
+#: templates/dashboard/contact_detail.html:33
 msgid "Conversation history"
 msgstr ""
 
+#: templates/dashboard/contact_detail.html:43 templates/dashboard/inbox.html:56
 msgid "No conversations yet."
 msgstr ""
 
+#: templates/dashboard/contacts.html:4
 msgid "CRM — Contacts"
 msgstr ""
 
+#: templates/dashboard/contacts.html:9 templates/dashboard/inbox.html:27
 msgid "Search by name, email, or visitor ID..."
 msgstr ""
 
+#: templates/dashboard/contacts.html:10
 msgid "Search"
 msgstr ""
 
+#: templates/dashboard/contacts.html:19
 msgid "Email"
 msgstr ""
 
+#: templates/dashboard/contacts.html:21
 msgid "Conversations"
 msgstr ""
 
+#: templates/dashboard/contacts.html:22
 msgid "Last updated"
 msgstr ""
 
+#: templates/dashboard/contacts.html:39 templates/dashboard/inbox.html:43
+#: templates/websites/admin_panel.html:105
+#: templates/websites/admin_panel.html:151
 #, python-format
 msgid "%(time)s ago"
 msgstr ""
 
+#: templates/dashboard/contacts.html:40 templates/websites/admin_panel.html:110
 msgid "View"
 msgstr ""
 
+#: templates/dashboard/contacts.html:43
 msgid "No contacts yet."
 msgstr ""
 
+#: templates/dashboard/inbox.html:12
 #, python-format
 msgid "%(count)s unread"
 msgstr ""
 
+#: templates/dashboard/inbox.html:13
 #, python-format
 msgid "%(count)s open"
 msgstr ""
 
+#: templates/dashboard/inbox.html:18
 msgid "Chat is not active yet."
 msgstr ""
 
+#: templates/dashboard/inbox.html:19
 msgid "Activate your widget"
 msgstr ""
 
+#: templates/dashboard/inbox.html:20
 msgid "to receive visitor questions."
 msgstr ""
 
+#: templates/dashboard/inbox.html:30
 msgid "All"
 msgstr ""
 
+#: templates/dashboard/inbox.html:45
 msgid "ID:"
 msgstr ""
 
+#: templates/dashboard/inbox.html:68
 msgid "No email"
 msgstr ""
 
+#: templates/dashboard/inbox.html:79
 msgid "Unassigned"
 msgstr ""
 
+#: templates/dashboard/inbox.html:84
 msgid "View CRM"
 msgstr ""
 
+#: templates/dashboard/inbox.html:111
 msgid "Type your reply..."
 msgstr ""
 
+#: templates/dashboard/inbox.html:112 templates/widget/chat.html:75
+#: templates/widget/chat.html:78
 msgid "Send"
 msgstr ""
 
+#: templates/dashboard/inbox.html:117
 msgid "Select a conversation"
 msgstr ""
 
+#: templates/dashboard/inbox.html:118
 msgid "Choose a conversation from the sidebar to start chatting."
 msgstr ""
 
+#: templates/dashboard/landing.html:4
 msgid "Customer Support Platform"
 msgstr ""
 
+#: templates/dashboard/landing.html:12
+#: templates/knowledge/article_detail.html:4
+#: templates/knowledge/article_detail.html:12
+#: templates/knowledge/article_detail.html:20
+#: templates/knowledge/help_center.html:4
 msgid "Help Center"
 msgstr ""
 
+#: templates/dashboard/landing.html:13
 msgid "Live Demo"
 msgstr ""
 
+#: templates/dashboard/landing.html:14
 msgid "Agent Login"
 msgstr ""
 
+#: templates/dashboard/landing.html:15
 msgid "Get started"
 msgstr ""
 
+#: templates/dashboard/landing.html:31 templates/dashboard/landing.html:82
 msgid "Customer support platform"
 msgstr ""
 
+#: templates/dashboard/landing.html:32
 msgid "Augment your customer experience."
 msgstr ""
 
+#: templates/dashboard/landing.html:32
 msgid "Support made for your team & customers."
 msgstr ""
 
+#: templates/dashboard/landing.html:33
 msgid ""
-"All-in-one omnichannel inbox, live chat widget, knowledge base, and CRM — "
-"built with Django."
+"All-in-one omnichannel inbox, live chat widget, knowledge base, and CRM."
 msgstr ""
 
+#: templates/dashboard/landing.html:35
 msgid "Get started free"
 msgstr ""
 
+#: templates/dashboard/landing.html:36 templates/websites/activate.html:19
+#: templates/websites/list.html:28
 msgid "Open Chat Manager"
 msgstr ""
 
+#: templates/dashboard/landing.html:42
 #, python-format
 msgid "Everything you need in %(brand)s"
 msgstr ""
 
+#: templates/dashboard/landing.html:47
 msgid ""
 "Embed real-time support on any website. Visitors chat instantly with your "
 "team."
 msgstr ""
 
+#: templates/dashboard/landing.html:51
 msgid "Shared Inbox"
 msgstr ""
 
+#: templates/dashboard/landing.html:52
 msgid ""
 "Centralize all conversations. Assign, filter, and resolve from one "
 "collaborative inbox."
 msgstr ""
 
+#: templates/dashboard/landing.html:56
 msgid "Support CRM"
 msgstr ""
 
+#: templates/dashboard/landing.html:57
 msgid ""
 "Track visitor profiles, notes, and full conversation history in one place."
 msgstr ""
 
+#: templates/dashboard/landing.html:62
 msgid "Let customers find answers themselves with searchable help articles."
 msgstr ""
 
+#: templates/dashboard/landing.html:67
 msgid "Monitor conversation volume, resolution rates, and team performance."
 msgstr ""
 
+#: templates/dashboard/landing.html:71
 msgid "Real-time"
 msgstr ""
 
+#: templates/dashboard/landing.html:72
 msgid ""
 "WebSocket-powered messaging for instant agent and visitor communication."
 msgstr ""
 
+#: templates/includes/language_switcher.html:7
 msgid "Language"
 msgstr ""
 
+#: templates/knowledge/article_detail.html:14
+#: templates/knowledge/help_center.html:14
 msgid "Chat with us"
 msgstr ""
 
+#: templates/knowledge/article_detail.html:29
 msgid "Still need help?"
 msgstr ""
 
+#: templates/knowledge/article_detail.html:29
 msgid "Start a live chat"
 msgstr ""
 
+#: templates/knowledge/article_detail.html:29
 msgid "with our team."
 msgstr ""
 
+#: templates/knowledge/help_center.html:12
 #, python-format
 msgid "%(name)s Help Center"
 msgstr ""
 
+#: templates/knowledge/help_center.html:18
 msgid "How can we help you?"
 msgstr ""
 
+#: templates/knowledge/help_center.html:19
 #, python-format
 msgid "Browse guides and answers for %(name)s, or search for a specific topic."
 msgstr ""
 
+#: templates/knowledge/help_center.html:22
 msgid "Search articles..."
 msgstr ""
 
+#: templates/knowledge/help_center.html:30
 #, python-format
 msgid "Search results for \"%(query)s\""
 msgstr ""
 
+#: templates/knowledge/help_center.html:38
 msgid "No articles found."
 msgstr ""
 
+#: templates/knowledge/help_center.html:45
 msgid "No articles yet"
 msgstr ""
 
+#: templates/knowledge/help_center.html:46
 msgid ""
 "Help articles for this workspace will appear here once they are published."
 msgstr ""
 
+#: templates/knowledge/help_center.html:47
 msgid "Talk to support"
 msgstr ""
 
+#: templates/websites/activate.html:4
 msgid "Activate Chat"
 msgstr ""
 
+#: templates/websites/activate.html:9
 #, python-format
 msgid "Activate %(name)s"
 msgstr ""
 
+#: templates/websites/activate.html:11
 msgid "Turn on live chat so visitors on your website can ask questions."
 msgstr ""
 
+#: templates/websites/activate.html:12
 msgid ""
 "Each visitor gets a unique ID — every message appears in your Chat Manager."
 msgstr ""
 
+#: templates/websites/activate.html:17
 msgid "Chat is active. Visitors can send messages using your widget."
 msgstr ""
 
+#: templates/websites/activate.html:25
 msgid "Copy the embed script"
 msgstr ""
 
+#: templates/websites/activate.html:26
 msgid "Add this before"
 msgstr ""
 
+#: templates/websites/activate.html:26 templates/websites/settings.html:30
 msgid "on your site:"
 msgstr ""
 
+#: templates/websites/activate.html:33 templates/websites/list.html:28
+#: templates/websites/settings.html:18
 msgid "Activate chat"
 msgstr ""
 
+#: templates/websites/activate.html:34
 msgid "When you're ready to accept visitor questions, activate your website."
 msgstr ""
 
+#: templates/websites/activate.html:37
 msgid "Activate chat widget"
 msgstr ""
 
+#: templates/websites/activate.html:44 templates/websites/list.html:31
 msgid "Widget key:"
 msgstr ""
 
+#: templates/websites/activate.html:45
 msgid "Preview widget demo"
 msgstr ""
 
+#: templates/websites/admin_panel.html:8
 msgid "Platform monitor"
 msgstr ""
 
+#: templates/websites/admin_panel.html:9
 #, python-format
 msgid ""
 "Observe all customers, websites, and visitor questions across %(product)s."
 msgstr ""
 
+#: templates/websites/admin_panel.html:15
 msgid "Customers (owners)"
 msgstr ""
 
+#: templates/websites/admin_panel.html:19
 #, python-format
 msgid "Websites (%(active)s active)"
 msgstr ""
 
+#: templates/websites/admin_panel.html:23
 #, python-format
 msgid "Questions (%(open)s open)"
 msgstr ""
 
+#: templates/websites/admin_panel.html:27
+#: templates/websites/admin_panel.html:133
+#: templates/websites/admin_panel.html:174
 msgid "Unread"
 msgstr ""
 
+#: templates/websites/admin_panel.html:37
 msgid "All questions"
 msgstr ""
 
+#: templates/websites/admin_panel.html:39
 msgid "Customers"
 msgstr ""
 
+#: templates/websites/admin_panel.html:41
+#: templates/websites/admin_panel.html:130 templates/websites/list.html:4
 msgid "Websites"
 msgstr ""
 
+#: templates/websites/admin_panel.html:46
 msgid "Search..."
 msgstr ""
 
+#: templates/websites/admin_panel.html:49
 msgid "All statuses"
 msgstr ""
 
+#: templates/websites/admin_panel.html:55
+#: templates/websites/admin_panel.html:164
 msgid "All websites"
 msgstr ""
 
+#: templates/websites/admin_panel.html:61
 msgid "Filter"
 msgstr ""
 
+#: templates/websites/admin_panel.html:62
 msgid "Clear"
 msgstr ""
 
+#: templates/websites/admin_panel.html:67
 msgid "All visitor questions"
 msgstr ""
 
+#: templates/websites/admin_panel.html:72
 msgid "Question / last message"
 msgstr ""
 
+#: templates/websites/admin_panel.html:73
+#: templates/websites/admin_panel.html:168
 msgid "Website"
 msgstr ""
 
+#: templates/websites/admin_panel.html:74
+#: templates/websites/admin_panel.html:169
 msgid "Owner"
 msgstr ""
 
+#: templates/websites/admin_panel.html:75
 msgid "Assigned agent"
 msgstr ""
 
+#: templates/websites/admin_panel.html:77
 msgid "Updated"
 msgstr ""
 
+#: templates/websites/admin_panel.html:115
 msgid "No questions found."
 msgstr ""
 
+#: templates/websites/admin_panel.html:123
 #, python-format
 msgid "Customers on %(product)s"
 msgstr ""
 
+#: templates/websites/admin_panel.html:127
 msgid "Customer"
 msgstr ""
 
+#: templates/websites/admin_panel.html:129
 msgid "Joined"
 msgstr ""
 
+#: templates/websites/admin_panel.html:131
+#: templates/websites/admin_panel.html:171
 msgid "Visitors"
 msgstr ""
 
+#: templates/websites/admin_panel.html:132
+#: templates/websites/admin_panel.html:172
 msgid "Questions"
 msgstr ""
 
+#: templates/websites/admin_panel.html:134
 msgid "Agent replies"
 msgstr ""
 
+#: templates/websites/admin_panel.html:135
 msgid "Last activity"
 msgstr ""
 
+#: templates/websites/admin_panel.html:144
 #, python-format
 msgid "%(owned)s (%(active)s active)"
 msgstr ""
 
+#: templates/websites/admin_panel.html:156
 msgid "No customers found."
 msgstr ""
 
+#: templates/websites/admin_panel.html:173
 msgid "Messages"
 msgstr ""
 
+#: templates/websites/admin_panel.html:189 templates/websites/list.html:19
+#: templates/websites/settings.html:15
 msgid "Active"
 msgstr ""
 
+#: templates/websites/admin_panel.html:191 templates/websites/settings.html:17
 msgid "Inactive"
 msgstr ""
 
+#: templates/websites/admin_panel.html:203
 msgid "Open inbox"
 msgstr ""
 
+#: templates/websites/admin_panel.html:208
 msgid "No websites found."
 msgstr ""
 
+#: templates/websites/admin_panel.html:216
 msgid "Django admin: user usage"
 msgstr ""
 
+#: templates/websites/admin_panel.html:218
 msgid "Django admin: website usage"
 msgstr ""
 
+#: templates/websites/create.html:4 templates/websites/create.html:27
 msgid "Create website"
 msgstr ""
 
+#: templates/websites/create.html:8 templates/websites/list.html:39
 msgid "Create a website"
 msgstr ""
 
+#: templates/websites/create.html:9
 msgid "Add a new website to manage chat support, contacts, and knowledge base."
 msgstr ""
 
+#: templates/websites/create.html:19
 msgid "Website name"
 msgstr ""
 
+#: templates/websites/create.html:20
 msgid "My Store"
 msgstr ""
 
+#: templates/websites/create.html:23
 msgid "Domain (optional)"
 msgstr ""
 
+#: templates/websites/create.html:28
 msgid "Cancel"
 msgstr ""
 
+#: templates/websites/list.html:8
 msgid "Your websites"
 msgstr ""
 
+#: templates/websites/list.html:9
 msgid "Select a website to manage its inbox, contacts, and knowledge base."
 msgstr ""
 
+#: templates/websites/list.html:21
 msgid "Not activated"
 msgstr ""
 
+#: templates/websites/list.html:34
 msgid "No websites yet. Create your first one below."
 msgstr ""
 
+#: templates/websites/list.html:40
 msgid "New website"
 msgstr ""
 
+#: templates/websites/settings.html:13
 msgid "Status:"
 msgstr ""
 
+#: templates/websites/settings.html:25
 msgid "Deactivate chat"
 msgstr ""
 
+#: templates/websites/settings.html:29
 msgid "Embed chat widget"
 msgstr ""
 
+#: templates/websites/settings.html:30
 msgid "Add this script before"
 msgstr ""
 
+#: templates/websites/settings.html:33
 msgid "Widget demo"
 msgstr ""
 
+#: templates/websites/settings.html:34
 msgid "Open widget demo"
 msgstr ""
 
+#: templates/websites/settings.html:36 templates/widget/demo_pricing.html:22
 msgid "Help center"
 msgstr ""
 
+#: templates/websites/settings.html:37
 msgid "Open help center"
 msgstr ""
 
+#: templates/websites/settings.html:39
 msgid "API keys"
 msgstr ""
 
+#: templates/websites/settings.html:41
 msgid "Public widget key"
 msgstr ""
 
+#: templates/websites/settings.html:43
 msgid "Private API key"
 msgstr ""
 
+#: templates/websites/settings.html:47
 msgid "Team agents"
 msgstr ""
 
+#: templates/websites/settings.html:52
 msgid "No agents assigned."
 msgstr ""
 
+#: templates/widget/chat.html:8
 #, python-format
 msgid "Chat — %(name)s"
 msgstr ""
 
+#: templates/widget/chat.html:28
 msgid "We typically reply in minutes"
 msgstr ""
 
-msgid "Before we start, tell us a bit about yourself:"
+#: templates/widget/chat.html:53
+msgid "To help us assist you better, please provide your information:"
 msgstr ""
 
+#: templates/widget/chat.html:54
 msgid "Your name"
 msgstr ""
 
+#: templates/widget/chat.html:55
 msgid "Your email"
 msgstr ""
 
+#: templates/widget/chat.html:56
 msgid "Continue"
 msgstr ""
 
+#: templates/widget/chat.html:61
+msgid "Microphone access is required to record voice messages."
+msgstr ""
+
+#: templates/widget/chat.html:62
+msgid "Voice recording is not supported in this browser."
+msgstr ""
+
+#: templates/widget/chat.html:63
+msgid "Could not send voice message. Please try again."
+msgstr ""
+
+#: templates/widget/chat.html:64
+msgid "Record voice message"
+msgstr ""
+
+#: templates/widget/chat.html:64
+msgid "Record voice (max 1 min)"
+msgstr ""
+
+#: templates/widget/chat.html:73
+msgid "Recording…"
+msgstr ""
+
+#: templates/widget/chat.html:74
+msgid "Cancel recording"
+msgstr ""
+
+#: templates/widget/chat.html:75
+msgid "Send voice message"
+msgstr ""
+
+#: templates/widget/chat.html:77
 msgid "Type a message..."
 msgstr ""
 
+#: templates/widget/chat.html:82
 msgid "Your ID:"
 msgstr ""
 
+#: templates/widget/chat.html:83
 msgid "Browse help articles"
 msgstr ""
 
+#: templates/widget/demo.html:11
 msgid "Live demo"
 msgstr ""
 
+#: templates/widget/demo.html:12
 msgid "Customer support that feels built in"
 msgstr ""
 
+#: templates/widget/demo.html:13
 #, python-format
 msgid ""
 "%(name)s helps teams answer questions faster with live chat, a shared inbox, "
 "and self-service help articles — all in one place."
 msgstr ""
 
+#: templates/widget/demo.html:16
 msgid "Real-time support"
 msgstr ""
 
+#: templates/widget/demo.html:17
 msgid "Visitors get instant help without leaving your site."
 msgstr ""
 
+#: templates/widget/demo.html:20
 msgid "Agent inbox"
 msgstr ""
 
+#: templates/widget/demo.html:21
 msgid "Your team manages all chats from a shared inbox."
 msgstr ""
 
+#: templates/widget/demo.html:24
 msgid "Knowledge base"
 msgstr ""
 
+#: templates/widget/demo.html:25
 msgid "Link visitors to self-service articles when they need answers fast."
 msgstr ""
 
+#: templates/widget/demo.html:29
 msgid "Try the chat widget"
 msgstr ""
 
+#: templates/widget/demo.html:31
 msgid "Click the chat bubble in the corner."
 msgstr ""
 
+#: templates/widget/demo.html:32
 msgid "Send a test message as a visitor."
 msgstr ""
 
+#: templates/widget/demo.html:33
 msgid "Log in as an agent and reply from the inbox."
 msgstr ""
 
+#: templates/widget/demo.html:36
 msgid "Need a plan for your team?"
 msgstr ""
 
+#: templates/widget/demo.html:36
 msgid "View pricing"
 msgstr ""
 
+#: templates/widget/demo_pricing.html:4
+#: templates/widget/includes/demo_nav.html:6
 msgid "Pricing"
 msgstr ""
 
+#: templates/widget/demo_pricing.html:11
 msgid "Plans"
 msgstr ""
 
+#: templates/widget/demo_pricing.html:12
 msgid "Simple pricing for growing teams"
 msgstr ""
 
+#: templates/widget/demo_pricing.html:13
 msgid ""
 "Choose the plan that fits your support volume. Every plan includes the chat "
 "widget, shared inbox, and knowledge base."
 msgstr ""
 
+#: templates/widget/demo_pricing.html:16
 msgid "Starter"
 msgstr ""
 
+#: templates/widget/demo_pricing.html:17 templates/widget/demo_pricing.html:29
 msgid "/month"
 msgstr ""
 
+#: templates/widget/demo_pricing.html:18
 msgid "For small teams getting started"
 msgstr ""
 
+#: templates/widget/demo_pricing.html:20
 msgid "Up to 3 agents"
 msgstr ""
 
+#: templates/widget/demo_pricing.html:21
 msgid "Live chat widget"
 msgstr ""
 
+#: templates/widget/demo_pricing.html:23
 msgid "Email support"
 msgstr ""
 
+#: templates/widget/demo_pricing.html:25
 msgid "See product tour"
 msgstr ""
 
+#: templates/widget/demo_pricing.html:28
 msgid "Business"
 msgstr ""
 
+#: templates/widget/demo_pricing.html:30
 msgid "Most popular for growing companies"
 msgstr ""
 
+#: templates/widget/demo_pricing.html:32
 msgid "Up to 10 agents"
 msgstr ""
 
+#: templates/widget/demo_pricing.html:33
 msgid "Shared inbox & CRM"
 msgstr ""
 
+#: templates/widget/demo_pricing.html:34
 msgid "Analytics dashboard"
 msgstr ""
 
+#: templates/widget/demo_pricing.html:35
 msgid "Priority support"
 msgstr ""
 
+#: templates/widget/demo_pricing.html:37
 msgid "Start free trial"
 msgstr ""
 
+#: templates/widget/demo_pricing.html:40
 msgid "Enterprise"
 msgstr ""
 
+#: templates/widget/demo_pricing.html:41
 msgid "Custom"
 msgstr ""
 
+#: templates/widget/demo_pricing.html:42
 msgid "For larger support organizations"
 msgstr ""
 
+#: templates/widget/demo_pricing.html:44
 msgid "Unlimited agents"
 msgstr ""
 
+#: templates/widget/demo_pricing.html:45
 msgid "Custom integrations"
 msgstr ""
 
+#: templates/widget/demo_pricing.html:46
 msgid "Dedicated onboarding"
 msgstr ""
 
+#: templates/widget/demo_pricing.html:47
 msgid "SLA & security review"
 msgstr ""
 
+#: templates/widget/demo_pricing.html:49
 msgid "Talk to sales"
 msgstr ""
 
+#: templates/widget/demo_pricing.html:52
 msgid "Questions about billing?"
 msgstr ""
 
+#: templates/widget/demo_pricing.html:52
 msgid "Browse billing help articles"
 msgstr ""
 
+#: templates/widget/demo_pricing.html:52
 msgid "or chat with us."
 msgstr ""
 
+#: templates/widget/includes/demo_nav.html:7
 msgid "Help"
 msgstr ""
 
+#: templates/widget/includes/demo_widget.html:3
+msgid "Support"
+msgstr ""
+
+#: templates/widget/includes/demo_widget.html:8
 msgid "Chat with Morse"
 msgstr ""
 
+#: templates/widget/includes/demo_widget.html:15
 msgid "Close chat"
 msgstr ""
 
+#: templates/widget/includes/demo_widget.html:18
 msgid "Morse chat"
 msgstr ""
 
+#: websites/demo.py:15
 msgid "Demo Website"
 msgstr ""
 
+#: websites/views.py:48
 msgid "Website name is required."
 msgstr ""
 
+#: widget/views.py:29
 msgid "Invalid or missing widget key"
 msgstr ""
 
+#: widget/views.py:131
 msgid "Thanks for reaching out! A support agent will be with you shortly."
 msgstr ""
 
+#: widget/views.py:175 widget/views.py:214
 msgid "Conversation not found"
+msgstr ""
+
+#: widget/views.py:218
+msgid "Audio file is required"
+msgstr ""
+
+#: widget/views.py:222
+msgid "Voice message is too large (max 5 MB)"
+msgstr ""
+
+#: widget/views.py:235
+msgid "Unsupported audio format"
+msgstr ""
+
+#: widget/views.py:248
+#, python-format
+msgid "Voice messages cannot exceed %(seconds)s seconds"
 msgstr ""

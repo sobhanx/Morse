@@ -22,7 +22,7 @@ class Category(TenantModel):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return self.name
+        return f"{self.name} ({self.website})"
 
 
 class Article(TenantModel):

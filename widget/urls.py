@@ -16,4 +16,9 @@ urlpatterns = [
         views.send_message,
         name="send_message",
     ),
+    path(
+        "conversations/<int:conversation_id>/voice/",
+        views.send_voice_message,
+        name="send_voice_message",
+    ),
 ]

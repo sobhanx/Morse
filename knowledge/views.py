@@ -1,5 +1,6 @@
 from contextlib import contextmanager
 
+from django.db.models import Prefetch
 from django.http import Http404
 from django.shortcuts import get_object_or_404, render
 from django.utils.translation import gettext as _
@@ -45,6 +46,10 @@ def help_center(request):
 
     query = request.GET.get("q", "").strip()
     with _website_context(website):
+        published_articles = Prefetch(
+            "articles",
+            queryset=Article.unscoped.filter(is_published=True).order_by("-updated_at"),
+        )
         if query:
             articles = filter_localized_articles(
                 Article.objects.filter(is_published=True).select_related("category"),
@@ -55,7 +60,7 @@ def help_center(request):
             articles = []
 
         categories = localize_categories(
-            Category.objects.prefetch_related("articles").all(),
+            Category.objects.prefetch_related(published_articles).all(),
             website,
         )
 
@@ -90,6 +95,7 @@ def article_detail(request, slug):
             "knowledge/article_detail.html",
             {
                 "article": article,
+                "website": website,
                 "widget_key": website.public_widget_key,
             },
         )

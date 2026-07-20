@@ -64,4 +64,9 @@
     {% endfor %}
     {% endif %}
 </main>
+{% include "widget/includes/demo_widget.html" %}
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="/static/css/widget.css">
 {% endblock %}

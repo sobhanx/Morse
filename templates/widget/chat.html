@@ -13,10 +13,79 @@
     {% endif %}
     <link rel="stylesheet" href="/static/css/widget.css">
     <link rel="stylesheet" href="/static/css/rtl.css">
+    {# Keep localStorage / cookie in sync with the persistent visitor UUID #}
+    <script>
+    (function () {
+        var params = new URLSearchParams(window.location.search);
+        var widgetKey = params.get('key');
+        if (!widgetKey) return;
+
+        var storageKey = 'morse_visitor_id:' + widgetKey;
+        var globalKey = 'morse_visitor_id';
+        var cookieName = 'morse_vid_' + widgetKey.replace(/[^a-zA-Z0-9_-]/g, '');
+        var uuidRe = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+
+        function readCookie() {
+            var parts = (';document.cookie || '').split(';');
+            for (var i = 0; i < parts.length; i++) {
+                var part = parts[i].trim();
+                if (part.indexOf(cookieName + '=') === 0) {
+                    return decodeURIComponent(part.slice(cookieName.length + 1));
+                }
+            }
+            return null;
+        }
+
+        function writeCookie(id) {
+            try {
+                document.cookie =
+                    cookieName +
+                    '=' +
+                    encodeURIComponent(id) +
+                    '; path=/; max-age=' +
+                    (60 * 60 * 24 * 365) +
+                    '; SameSite=Lax';
+            } catch (err) {}
+        }
+
+        function readStored() {
+            try {
+                var keyed = window.localStorage.getItem(storageKey);
+                if (keyed && uuidRe.test(keyed)) return keyed;
+                var globalId = window.localStorage.getItem(globalKey);
+                if (globalId && uuidRe.test(globalId)) return globalId;
+            } catch (err) {}
+            var fromCookie = readCookie();
+            return fromCookie && uuidRe.test(fromCookie) ? fromCookie : null;
+        }
+
+        function writeStored(id) {
+            try {
+                window.localStorage.setItem(storageKey, id);
+                window.localStorage.setItem(globalKey, id);
+            } catch (err) {}
+            writeCookie(id);
+        }
+
+        var urlId = params.get('visitor_id');
+        // Parent embed / bootstrap URL is the source of truth when present.
+        if (urlId && uuidRe.test(urlId)) {
+            writeStored(urlId);
+            return;
+        }
+
+        var stored = readStored();
+        if (stored) {
+            params.set('visitor_id', stored);
+            window.location.replace(window.location.pathname + '?' + params.toString());
+        }
+    })();
+    </script>
 </head>
 <body class="widget-body">
     <div class="widget-chat" id="widget-chat"
-         data-widget-key="{{ widget_key }}">
+         data-widget-key="{{ widget_key }}"
+         data-visitor-id="{{ contact.session_id }}">
         <div class="widget-header">
             <div class="widget-header-info">
                 <div class="widget-avatar">
@@ -32,22 +101,49 @@
 
         <div class="widget-messages" id="widget-messages"
              data-conversation-id="{{ conversation.id }}"
-             data-widget-key="{{ widget_key }}">
+             data-widget-key="{{ widget_key }}"
+             data-visitor-id="{{ contact.session_id }}">
             {% for msg in messages %}
             <div class="widget-message widget-message-{{ msg.sender_type }}" data-id="{{ msg.id }}">
-                <div class="widget-bubble">{{ msg.content }}</div>
+                <div class="widget-bubble{% if msg.message_type == 'audio' %} widget-bubble-audio{% endif %}">
+                    {% if msg.message_type == 'audio' and msg.audio %}
+                    <audio class="widget-audio" controls preload="metadata">
+                        <source src="{{ msg.audio_url }}?key={{ widget_key }}&visitor_id={{ contact.session_id }}" type="{{ msg.audio_mime_type }}">
+                    </audio>
+                    {% if msg.duration_seconds %}<span class="widget-audio-duration">{{ msg.duration_seconds }}s</span>{% endif %}
+                    {% else %}
+                    {{ msg.content }}
+                    {% endif %}
+                </div>
             </div>
             {% endfor %}
         </div>
 
         <div class="widget-prechat" id="widget-prechat" {% if contact.name %}style="display:none"{% endif %}>
-            <p>{% trans "Before we start, tell us a bit about yourself:" %}</p>
+            <p>{% trans "To help us assist you better, please provide your information:" %}</p>
             <input type="text" id="visitor-name" placeholder="{% trans 'Your name' %}" value="{{ contact.name }}">
             <input type="email" id="visitor-email" placeholder="{% trans 'Your email' %}" value="{{ contact.email }}">
             <button type="button" id="save-contact-btn" class="widget-btn">{% trans "Continue" %}</button>
         </div>
 
-        <form class="widget-input" id="widget-form">
+        <form class="widget-input" id="widget-form"
+              data-max-voice-seconds="60"
+              data-msg-mic-denied="{% trans 'Microphone access is required to record voice messages.' %}"
+              data-msg-mic-unsupported="{% trans 'Voice recording is not supported in this browser.' %}"
+              data-msg-voice-failed="{% trans 'Could not send voice message. Please try again.' %}">
+            <button type="button" id="widget-mic-btn" class="widget-mic-btn" aria-label="{% trans 'Record voice message' %}" title="{% trans 'Record voice (max 1 min)' %}">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M12 14a3 3 0 0 0 3-3V6a3 3 0 1 0-6 0v5a3 3 0 0 0 3 3Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M19 11a7 7 0 0 1-14 0M12 18v3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+            <div class="widget-recording" id="widget-recording" hidden>
+                <span class="widget-recording-dot" aria-hidden="true"></span>
+                <span class="widget-recording-timer" id="widget-recording-timer">0:00</span>
+                <span class="widget-recording-hint">{% trans "Recording…" %}</span>
+                <button type="button" id="widget-cancel-recording" class="widget-recording-cancel" aria-label="{% trans 'Cancel recording' %}">✕</button>
+                <button type="button" id="widget-stop-recording" class="widget-recording-send" aria-label="{% trans 'Send voice message' %}">{% trans "Send" %}</button>
+            </div>
             <input type="text" id="widget-message-input" placeholder="{% trans 'Type a message...' %}" autocomplete="off">
             <button type="button" id="widget-send-btn" class="widget-send-btn" aria-label="{% trans 'Send' %}">➤</button>
         </form>
@@ -57,6 +153,6 @@
             <a href="{% url 'knowledge:help_center' %}?key={{ widget_key }}" target="_blank">{% trans "Browse help articles" %}</a>
         </div>
     </div>
-    <script src="/static/js/widget.js?v=2"></script>
+    <script src="/static/js/widget.js?v=8"></script>
 </body>
 </html>

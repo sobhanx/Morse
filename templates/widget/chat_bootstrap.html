@@ -1,0 +1,86 @@
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% trans "Chat" %}</title>
+    <script>
+    (function () {
+        var params = new URLSearchParams(window.location.search);
+        var widgetKey = params.get('key') || '{{ widget_key|escapejs }}';
+        var storageKey = 'morse_visitor_id:' + widgetKey;
+        var globalKey = 'morse_visitor_id';
+        var cookieName = 'morse_vid_' + widgetKey.replace(/[^a-zA-Z0-9_-]/g, '');
+        var uuidRe = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+
+        function generateId() {
+            if (window.crypto && typeof window.crypto.randomUUID === 'function') {
+                return window.crypto.randomUUID();
+            }
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                var r = (Math.random() * 16) | 0;
+                var v = c === 'x' ? r : (r & 0x3) | 0x8;
+                return v.toString(16);
+            });
+        }
+
+        function readCookie() {
+            var parts = (';document.cookie || '').split(';');
+            for (var i = 0; i < parts.length; i++) {
+                var part = parts[i].trim();
+                if (part.indexOf(cookieName + '=') === 0) {
+                    return decodeURIComponent(part.slice(cookieName.length + 1));
+                }
+            }
+            return null;
+        }
+
+        function writeCookie(id) {
+            try {
+                var maxAge = 60 * 60 * 24 * 365;
+                document.cookie =
+                    cookieName +
+                    '=' +
+                    encodeURIComponent(id) +
+                    '; path=/; max-age=' +
+                    maxAge +
+                    '; SameSite=Lax';
+            } catch (err) {}
+        }
+
+        function readStored() {
+            try {
+                var keyed = window.localStorage.getItem(storageKey);
+                if (keyed && uuidRe.test(keyed)) return keyed;
+                var globalId = window.localStorage.getItem(globalKey);
+                if (globalId && uuidRe.test(globalId)) return globalId;
+            } catch (err) {}
+            var fromCookie = readCookie();
+            return fromCookie && uuidRe.test(fromCookie) ? fromCookie : null;
+        }
+
+        function writeStored(id) {
+            try {
+                window.localStorage.setItem(storageKey, id);
+                window.localStorage.setItem(globalKey, id);
+            } catch (err) {}
+            writeCookie(id);
+        }
+
+        // Prefer an existing identity; only generate on true first visit.
+        var stored = readStored();
+        if (!stored) {
+            stored = generateId();
+        }
+        writeStored(stored);
+
+        params.set('key', widgetKey);
+        params.set('visitor_id', stored);
+        window.location.replace(window.location.pathname + '?' + params.toString());
+    })();
+    </script>
+</head>
+<body></body>
+</html>

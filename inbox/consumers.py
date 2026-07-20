@@ -50,13 +50,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 self.room_group_name,
                 {
                     "type": "chat.message",
-                    "message": {
-                        "id": message["id"],
-                        "content": message["content"],
-                        "sender_type": message["sender_type"],
-                        "sender_name": message["sender_name"],
-                        "created_at": message["created_at"],
-                    },
+                    "message": message,
                 },
             )
 
@@ -99,13 +93,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
         conversation.is_unread = True
         conversation.status = Conversation.Status.OPEN
         conversation.save(update_fields=["is_unread", "status", "updated_at"])
-        return {
-            "id": message.id,
-            "content": message.content,
-            "sender_type": message.sender_type,
-            "sender_name": message.sender_name,
-            "created_at": message.created_at.isoformat(),
-        }
+        return message.to_payload()
 
     @database_sync_to_async
     def save_agent_message(self, content, user):
@@ -128,10 +116,4 @@ class ChatConsumer(AsyncWebsocketConsumer):
         )
         conversation.is_unread = False
         conversation.save(update_fields=["is_unread", "updated_at"])
-        return {
-            "id": message.id,
-            "content": message.content,
-            "sender_type": message.sender_type,
-            "sender_name": message.sender_name,
-            "created_at": message.created_at.isoformat(),
-        }
+        return message.to_payload()

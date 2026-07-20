@@ -1,6 +1,6 @@
 {% load i18n %}
 <div class="widget-launcher-stack" id="morse-widget-launcher-stack">
-    <span class="widget-launcher-label">{% trans "Morse" %}</span>
+    <span class="widget-launcher-label">{% trans "Support" %}</span>
     <button
         type="button"
         id="morse-widget-launcher"
@@ -13,10 +13,69 @@
 </div>
 <div id="morse-widget-frame" class="widget-frame hidden">
     <button id="morse-widget-close" class="widget-close" aria-label="{% trans 'Close chat' %}">×</button>
-    <iframe src="{% url 'widget:chat' %}?key={{ website.public_widget_key }}" title="{% trans 'Morse chat' %}"></iframe>
+    <iframe
+        id="morse-widget-iframe"
+        title="{% trans 'Morse chat' %}"
+        allow="microphone *"
+    ></iframe>
 </div>
 <script>
 (function() {
+    const widgetKey = '{{ website.public_widget_key|escapejs }}';
+    // Canonical parent-page key (this script runs on the host page, not in the iframe).
+    const STORAGE_KEY = 'morse_visitor_id';
+
+    function generateVisitorId() {
+        if (window.crypto && typeof window.crypto.randomUUID === 'function') {
+            return window.crypto.randomUUID();
+        }
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+            const r = (Math.random() * 16) | 0;
+            const v = c === 'x' ? r : (r & 0x3) | 0x8;
+            return v.toString(16);
+        });
+    }
+
+    function getOrCreateVisitorId() {
+        var existing = null;
+        try {
+            existing = window.localStorage.getItem(STORAGE_KEY);
+        } catch (err) {
+            console.warn('[Morse visitor] localStorage.getItem failed', err);
+        }
+
+        if (existing) {
+            console.log('reusing existing visitor_id', existing);
+            return existing;
+        }
+
+        var visitorId = generateVisitorId();
+        console.log('generated new visitor_id', visitorId);
+
+        try {
+            window.localStorage.setItem(STORAGE_KEY, visitorId);
+            console.log('saved visitor_id', visitorId, {
+                verified: window.localStorage.getItem(STORAGE_KEY),
+                origin: window.location.origin,
+                note: 'Saved on PARENT page. Select the top frame in DevTools to inspect.',
+            });
+        } catch (err) {
+            console.error('[Morse visitor] localStorage.setItem failed', err);
+        }
+
+        return visitorId;
+    }
+
+    const visitorId = getOrCreateVisitorId();
+    const iframe = document.getElementById('morse-widget-iframe');
+    const iframeUrl =
+        '{% url "widget:chat" %}?key=' +
+        encodeURIComponent(widgetKey) +
+        '&visitor_id=' +
+        encodeURIComponent(visitorId);
+    console.log('[Morse visitor] iframe URL', iframeUrl);
+    iframe.src = iframeUrl;
+
     const launcher = document.getElementById('morse-widget-launcher');
     const frame = document.getElementById('morse-widget-frame');
     const closeBtn = document.getElementById('morse-widget-close');
