@@ -999,6 +999,9 @@ msgstr "شناسه شما:"
 msgid "Browse help articles"
 msgstr "مشاهده مقالات راهنما"
 
+msgid "Continue in Telegram"
+msgstr "ادامه در تلگرام"
+
 #: templates/widget/demo.html:11
 msgid "Live demo"
 msgstr "دموی زنده"

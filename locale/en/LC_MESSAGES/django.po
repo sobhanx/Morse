@@ -990,6 +990,9 @@ msgstr ""
 msgid "Browse help articles"
 msgstr ""
 
+msgid "Continue in Telegram"
+msgstr ""
+
 #: templates/widget/demo.html:11
 msgid "Live demo"
 msgstr ""

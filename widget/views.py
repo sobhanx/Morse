@@ -160,6 +160,7 @@ def chat_widget(request):
             contact=contact, website=website
         )
     messages = conversation.messages.all()
+    telegram_deep_link = contact.get_telegram_deep_link()
     return render(
         request,
         "widget/chat.html",
@@ -169,6 +170,7 @@ def chat_widget(request):
             "messages": messages,
             "website": website,
             "widget_key": widget_key,
+            "telegram_deep_link": telegram_deep_link,
         },
     )
 

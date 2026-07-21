@@ -218,6 +218,7 @@ TRANSLATIONS = {
     "Type a message...": "پیام خود را بنویسید...",
     "Your ID:": "شناسه شما:",
     "Browse help articles": "مشاهده مقالات راهنما",
+    "Continue in Telegram": "ادامه در تلگرام",
     "Live demo": "دموی زنده",
     "Customer support that feels built in": "پشتیبانی مشتری که بخشی از سایت شماست",
     "Real-time support": "پشتیبانی بلادرنگ",

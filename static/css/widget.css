@@ -88,9 +88,75 @@
     box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
     z-index: 9998;
     background: #fff;
+    /* Genie open state (default when .hidden is removed) */
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: none;
+    /* Suck toward the launcher (bottom-right FAB) */
+    transform-origin: 100% 115%;
+    will-change: transform, opacity;
+    transition:
+        transform 0.52s cubic-bezier(0.22, 1.1, 0.36, 1),
+        opacity 0.32s ease,
+        filter 0.32s ease,
+        visibility 0s linear 0s;
 }
-.widget-frame.hidden { display: none; }
-.widget-frame iframe { width: 100%; height: 100%; border: none; }
+/* Closed / closing: Genie suck back into the launcher */
+.widget-frame.hidden {
+    /* Keep in layout so open/close can animate (do not use display: none). */
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    /* Stretch + scale into the FAB below the panel */
+    transform: translate3d(28px, 84px, 0) scale(0.06, 0.02);
+    filter: blur(1.5px);
+    /* Defer visibility:hidden until the suck finishes */
+    transition:
+        transform 0.42s cubic-bezier(0.55, 0.05, 0.8, 0.2),
+        opacity 0.28s ease,
+        filter 0.28s ease,
+        visibility 0s linear 0.4s;
+}
+.widget-frame iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    /* Avoid iframe paint glitches while the shell animates */
+    transform: translateZ(0);
+}
+
+/* RTL: launcher is bottom-left — genie toward that corner */
+html[dir="rtl"] .widget-frame {
+    transform-origin: 0% 115%;
+}
+html[dir="rtl"] .widget-frame.hidden {
+    transform: translate3d(-28px, 84px, 0) scale(0.06, 0.02);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .widget-frame,
+    .widget-frame.hidden {
+        transition: none !important;
+        filter: none !important;
+        transform: none !important;
+        will-change: auto;
+    }
+    .widget-frame.hidden {
+        display: none;
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+@media (max-width: 600px) {
+    .widget-frame.hidden {
+        transform: translate3d(16px, 72px, 0) scale(0.05, 0.02);
+    }
+    html[dir="rtl"] .widget-frame.hidden {
+        transform: translate3d(-16px, 72px, 0) scale(0.05, 0.02);
+    }
+}
 .widget-close {
     position: absolute;
     top: 8px;
@@ -351,8 +417,33 @@
     font-size: 12px;
     background: #fff;
     border-top: 1px solid #e5e8ef;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
 }
 .widget-footer a { color: #1972F5; text-decoration: none; }
+.widget-telegram-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 16px;
+    background: #eef5ff;
+    color: #1972F5 !important;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.2;
+    text-decoration: none;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+.widget-telegram-link:hover {
+    background: #dde8f8;
+    color: #0d5fd4 !important;
+}
+.widget-telegram-icon {
+    flex-shrink: 0;
+}
 
 /* Demo page */
 .demo-page { background: #f0f2f5; min-height: 100vh; }

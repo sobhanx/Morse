@@ -93,7 +93,7 @@
 
     var link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = host + '/static/css/widget.css';
+    link.href = host + '/static/css/widget.css?v=genie1';
     document.head.appendChild(link);
 
     document.body.appendChild(stack);
