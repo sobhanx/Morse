@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     "websites",
     "accounts",
     "contacts",
-    "inbox",
+    "inbox.apps.InboxConfig",
     "knowledge",
     "widget",
     "dashboard",
@@ -137,8 +137,10 @@ SMS_IR_API_KEY = os.getenv("SMS_IR_API_KEY", "")
 SMS_IR_LINE_NUMBER = os.getenv("SMS_IR_LINE_NUMBER", "")
 SMS_IR_VERIFY_TEMPLATE_ID = os.getenv("SMS_IR_VERIFY_TEMPLATE_ID", "")
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "")
-
-
+TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID", "")
+TELEGRAM_BOT_USERNAME = os.getenv("TELEGRAM_BOT_USERNAME", "").lstrip("@")
+TELEGRAM_WEBHOOK_SECRET = os.getenv("TELEGRAM_WEBHOOK_SECRET", "")
+TELEGRAM_WEBHOOK_URL = (os.getenv("TELEGRAM_WEBHOOK_URL", "") or "").strip()
 
 LOGIN_URL = "accounts:login"
 LOGIN_REDIRECT_URL = "dashboard:inbox"

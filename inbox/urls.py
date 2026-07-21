@@ -1,10 +1,15 @@
 from django.urls import path
 
-from . import views
+from . import telegram_views, views
 
 app_name = "inbox"
 
 urlpatterns = [
+    path(
+        "telegram/webhook/",
+        telegram_views.telegram_webhook,
+        name="telegram_webhook",
+    ),
     path(
         "conversations/<int:conversation_id>/send/",
         views.send_agent_message,
