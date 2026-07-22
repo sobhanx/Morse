@@ -3,10 +3,7 @@ import os
 from django.contrib.auth import get_user_model
 from django.core.management.base import BaseCommand
 
-from contacts.models import Contact
-from inbox.models import Conversation, Message
-from knowledge.models import Article, Category
-from websites.models import Website, WebsiteAgent
+from morse.models import Article, Category, Contact, Website, WebsiteAgent
 
 User = get_user_model()
 

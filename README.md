@@ -138,7 +138,7 @@ Copy `.env.example` to `.env` and configure:
 
 SMS login requires all three `SMS_IR_*` variables. Without them, login attempts log an error and SMS is not sent.
 
-Telegram **operator alerts** require `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID` (see `inbox.services.telegram`).
+Telegram **operator alerts** require `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID` (see `morse.services.telegram`).
 
 Telegram **visitor account linking** uses deep links `https://t.me/<TELEGRAM_BOT_USERNAME>?start=<token>` and the webhook at `/inbox/telegram/webhook/`. Register it with `python manage.py telegram_set_webhook` (requires `TELEGRAM_WEBHOOK_URL`; optional `TELEGRAM_WEBHOOK_SECRET`).
 
@@ -178,31 +178,32 @@ Paste before `</body>` on the customer's website.
 The embed script:
 
 - Resolves the tenant from `key` only
-- Stores a stable visitor ID in the **parent page** `localStorage` (`morse_visitor_id` / `morse_visitor_id:<key>`)
+- Stores a stable visitor ID in the **parent page** `localStorage` (`morse_visitor_id`)
 - Passes that ID into the chat iframe so refresh and page navigation keep the same visitor
 - Loads the floating chat UI (text + voice)
 
 Hard-refresh customer pages after updating Morse if the browser cached an old `/widget/embed.js`.
 
-## Multi-tenant architecture
+## Architecture
+
+Business logic lives in **`morse`**. Auth stays in **`accounts`**. Project wiring stays in **`config`**. Legacy apps keep historical `app_label`s and migrations; they are thin shims, not a second implementation.
+
+See [ARCHITECTURE.md](ARCHITECTURE.md) for shim policy, import preferences, and what must not be migrated casually.
 
 ```
-websites/        # Website (tenant) model, middleware, permissions
-contacts/        # Visitors — FK to Website (session_id + short visitor_id)
-inbox/           # Conversations, messages (text + voice) — FK to Website
-knowledge/       # FAQ articles — FK to Website
-widget/          # Public endpoints resolved by public_widget_key
-dashboard/       # Agent UI scoped to session active website
-accounts/        # SMS login agents / owners
-locale/          # FA/EN translations
-media/           # Uploaded voice files (local/dev)
+morse/                         # Source of truth (models, views, services, admin, commands)
+accounts/                      # SMS login (AUTH_USER_MODEL unchanged)
+config/                        # settings, root urls, asgi
+websites|contacts|inbox|knowledge/   # Legacy app_labels + migrations + re-export shims
+widget|dashboard/              # URL includes only (not in INSTALLED_APPS)
 ```
 
-- `WebsiteMiddleware` sets `request.website` from widget key (public paths) or session (dashboard)
+- Models are defined in `morse/models/` with legacy `Meta.app_label` (`websites`, `contacts`, `inbox`, `knowledge`) so tables and migration history stay intact
+- Prefer `from morse…` in new code; old `from inbox.models…` paths still work via shims
+- `WebsiteMiddleware` (`morse.middleware`) sets `request.website` from widget key or session
 - `TenantManager` auto-filters queries by the current website context
-- Reverse relations (e.g. `category.articles`) are FK-scoped and do not re-apply a mismatched website filter
 - Website owners and agents only see their websites; superusers see all
-- Django admin can show cross-tenant rows — use the **Website** column/filter on knowledge models
+- Django admin is registered in `morse.admin` (may show cross-tenant rows — use Website filters)
 
 ## Localization
 

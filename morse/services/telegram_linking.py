@@ -6,7 +6,7 @@ import re
 from django.db import IntegrityError, transaction
 from django.utils.translation import gettext as _
 
-from contacts.models import Contact
+from morse.models import Contact
 
 from .telegram import send_telegram_message
 

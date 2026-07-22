@@ -1,5 +1,5 @@
-"""Outbound notification providers (Telegram, and future Slack/WhatsApp/Email)."""
+"""Shim — Telegram services live in morse.services."""
 
-from .telegram import send_telegram_message, send_telegram_notification
+from morse.services import send_telegram_message, send_telegram_notification
 
-__all__ = ["send_telegram_notification", "send_telegram_message"]
+__all__ = ["send_telegram_message", "send_telegram_notification"]

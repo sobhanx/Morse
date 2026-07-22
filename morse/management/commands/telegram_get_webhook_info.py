@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 
-from inbox.services.telegram import get_telegram_webhook_info
+from morse.services.telegram import get_telegram_webhook_info
 
 
 class Command(BaseCommand):

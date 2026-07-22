@@ -14,7 +14,7 @@ def register_admin_dashboards():
     admin.site.index_title = f"{product_name} administration"
 
     from accounts.admin import user_usage_dashboard
-    from websites.admin import website_usage_dashboard
+    from morse.admin import website_usage_dashboard
 
     original_get_urls = admin.site.get_urls
 

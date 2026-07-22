@@ -38,14 +38,10 @@
 
     // 2) If missing, generate UUID
     // 3) Save it to parent localStorage
-    if (visitorId) {
-        console.log('[Morse embed] reused visitor id', visitorId);
-    } else {
+    if (!visitorId) {
         visitorId = generateUuid();
-        console.log('[Morse embed] generated visitor id', visitorId);
         try {
             localStorage.setItem('morse_visitor_id', visitorId);
-            console.log('[Morse embed] saved visitor id to localStorage');
         } catch (err) {
             console.error('[Morse embed] failed to save morse_visitor_id', err);
         }
@@ -59,10 +55,6 @@
         '&visitor_id=' +
         encodeURIComponent(visitorId) +
         '&v=11';
-
-    // 5) Temporary console logs to verify
-    console.log('[Morse embed] morse-visitor-persist-v11 loaded');
-    console.log('[Morse embed] final iframe URL', widgetUrl);
 
     var stack = document.createElement('div');
     stack.id = 'morse-widget-launcher-stack';

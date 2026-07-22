@@ -9,7 +9,7 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
 
 django_asgi_app = get_asgi_application()
 
-from inbox.routing import websocket_urlpatterns  # noqa: E402
+from morse.routing import websocket_urlpatterns  # noqa: E402
 
 application = ProtocolTypeRouter(
     {

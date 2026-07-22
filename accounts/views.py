@@ -10,7 +10,7 @@ from django.utils.translation import gettext as _
 from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.http import require_POST
 
-from websites.permissions import (
+from morse.permissions import (
     get_accessible_websites,
     set_active_website,
 )

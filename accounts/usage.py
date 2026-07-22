@@ -41,15 +41,17 @@ def user_usage_queryset(queryset=None):
 
 
 def get_user_owned_website_stats(user):
-    from websites.admin import website_usage_queryset
-    from websites.models import Website
+    from morse.models import Website
+    from morse.usage import website_usage_queryset
 
-    return website_usage_queryset(Website.objects.filter(owner=user)).order_by("-_conversation_count")
+    return website_usage_queryset(Website.objects.filter(owner=user)).order_by(
+        "-_conversation_count"
+    )
 
 
 def get_user_agent_website_stats(user):
-    from websites.admin import website_usage_queryset
-    from websites.models import Website
+    from morse.models import Website
+    from morse.usage import website_usage_queryset
 
     return website_usage_queryset(
         Website.objects.filter(agents__user=user).exclude(owner=user)

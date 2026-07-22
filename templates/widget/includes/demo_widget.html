@@ -45,20 +45,13 @@
         }
 
         if (existing) {
-            console.log('reusing existing visitor_id', existing);
             return existing;
         }
 
         var visitorId = generateVisitorId();
-        console.log('generated new visitor_id', visitorId);
 
         try {
             window.localStorage.setItem(STORAGE_KEY, visitorId);
-            console.log('saved visitor_id', visitorId, {
-                verified: window.localStorage.getItem(STORAGE_KEY),
-                origin: window.location.origin,
-                note: 'Saved on PARENT page. Select the top frame in DevTools to inspect.',
-            });
         } catch (err) {
             console.error('[Morse visitor] localStorage.setItem failed', err);
         }
@@ -73,7 +66,6 @@
         encodeURIComponent(widgetKey) +
         '&visitor_id=' +
         encodeURIComponent(visitorId);
-    console.log('[Morse visitor] iframe URL', iframeUrl);
     iframe.src = iframeUrl;
 
     const launcher = document.getElementById('morse-widget-launcher');

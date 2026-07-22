@@ -49,13 +49,15 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "websites",
     "accounts",
+    "morse.apps.MorseConfig",
+    # Legacy app labels — model Meta.app_label still points here to preserve
+    # migration history and db tables. Source of truth is morse/.
+    "websites",
     "contacts",
     "inbox.apps.InboxConfig",
     "knowledge",
-    "widget",
-    "dashboard",
+    # widget/ and dashboard/ packages remain for URL includes only (not installed).
 ]
 
 MIDDLEWARE = [
@@ -65,7 +67,7 @@ MIDDLEWARE = [
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
-    "websites.middleware.WebsiteMiddleware",
+    "morse.middleware.WebsiteMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]

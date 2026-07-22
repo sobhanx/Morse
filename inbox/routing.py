@@ -1,10 +1,5 @@
-from django.urls import re_path
+"""Shim — websocket routes live in morse.routing."""
 
-from . import consumers
+from morse.routing import websocket_urlpatterns  # noqa: F401
 
-websocket_urlpatterns = [
-    re_path(
-        r"ws/chat/(?P<conversation_id>\d+)/$",
-        consumers.ChatConsumer.as_asgi(),
-    ),
-]
+__all__ = ["websocket_urlpatterns"]

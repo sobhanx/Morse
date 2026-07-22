@@ -1,6 +1,6 @@
 from django import template
 
-from websites.demo import localized_website_name
+from morse.demo import localized_website_name
 
 register = template.Library()
 
