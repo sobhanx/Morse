@@ -4,7 +4,7 @@ from django.utils import timezone
 from django.utils.translation import gettext as _
 from django.views.decorators.http import require_GET, require_POST
 
-from morse.models import Conversation, Website, WebsiteAgent
+from morse.models import Website, WebsiteAgent
 from morse.platform_monitor import (
     build_customer_rows,
     build_website_rows,

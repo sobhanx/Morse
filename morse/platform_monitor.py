@@ -1,4 +1,4 @@
-from django.db.models import Count, Prefetch, Q
+from django.db.models import Prefetch, Q
 
 from accounts.models import User
 from accounts.usage import user_usage_queryset

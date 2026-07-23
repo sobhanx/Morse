@@ -3,13 +3,13 @@ import os
 from django.contrib.auth import get_user_model
 from django.core.management.base import BaseCommand
 
-from morse.models import Article, Category, Contact, Website, WebsiteAgent
+from morse.constants import DEMO_DOMAIN
+from morse.models import Article, Category, Contact, Conversation, Message, Website, WebsiteAgent
 
 User = get_user_model()
 
 DEMO_ADMIN_PHONE = os.getenv("DEMO_ADMIN_PHONE", "09000000000")
 DEMO_ADMIN_PASSWORD = os.getenv("DEMO_ADMIN_PASSWORD", "changeme-demo")
-DEMO_DOMAIN = "demo.example.com"
 
 
 class Command(BaseCommand):

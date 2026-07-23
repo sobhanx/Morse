@@ -1,6 +1,6 @@
 from django.utils.translation import get_language
 
-from morse.permissions import DEMO_DOMAIN
+from morse.constants import DEMO_DOMAIN
 
 from .demo_content import DEMO_KB
 from morse.models import Article

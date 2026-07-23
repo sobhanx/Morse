@@ -4,7 +4,7 @@ from django.db.models import Count, Q
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.http import require_GET, require_POST
 
-from morse.models import Contact, WebsiteAgent
+from morse.models import Contact, Conversation, Message, WebsiteAgent
 from morse.permissions import (
     get_accessible_websites,
     get_demo_website,

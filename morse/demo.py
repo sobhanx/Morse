@@ -3,7 +3,7 @@ from django.utils.translation import gettext
 
 from morse.demo_content import DEMO_KB
 from morse.models import Article, Category, Website, WebsiteAgent
-from morse.permissions import DEMO_DOMAIN
+from morse.constants import DEMO_DOMAIN
 
 User = get_user_model()
 

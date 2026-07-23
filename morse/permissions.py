@@ -2,12 +2,10 @@
 
 from urllib.parse import parse_qs
 
-from django.conf import settings
 from django.http import JsonResponse
 
+from morse.constants import DEMO_DOMAIN  # noqa: F401 — re-export for compatibility
 from morse.models import Website
-
-DEMO_DOMAIN = getattr(settings, "DEMO_WEBSITE_DOMAIN", "demo.example.com")
 
 
 def get_widget_key_from_request(request):

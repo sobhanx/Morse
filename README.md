@@ -218,4 +218,3 @@ widget|dashboard/              # URL includes only (not in INSTALLED_APPS)
 - Daphne ASGI server
 - SQLite (development)
 - Vanilla JS + CSS
-- Pillow (voice/media handling)
